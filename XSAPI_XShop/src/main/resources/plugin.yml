@@ -1,0 +1,10 @@
+name: XShopDynamicShop
+version: '${project.version}'
+main: net.xsapi.panat.xshop.xshopdynamicshop.core.XShopDynamicShopCore
+depend: [Vault]
+api-version: 1.19
+authors: [ PanatXsectorZ ]
+description: Intelligence Shop For Minecraft Server
+commands:
+  xshop:
+    description: command for xsapi-dynamicshop plugin
