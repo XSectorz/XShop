@@ -205,18 +205,31 @@ public class InventoryGUI implements Listener {
                                         return;
                                     }
                                 }
-                               // p.sendMessage("Price: " + price);
 
-                                if(XShopDynamicShopCore.getEconomy().getBalance(p.getName())-price < 0) {
-                                    p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("money_not_enough")).replace("&","§"));
-                                    return;
+                                if(shopItems.getPriceType().equals(XShopPriceType.Points)) {
+                                    if((XShopDynamicShopCore.getPlayerPoint().look(p.getUniqueId()))-price < 0) {
+                                        p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("point_not_enough")).replace("&","§"));
+                                        return;
+                                    }
+                                } else {
+                                    if(XShopDynamicShopCore.getEconomy().getBalance(p.getName())-price < 0) {
+                                        p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("money_not_enough")).replace("&","§"));
+                                        return;
+                                    }
                                 }
 
                                 if(shopItems.getStock() != -1) {
                                     shopItems.setStock(shopItems.getStock()-Math.pow(2,e.getSlot()-10));
                                 }
 
-                                XShopDynamicShopCore.getEconomy().withdrawPlayer(p.getName(),price);
+                                shopItems.setVolumeBuy(shopItems.getVolumeBuy()+(int) Math.pow(2,e.getSlot()-10));
+
+                                if(shopItems.getPriceType().equals(XShopPriceType.Points)) {
+                                    XShopDynamicShopCore.getPlayerPoint().take(p.getUniqueId(),(int) price);
+                                } else {
+                                    XShopDynamicShopCore.getEconomy().withdrawPlayer(p.getName(),price);
+                                }
+
                                 if(shopItems.getItemsType().equals(XShopItemsType.CUSTOM)) {
                                     XShopItemsCustom xsitemcustom = (XShopItemsCustom) shopItems;
                                     for(String cmd : xsitemcustom.getCmd()) {
@@ -238,7 +251,8 @@ public class InventoryGUI implements Listener {
                                     p.getInventory().addItem(itmstack);
                                 }
                                 XShopConfirm.openGUI(p,mat,XShopDynamicShopCore.shopPrivateName.get(p.getUniqueId()),true);
-                                p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("buy_complete")).replace("%price%",df.format(price)).replace("&","§"));
+                                p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("buy_complete")).replace("%price%",df.format(price))
+                                        .replace("%price_type%",messages.customConfig.getString("price_" + shopItems.getPriceType().toString().toLowerCase())).replace("&","§"));
                                 return;
                             } else if(XShopDynamicShopCore.shopConfirmType.get(p.getUniqueId()).equals(XShopConfirmType.SELL)){
                                 double price = 0;
@@ -269,7 +283,8 @@ public class InventoryGUI implements Listener {
                                 }
 
                                 if(!p.getInventory().containsAtLeast(itmstack,(int) Math.pow(2,e.getSlot()-10))) {
-                                    p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("not_enough_item")).replace("%price%",df.format(price)).replace("&","§"));
+                                    p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("not_enough_item")).replace("%price%",df.format(price))
+                                            .replace("&","§"));
                                     return;
                                 }
 
@@ -281,6 +296,8 @@ public class InventoryGUI implements Listener {
                                 }
 
                                 int itemsToRemove = (int) Math.pow(2,e.getSlot()-10);
+
+                                shopItems.setVolumeSell(shopItems.getVolumeSell()+itemsToRemove);
 
                                 if(isNormalItemSell) {
                                     for(ItemStack invItem : p.getInventory().getContents()) {
@@ -380,8 +397,14 @@ public class InventoryGUI implements Listener {
                                     }
                                 }
 
-                                XShopDynamicShopCore.getEconomy().depositPlayer(p.getName(),price);
-                                p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("sell_complete")).replace("%price%",df.format(price)).replace("&","§"));
+                                if(shopItems.getPriceType().equals(XShopPriceType.Points)) {
+                                    XShopDynamicShopCore.getPlayerPoint().give(p.getUniqueId(),(int) price);
+                                } else {
+                                    XShopDynamicShopCore.getEconomy().depositPlayer(p.getName(),price);
+                                }
+
+                                p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("sell_complete")).replace("%price%",df.format(price))
+                                        .replace("%price_type%",messages.customConfig.getString("price_" + shopItems.getPriceType().toString().toLowerCase())).replace("&","§"));
 
                                 if(isNormalItemSell) {
                                     XShopConfirm.openGUI(p,itmstack.getType(),XShopDynamicShopCore.shopPrivateName.get(p.getUniqueId()),false);

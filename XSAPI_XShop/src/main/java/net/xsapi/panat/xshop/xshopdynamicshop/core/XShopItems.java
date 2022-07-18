@@ -12,11 +12,39 @@ public class XShopItems {
     private double median;
     private double stock;
     private double previousPrice;
+    private XShopPriceType priceType;
+
+    private int volumeBuy = 0;
+    private int volumeSell = 0;
 
     public XShopItems(Material mat,XShopItemsType itemsType,String privateName) {
         this.mat = mat;
         this.itemsType = itemsType;
         this.privateName = privateName;
+    }
+
+    public void setPriceType(XShopPriceType priceType) {
+        this.priceType = priceType;
+    }
+
+    public XShopPriceType getPriceType() {
+        return priceType;
+    }
+
+    public int getVolumeSell() {
+        return volumeSell;
+    }
+
+    public void setVolumeSell(int volumeSell) {
+        this.volumeSell = volumeSell;
+    }
+
+    public void setVolumeBuy(int volumeBuy) {
+        this.volumeBuy = volumeBuy;
+    }
+
+    public int getVolumeBuy() {
+        return volumeBuy;
     }
 
     public void setPreviousPrice(double previousPrice) {

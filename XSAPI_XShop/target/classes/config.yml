@@ -1,5 +1,7 @@
 version: 1.0
 
+update_timer: 240 #in minutes
+
 gui:
   gui_title: "&x&7&4&f&f&a&3Main-Shop"
   up_trend: "&x&5&8&f&f&7&d⬆ +%value%%"
@@ -14,6 +16,10 @@ gui:
         - "&cSell: %price_to_sell%"
         - "&eStock: %stock%"
         - "&r"
+        - "&dVolume: %total_volume%"
+        - "&6Volume Buy: %vol_buy% &7(%vol_percent_buy%)"
+        - "&6Volume Sell: %vol_sell% &7(%vol_percent_sell%)"
+        - "&r"
         - "&aL-Click to buy item(s)"
         - "&aR-Click to sell item(s)"
     sell_only:
@@ -23,6 +29,8 @@ gui:
         - "&cSell: %price_to_sell%"
         - "&eStock: %stock%"
         - "&r"
+        - "&dVolume: %total_volume%"
+        - "&r"
         - "&aL-Click to sell item(s)"
     buy_only:
       displayName: "%type% %valueChange%"
@@ -30,6 +38,8 @@ gui:
         - "&r"
         - "&aBuy: %price_to_buy%"
         - "&eStock: %stock%"
+        - "&r"
+        - "&dVolume: %total_volume%"
         - "&r"
         - "&aL-Click to buy item(s)"
     custom:
@@ -41,6 +51,10 @@ gui:
           - "&cSell: %price_to_sell%"
           - "&eStock: %stock%"
           - "&r"
+          - "&dVolume: %total_volume%"
+          - "&6Volume Buy: %vol_buy% &7(%vol_percent_buy%)"
+          - "&6Volume Sell: %vol_sell% &7(%vol_percent_sell%)"
+          - "&r"
           - "&aL-Click to buy item(s)"
           - "&aR-Click to sell item(s)"
       buy:
@@ -50,6 +64,8 @@ gui:
           - "&aBuy: %price_to_buy%"
           - "&eStock: %stock%"
           - "&r"
+          - "&dVolume: %total_volume%"
+          - "&r"
           - "&aL-Click to buy item(s)"
       sell:
         displayName: "%type% %valueChange%"
@@ -57,6 +73,8 @@ gui:
           - "&r"
           - "&cSell: %price_to_sell%"
           - "&eStock: %stock%"
+          - "&r"
+          - "&dVolume: %total_volume%"
           - "&r"
           - "&aL-Click to sell item(s)"
   blocked_barrier:
@@ -172,13 +190,14 @@ gui_confirm:
       - "&x&a&9&f&f&f&fต้องการของผู้เล่นในเซิฟเวอร์"
       - "&r"
       - "&x&d&c&f&f&f&fยอดเงินคงเหลือ: &x&f&f&d&e&3&1%balance% Coins"
+      - "&x&d&c&f&f&f&fยอดพ้อยต์คงเหลือ: &x&5&3&d&6&f&f%points% Points"
       - "&r"
   templates:
     buy:
       displayName: "&e%type% &cx%multiple%"
       lore:
         - "&r"
-        - "&x&8&8&f&f&a&2ราคาสินค้า: &x&f&f&d&e&3&1%price% Coins"
+        - "&x&8&8&f&f&a&2ราคาสินค้า: &x&f&f&d&e&3&1%price%"
         - "&x&8&8&f&f&a&2จำนวนสินค้าคงเหลือ: &x&f&f&d&e&3&1%stock% ชิ้น"
         - "&r"
         - "&x&8&8&f&f&a&2คลิก-ซ้าย เพื่อดำเนินการซื้อ"
@@ -186,7 +205,7 @@ gui_confirm:
       displayName: "&e%type% &cx%multiple%"
       lore:
         - "&r"
-        - "&x&8&8&f&f&a&2ได้รับเงิน: &x&f&f&d&e&3&1%price% Coins"
+        - "&x&8&8&f&f&a&2จะได้รับ: &x&f&f&d&e&3&1%price%"
         - "&x&8&8&f&f&a&2จำนวนสินค้าคงเหลือ: &x&f&f&d&e&3&1%stock% ชิ้น"
         - "&r"
         - "&x&8&8&f&f&a&2คลิก-ซ้าย เพื่อดำเนินการขาย"

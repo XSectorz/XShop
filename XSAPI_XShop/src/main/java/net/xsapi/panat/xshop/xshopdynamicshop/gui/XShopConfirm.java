@@ -1,6 +1,7 @@
 package net.xsapi.panat.xshop.xshopdynamicshop.gui;
 
 import net.xsapi.panat.xshop.xshopdynamicshop.configuration.config;
+import net.xsapi.panat.xshop.xshopdynamicshop.configuration.messages;
 import net.xsapi.panat.xshop.xshopdynamicshop.configuration.storages;
 import net.xsapi.panat.xshop.xshopdynamicshop.core.*;
 import net.xsapi.panat.xshop.xshopdynamicshop.utils.ItemCreator;
@@ -133,11 +134,13 @@ public class XShopConfirm {
 
             ArrayList<String> loreItem = new ArrayList<>();
 
+            String priceType = messages.customConfig.getString("price_" + shopItems.getPriceType().toString().toLowerCase());
+
             for(String lores : lore) {
                 if(isBuy) {
-                    lores = lores.replace("%price%",""+df.format(((shopItems.getMedian()*shopItems.getValue())/stockChecker)*Math.pow(2,i)));
+                    lores = lores.replace("%price%",""+df.format(((shopItems.getMedian()*shopItems.getValue())/stockChecker)*Math.pow(2,i)) + " " + priceType);
                 } else {
-                    lores = lores.replace("%price%",""+df.format(((shopItems.getMedian()*shopItems.getValue())/stockChecker*75)/100*Math.pow(2,i)));
+                    lores = lores.replace("%price%",""+df.format(((shopItems.getMedian()*shopItems.getValue())/stockChecker*75)/100*Math.pow(2,i)) + " " + priceType);
                 }
 
                 if(shopItems.getStock() != -1) {
@@ -167,8 +170,10 @@ public class XShopConfirm {
         for(String lores : config.customConfig.getStringList("gui_confirm.info_button.lore")) {
             lores = lores.replace("&", "§");
             lores = lores.replace("%balance%",df.format(XShopDynamicShopCore.getEconomy().getBalance(p.getName())));
+            lores = lores.replace("%points%",df.format(XShopDynamicShopCore.getPlayerPoint().look(p.getUniqueId())));
             loreInfo.add(lores);
         }
+
 
         inv.setItem(31,ItemCreator.createItem(Material.valueOf(config.customConfig.getString("gui_confirm.info_button.material")),
                 1,config.customConfig.getInt("gui_confirm.info_button.customModelData"),config.customConfig.getString("gui_confirm.info_button.displayName").replace("&", "§")

@@ -11,11 +11,13 @@ net\xsapi\panat\xshop\xshopdynamicshop\core\XShopItems.class
 net\xsapi\panat\xshop\xshopdynamicshop\core\XShopItemsType.class
 net\xsapi\panat\xshop\xshopdynamicshop\configuration\farming.class
 net\xsapi\panat\xshop\xshopdynamicshop\configuration\mobs.class
+net\xsapi\panat\xshop\xshopdynamicshop\task\task_update.class
 net\xsapi\panat\xshop\xshopdynamicshop\configuration\miscellaneous.class
 net\xsapi\panat\xshop\xshopdynamicshop\configuration\block.class
 net\xsapi\panat\xshop\xshopdynamicshop\configuration\messages.class
 net\xsapi\panat\xshop\xshopdynamicshop\configuration\minerals.class
 net\xsapi\panat\xshop\xshopdynamicshop\gui\XShopConfirm.class
+net\xsapi\panat\xshop\xshopdynamicshop\core\XShopPriceType.class
 net\xsapi\panat\xshop\xshopdynamicshop\configuration\storages.class
 net\xsapi\panat\xshop\xshopdynamicshop\configuration\loadConfig.class
 net\xsapi\panat\xshop\xshopdynamicshop\gui\XShop.class

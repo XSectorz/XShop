@@ -124,12 +124,26 @@ public class XShop {
                         stockChecker = shopItems.getStock();
                     }
 
+                    float totalVol = shopItems.getVolumeBuy()+shopItems.getVolumeSell();
+                    float totalVolDiv = totalVol;
+
+                    if(totalVol == 0) {
+                        totalVolDiv = 1;
+                    }
+
+                    String priceType = messages.customConfig.getString("price_" + shopItems.getPriceType().toString().toLowerCase());
+
                     for (String L : list) {
 
                         L = L.replace("%price_to_buy%",
-                                "" + df.format((shopItems.getMedian() * shopItems.getValue()) / stockChecker));
+                                "" + df.format((shopItems.getMedian() * shopItems.getValue()) / stockChecker) + " " + priceType);
                         L = L.replace("%price_to_sell%",
-                                "" + df.format(((shopItems.getMedian() * shopItems.getValue()) / stockChecker * 75) / 100));
+                                "" + df.format(((shopItems.getMedian() * shopItems.getValue()) / stockChecker * 75) / 100) + " " + priceType);
+                        L = L.replace("%total_volume%", (int) totalVol + "");
+                        L = L.replace("%vol_buy%",shopItems.getVolumeBuy()+"");
+                        L = L.replace("%vol_sell%",shopItems.getVolumeSell()+"");
+                        L = L.replace("%vol_percent_buy%",df.format((float) (shopItems.getVolumeBuy()/(totalVolDiv) * 100.0)) + "%");
+                        L = L.replace("%vol_percent_sell%",df.format((float) (shopItems.getVolumeSell()/(totalVolDiv) * 100.0))+ "%");
 
                         if (shopItems.getStock() != -1) {
                             DecimalFormat df2 = new DecimalFormat("#");

@@ -3,17 +3,23 @@ package net.xsapi.panat.xshop.xshopdynamicshop.core;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 import net.xsapi.panat.xshop.xshopdynamicshop.commands.XSCommands;
+import net.xsapi.panat.xshop.xshopdynamicshop.configuration.config;
 import net.xsapi.panat.xshop.xshopdynamicshop.configuration.loadConfig;
 import net.xsapi.panat.xshop.xshopdynamicshop.configuration.messages;
 import net.xsapi.panat.xshop.xshopdynamicshop.configuration.storages;
 import net.xsapi.panat.xshop.xshopdynamicshop.listeners.InventoryGUI;
+import net.xsapi.panat.xshop.xshopdynamicshop.task.task_update;
+import org.black_ixx.playerpoints.PlayerPoints;
+import org.black_ixx.playerpoints.PlayerPointsAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 import org.checkerframework.checker.units.qual.A;
 
 import java.io.File;
@@ -29,6 +35,8 @@ public final class XShopDynamicShopCore extends JavaPlugin {
     public static HashMap<UUID,XShopType> shopType = new HashMap<UUID, XShopType>();
     public static HashMap<UUID,Integer> shopPage = new HashMap<UUID, Integer>();
     public static HashMap<UUID,String> shopPrivateName = new HashMap<UUID, String>();
+
+    public static PlayerPointsAPI ppAPI = null;
 
     public static String prefix = "";
 
@@ -68,6 +76,8 @@ public final class XShopDynamicShopCore extends JavaPlugin {
         return econ;
     }
 
+    public static PlayerPointsAPI getPlayerPoint() { return ppAPI; }
+
     public static Permission getPermissions() {
         return perms;
     }
@@ -92,16 +102,14 @@ public final class XShopDynamicShopCore extends JavaPlugin {
 
     }
 
-    public void loadData() {
-        File dir = new File(this.getDataFolder()+"/shops");
+    public static void loadData() {
+        File dir = new File(plugin.getDataFolder()+"/shops");
         File[] directoryListing = dir.listFiles();
 
-        Bukkit.getLogger().info("§x§f§f§a§c§2§f******************************");
-        Bukkit.getLogger().info("§x§f§f§a§c§2§f   XSAPI DynamicShop v1.0     ");
-        Bukkit.getLogger().info("§r");
-        Bukkit.getLogger().info("§x§f§f§a§c§2§f  Trying to load shop(s) data");
-        Bukkit.getLogger().info("§r");
-        Bukkit.getLogger().info("§x§f§f§a§c§2§f******************************");
+        if(!shopList.isEmpty()) {
+            shopList.clear();
+        }
+
         int shops = 0;
         int items = 0;
 
@@ -130,6 +138,7 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                                 String name = "";
                                 List<String> lore = new ArrayList<>();
                                 Material mat = null;
+                                XShopPriceType priceType = null;
 
                                 if(fileConfig.get("items." + itemList + ".displayName") != null) {
                                     name = fileConfig.getString("items." + itemList + ".displayName");
@@ -141,6 +150,11 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                                     mat = Material.getMaterial(fileConfig.getString("items." + itemList + ".material"));
                                 }
 
+                                if(fileConfig.get("items." + itemList + ".priceType") != null) {
+                                    priceType = XShopPriceType.valueOf(fileConfig.getString("items." + itemList + ".priceType"));
+
+                                }
+
                                 XShopItemsType typeItem = XShopItemsType.valueOf(fileConfig.getString("items." + itemList + ".type"));
 
                                 XShopItemsCustom xsitemscustom = new XShopItemsCustom(name,new ArrayList<>(lore),mat,typeItem,itemList);
@@ -149,7 +163,7 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                                 xsitemscustom.setMedian(fileConfig.getDouble("items." + itemList + ".median"));
                                 xsitemscustom.setStock(fileConfig.getDouble("items." + itemList + ".stock"));
                                 xsitemscustom.setCustomModelData(fileConfig.getInt("items." + itemList + ".customModelData"));
-
+                                xsitemscustom.setPriceType(priceType);
                                 xsitemscustom.setCmd(new ArrayList<>(fileConfig.getStringList("items." + itemList + ".commands")));
 
                                 if(fileConfig.get("items." + itemList + ".previousPrice") == null) {
@@ -185,6 +199,11 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                                     }
                                 }
 
+                                if(priceType == null) {
+                                    Bukkit.getLogger().info(("&c[Xshop] Cannot load item &e" + itemList + " &cprice type is null!").replace("&","§"));
+                                    continue;
+                                }
+
                                 if(fileConfig.get("items." + itemList + ".useCustomItemsStorage") != null) {
                                     xsitemscustom.setCustomItemStorage(fileConfig.getBoolean("items." + itemList + ".useCustomItemsStorage"));
                                 }
@@ -209,6 +228,7 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                                 Material mat = Material.getMaterial(fileConfig.getString("items." + itemList + ".material"));
                                 XShopItemsType typeItem = XShopItemsType.valueOf(fileConfig.getString("items." + itemList + ".type"));
                                 XShopItems xsitems = new XShopItems(mat,typeItem,itemList);
+                                xsitems.setPriceType(XShopPriceType.valueOf(fileConfig.getString("items." + itemList + ".priceType")));
                                 xsitems.setValue(fileConfig.getDouble("items." + itemList + ".value"));
                                 xsitems.setMedian(fileConfig.getDouble("items." + itemList + ".median"));
                                 xsitems.setStock(fileConfig.getDouble("items." + itemList + ".stock"));
@@ -242,15 +262,16 @@ public final class XShopDynamicShopCore extends JavaPlugin {
         Bukkit.getLogger().info("§x§f§f§a§c§2§f[XShop] Successfully load " + shops + " shop(s) with " + items + " item(s)");
     }
 
-    public void saveData() {
+    public static void saveData() {
         for(XShopDynamic shop : shopList) {
 
-            File file = new File(this.getDataFolder()+"/shops", shop.getShopType().toString().toLowerCase() + ".yml");
+            File file = new File(plugin.getDataFolder()+"/shops", shop.getShopType().toString().toLowerCase() + ".yml");
             FileConfiguration fileConfig = (FileConfiguration) new YamlConfiguration();
             try {
                 fileConfig.load(file);
             } catch (IOException | org.bukkit.configuration.InvalidConfigurationException e) {
-                e.printStackTrace();
+                Bukkit.getLogger().info("&c[XShop] Cannot save data file is null!");
+                return;
             }
 
             if(!shop.getShopItems().isEmpty()) {
@@ -282,13 +303,23 @@ public final class XShopDynamicShopCore extends JavaPlugin {
     @Override
     public void onEnable() {
         if (!setupEconomy()) {
-            this.getLogger().info("§x§f§f§5§8§5§8[XSHOP] Disabled due to no Vault dependency found!");
+            Bukkit.getLogger().info("§x§f§f§5§8§5§8[XSHOP] Disabled due to no Vault dependency found!");
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         } else {
-            this.getLogger().info("§x§7§a§f§f§4§b[XSHOP] Hooked into Vault <3");
+            Bukkit.getLogger().info("§x§f§f§c§e§2§2[XSHOP] Vault: §x§5§d§f§f§6§3Hook");
         }
         this.setupPermissions();
+
+        if (Bukkit.getPluginManager().getPlugin("PlayerPoints") != null) {
+            this.ppAPI = PlayerPoints.getInstance().getAPI();
+        }
+
+        if (this.ppAPI != null) {
+            Bukkit.getLogger().info("§x§f§f§c§e§2§2[XSHOP] PlayerPoint: §x§5§d§f§f§6§3Hook");
+        } else {
+            Bukkit.getLogger().info("§x§f§f§c§e§2§2[XSHOP] PlayerPoint: §x§f§f§5§8§5§8Not Hook");
+        }
 
         Bukkit.getLogger().info("§aPlugin Enabled 1.19!");
 
@@ -298,8 +329,15 @@ public final class XShopDynamicShopCore extends JavaPlugin {
 
         getCommand("xshop").setExecutor(new XSCommands());
 
+        Bukkit.getLogger().info("§x§f§f§a§c§2§f******************************");
+        Bukkit.getLogger().info("§x§f§f§a§c§2§f   XSAPI DynamicShop v1.0     ");
+        Bukkit.getLogger().info("§r");
+        Bukkit.getLogger().info("§x§f§f§a§c§2§f  Trying to load shop(s) data");
+        Bukkit.getLogger().info("§r");
+        Bukkit.getLogger().info("§x§f§f§a§c§2§f******************************");
         loadData();
 
+        BukkitTask task_update = (new task_update()).runTaskTimer((Plugin) plugin, 0L, 1200L*config.customConfig.getInt("update_timer"));
         Bukkit.getServer().getPluginManager().registerEvents(new InventoryGUI(),this);
 
     }

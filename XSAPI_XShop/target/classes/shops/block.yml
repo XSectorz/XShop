@@ -4,6 +4,7 @@ items:
   Material-1:
     type: NORMAL
     material: DIRT
+    priceType: Coins
     customModelData: -1
     value: 100
     median: 9999
@@ -12,6 +13,7 @@ items:
     type: SELL_ONLY
     material: STONE
     customModelData: -1
+    priceType: Coins
     value: 100
     median: 1
     stock: -1
@@ -19,6 +21,7 @@ items:
     type: BUY_ONLY
     material: SAND
     customModelData: -1
+    priceType: Points
     value: 120
     median: 1
     stock: -1
@@ -26,6 +29,7 @@ items:
     type: CUSTOM
     material: DIAMOND_SWORD
     customType: normal
+    priceType: Points
     customModelData: 10022
     displayName: "&5ทดสอบจ๊ะ"
     lore:
@@ -41,6 +45,7 @@ items:
     customType: normal
     useCustomItemsStorage: true
     customItemsStorage: test
+    priceType: Coins
     commands:
       - "spawn %player%"
     value: 999
@@ -51,6 +56,7 @@ items:
     customType: buy
     useCustomItemsStorage: true
     customItemsStorage: test
+    priceType: Points
     commands:
       - "spawn %player%"
     value: 999
@@ -64,6 +70,7 @@ items:
     customModelData: 10021
     customItemsStorage: test2
     customItemStorageSell: true
+    priceType: Points
     displayName: "&5ทดสอบการขาย"
     lore:
       - "&eบรรทัด999"

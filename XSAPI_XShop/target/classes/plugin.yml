@@ -2,6 +2,7 @@ name: XShopDynamicShop
 version: '1.0-SNAPSHOT'
 main: net.xsapi.panat.xshop.xshopdynamicshop.core.XShopDynamicShopCore
 depend: [Vault]
+softdepend: [PlayerPoints]
 api-version: 1.19
 authors: [ PanatXsectorZ ]
 description: Intelligence Shop For Minecraft Server
