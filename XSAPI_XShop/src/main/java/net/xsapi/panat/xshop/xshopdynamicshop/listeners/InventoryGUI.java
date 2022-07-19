@@ -36,7 +36,7 @@ public class InventoryGUI implements Listener {
                     XShopDynamicShopCore.shopType.put(p.getUniqueId(),XShopType.valueOf(menu));
                     XShopDynamicShopCore.shopPage.put(p.getUniqueId(),1);
                     XShop.openInv(p, XShopDynamicShopCore.shopType.get(p.getUniqueId()),
-                            XShopDynamicShopCore.shopPage.get(p.getUniqueId()));
+                            XShopDynamicShopCore.shopPage.get(p.getUniqueId()),false);
 
                     return;
                 }
@@ -78,7 +78,7 @@ public class InventoryGUI implements Listener {
                                     if(shop.getShopItems().size() >= page*config.customConfig.getIntegerList("gui.slot").size() ) {
                                         XShopDynamicShopCore.shopPage.put(p.getUniqueId(), XShopDynamicShopCore.shopPage.get(p.getUniqueId()) + 1);
                                         XShop.openInv(p, XShopDynamicShopCore.shopType.get(p.getUniqueId()),
-                                                XShopDynamicShopCore.shopPage.get(p.getUniqueId()));
+                                                XShopDynamicShopCore.shopPage.get(p.getUniqueId()),false);
                                     }
                                 }
 
@@ -86,7 +86,7 @@ public class InventoryGUI implements Listener {
                                 if (XShopDynamicShopCore.shopPage.get(p.getUniqueId()) > 1) {
                                     XShopDynamicShopCore.shopPage.put(p.getUniqueId(), XShopDynamicShopCore.shopPage.get(p.getUniqueId()) - 1);
                                     XShop.openInv(p, XShopDynamicShopCore.shopType.get(p.getUniqueId()),
-                                            XShopDynamicShopCore.shopPage.get(p.getUniqueId()));
+                                            XShopDynamicShopCore.shopPage.get(p.getUniqueId()),false);
                                 }
                             }
                             return;
@@ -179,7 +179,7 @@ public class InventoryGUI implements Listener {
                 if(it.hasItemMeta()) {
                     if(e.getSlot() == 30) {
                         XShop.openInv(p, XShopDynamicShopCore.shopType.get(p.getUniqueId()),
-                                XShopDynamicShopCore.shopPage.get(p.getUniqueId()));
+                                XShopDynamicShopCore.shopPage.get(p.getUniqueId()),false);
                     } else {
                         if(e.getSlot() >= 10 && e.getSlot() <= 16 && e.getClick().equals(ClickType.LEFT)) {
                             XShopItems shopItems = XShopDynamicShopCore.getItemsByPrivateNameAndShop(XShopDynamicShopCore.shopType.get(p.getUniqueId()),

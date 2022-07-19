@@ -5,6 +5,7 @@ import net.xsapi.panat.xshop.xshopdynamicshop.configuration.messages;
 import net.xsapi.panat.xshop.xshopdynamicshop.configuration.storages;
 import net.xsapi.panat.xshop.xshopdynamicshop.core.*;
 import net.xsapi.panat.xshop.xshopdynamicshop.gui.XShop;
+import net.xsapi.panat.xshop.xshopdynamicshop.task.task_updateUI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -27,7 +28,7 @@ public class XSCommands implements CommandExecutor {
                         XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
                         XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.NoneType);
                         XShop.openInv(sender, XShopDynamicShopCore.shopType.get(sender.getUniqueId()),
-                                XShopDynamicShopCore.shopPage.get(sender.getUniqueId()));
+                                XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),false);
                         return true;
                     } else {
                         sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
@@ -66,9 +67,9 @@ public class XSCommands implements CommandExecutor {
                         }
                         XShopDynamicShopCore.saveData();
                         XShopDynamicShopCore.loadData();
-
                         messages.reload();
                         config.reload();
+                        XShopDynamicShopCore.closeInventory();
                         sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("reload_complete")).replace("&","§"));
                         return true;
                     }

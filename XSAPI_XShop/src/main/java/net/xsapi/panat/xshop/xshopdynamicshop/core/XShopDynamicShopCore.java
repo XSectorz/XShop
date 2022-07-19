@@ -3,18 +3,19 @@ package net.xsapi.panat.xshop.xshopdynamicshop.core;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 import net.xsapi.panat.xshop.xshopdynamicshop.commands.XSCommands;
-import net.xsapi.panat.xshop.xshopdynamicshop.configuration.config;
-import net.xsapi.panat.xshop.xshopdynamicshop.configuration.loadConfig;
-import net.xsapi.panat.xshop.xshopdynamicshop.configuration.messages;
-import net.xsapi.panat.xshop.xshopdynamicshop.configuration.storages;
+import net.xsapi.panat.xshop.xshopdynamicshop.configuration.*;
+import net.xsapi.panat.xshop.xshopdynamicshop.gui.XShop;
+import net.xsapi.panat.xshop.xshopdynamicshop.listeners.InventoryClose;
 import net.xsapi.panat.xshop.xshopdynamicshop.listeners.InventoryGUI;
 import net.xsapi.panat.xshop.xshopdynamicshop.task.task_update;
+import net.xsapi.panat.xshop.xshopdynamicshop.task.task_updateUI;
 import org.black_ixx.playerpoints.PlayerPoints;
 import org.black_ixx.playerpoints.PlayerPointsAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -70,6 +71,25 @@ public final class XShopDynamicShopCore extends JavaPlugin {
         }
         econ = rsp.getProvider();
         return econ != null;
+    }
+
+    public static void closeInventory() {
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            if(p.getOpenInventory().getTitle() != null) {
+                String title = p.getOpenInventory().getTitle().replace("&", "§");
+
+                if(title.equalsIgnoreCase(config.customConfig.getString("gui.gui_title").replace("&", "§"))
+                        || title.equalsIgnoreCase(block.customConfig.getString("gui.title").replace("&", "§"))
+                        || title.equalsIgnoreCase(farming.customConfig.getString("gui.title").replace("&", "§"))
+                        || title.equalsIgnoreCase(minerals.customConfig.getString("gui.title").replace("&", "§"))
+                        || title.equalsIgnoreCase(miscellaneous.customConfig.getString("gui.title").replace("&", "§"))
+                        || title.equalsIgnoreCase(mobs.customConfig.getString("gui.title").replace("&", "§"))
+                        || title.equalsIgnoreCase(config.customConfig.getString("gui_confirm.title_buy").replace("&", "§"))
+                        || title.equalsIgnoreCase(config.customConfig.getString("gui_confirm.title_sell").replace("&", "§"))) {
+                    p.closeInventory();
+                }
+            }
+        }
     }
 
     public static Economy getEconomy() {
@@ -338,7 +358,9 @@ public final class XShopDynamicShopCore extends JavaPlugin {
         loadData();
 
         BukkitTask task_update = (new task_update()).runTaskTimer((Plugin) plugin, 0L, 1200L*config.customConfig.getInt("update_timer"));
+        BukkitTask task_updateUI = (new task_updateUI()).runTaskTimer((Plugin) plugin, 0L, 20L*config.customConfig.getInt("update_gui_timer"));
         Bukkit.getServer().getPluginManager().registerEvents(new InventoryGUI(),this);
+        Bukkit.getServer().getPluginManager().registerEvents(new InventoryClose(),this);
 
     }
 
@@ -346,5 +368,6 @@ public final class XShopDynamicShopCore extends JavaPlugin {
     public void onDisable() {
         Bukkit.getLogger().info("§cPlugin Disabled 1.19!");
         saveData();
+        XShopDynamicShopCore.closeInventory();
     }
 }

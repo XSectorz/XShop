@@ -1,6 +1,7 @@
 version: 1.0
 
-update_timer: 240 #in minutes
+update_timer: 240 #in minute(s)
+update_gui_timer: 1 #in second(s)
 
 gui:
   gui_title: "&x&7&4&f&f&a&3Main-Shop"

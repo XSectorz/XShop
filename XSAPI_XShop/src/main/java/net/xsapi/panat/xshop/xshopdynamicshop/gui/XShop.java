@@ -2,6 +2,7 @@ package net.xsapi.panat.xshop.xshopdynamicshop.gui;
 
 import net.xsapi.panat.xshop.xshopdynamicshop.configuration.*;
 import net.xsapi.panat.xshop.xshopdynamicshop.core.*;
+import net.xsapi.panat.xshop.xshopdynamicshop.task.task_updateUI;
 import net.xsapi.panat.xshop.xshopdynamicshop.utils.ItemCreator;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -15,7 +16,7 @@ import java.util.*;
 
 public class XShop {
 
-    public static void openInv(Player p, XShopType shopType, int page) {
+    public static void openInv(Player p, XShopType shopType, int page,boolean isUpdate) {
 
         String title = "";
 
@@ -254,14 +255,15 @@ public class XShop {
                     }
 
                     inv.setItem(slot.get(i), ItemCreator.createItem(mat, amount, modelData, display, listLore, false));
-
-
-
                 }
             }
         }
 
-        p.openInventory(inv);
+        if(isUpdate) {
+            p.openInventory(inv);
+        } else {
+            p.openInventory(inv);
+        }
     }
 
 }
