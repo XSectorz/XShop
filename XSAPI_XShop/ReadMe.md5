@@ -3,3 +3,6 @@ xshop.storages.save - /xshop save <name>
 xshop.storages.load - /xshop load <name>
 xshop.storages.remove - /xshop remove <name>
 xshop.storages.give - /xshop give <name> <player> || console command / player command
+xshop.reload - /xshop reload || console command / player command
+xshop.setstock - /xshop setstock <type> <name> <amount> || player command
+xshop.setprice - /xshop setprice <type> <name> <amount> || player command
