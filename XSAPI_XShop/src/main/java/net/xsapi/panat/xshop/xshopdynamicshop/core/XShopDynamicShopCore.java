@@ -305,6 +305,10 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                     }
 
                     fileConfig.set("items." + items.getPrivateName() + ".stock",items.getStock());
+                    fileConfig.set("items." + items.getPrivateName() + ".value",
+                            items.getValue());
+                    fileConfig.set("items." + items.getPrivateName() + ".median",
+                            items.getMedian());
                     fileConfig.set("items." + items.getPrivateName() + ".previousPrice",
                             items.getValue()*items.getMedian()/ stock);
                 }

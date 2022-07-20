@@ -1,2 +1,120 @@
 gui:
-  title: "&x&7&4&f&f&a&3Shop ➲ Minerals"
+  title: '&x&7&4&f&f&a&3Shop ➲ Minerals'
+items:
+  Material-1:
+    type: NORMAL
+    material: COAL
+    priceType: Coins
+    customModelData: -1
+    value: 55400.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 5.54
+  Material-2:
+    type: NORMAL
+    material: LAPIS_LAZULI
+    priceType: Coins
+    customModelData: -1
+    value: 66400.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 6.64
+  Material-3:
+    type: NORMAL
+    material: BRICK
+    priceType: Coins
+    customModelData: -1
+    value: 11200.000000000002
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 1.12
+  Material-4:
+    type: NORMAL
+    material: IRON_INGOT
+    priceType: Coins
+    customModelData: -1
+    value: 64400.00000000001
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 6.44
+  Material-5:
+    type: NORMAL
+    material: COPPER_INGOT
+    priceType: Coins
+    customModelData: -1
+    value: 34100.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 3.41
+  Material-6:
+    type: NORMAL
+    material: GOLD_INGOT
+    priceType: Coins
+    customModelData: -1
+    value: 104600.00000000001
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 10.46
+  Material-7:
+    type: NORMAL
+    material: NETHERITE_INGOT
+    priceType: Coins
+    customModelData: -1
+    value: 787500.0
+    median: 1.0
+    stock: 500.0
+    previousPrice: 1575.0
+  Material-8:
+    type: NORMAL
+    material: DIAMOND
+    priceType: Coins
+    customModelData: -1
+    value: 204600.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 20.46
+  Material-9:
+    type: NORMAL
+    material: EMERALD
+    priceType: Coins
+    customModelData: -1
+    value: 324099.99999999994
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 32.41
+  Material-10:
+    type: NORMAL
+    material: REDSTONE
+    priceType: Coins
+    customModelData: -1
+    value: 53099.99999999999
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 5.31
+  Material-11:
+    type: NORMAL
+    material: AMETHYST_SHARD
+    priceType: Coins
+    customModelData: -1
+    value: 13750.0
+    median: 1.0
+    stock: 5000.0
+    previousPrice: 2.75
+  Material-12:
+    type: NORMAL
+    material: QUARTZ
+    priceType: Coins
+    customModelData: -1
+    value: 111100.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 11.11
+  Material-13:
+    type: NORMAL
+    material: FLINT
+    priceType: Coins
+    customModelData: -1
+    value: 7990.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 0.799

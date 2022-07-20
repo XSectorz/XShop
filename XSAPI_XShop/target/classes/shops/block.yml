@@ -1,82 +1,236 @@
 gui:
-  title: "&x&7&4&f&f&a&3Shop ➲ Blocks"
+  title: '&x&7&4&f&f&a&3Shop ➲ Blocks'
 items:
   Material-1:
-    type: NORMAL
-    material: DIRT
+    type: SELL_ONLY
+    material: GRANITE
     priceType: Coins
     customModelData: -1
-    value: 100
-    median: 9999
-    stock: 9999
+    value: 0.37
+    median: 1.0
+    stock: -1.0
+    previousPrice: 0.37
   Material-2:
     type: SELL_ONLY
-    material: STONE
-    customModelData: -1
+    material: DIORITE
     priceType: Coins
-    value: 100
-    median: 1
-    stock: -1
+    customModelData: -1
+    value: 0.34
+    median: 1.0
+    stock: -1.0
+    previousPrice: 0.34
   Material-3:
-    type: BUY_ONLY
-    material: SAND
-    customModelData: -1
-    priceType: Points
-    value: 120
-    median: 1
-    stock: -1
-  Material-4:
-    type: CUSTOM
-    material: DIAMOND_SWORD
-    customType: normal
-    priceType: Points
-    customModelData: 10022
-    displayName: "&5ทดสอบจ๊ะ"
-    lore:
-      - "&eบรรทัด1"
-      - "&eบรรทัด2"
-    commands:
-      - "spawn %player%"
-    value: 100
-    median: 5000
-    stock: -1
-  Material-5:
-    type: CUSTOM
-    customType: normal
-    useCustomItemsStorage: true
-    customItemsStorage: test
+    type: SELL_ONLY
+    material: ANDESITE
     priceType: Coins
-    commands:
-      - "spawn %player%"
-    value: 999
-    median: 1
-    stock: -1
+    customModelData: -1
+    value: 0.37
+    median: 1.0
+    stock: -1.0
+    previousPrice: 0.37
+  Material-4:
+    type: NORMAL
+    material: PODZOL
+    priceType: Coins
+    customModelData: -1
+    value: 22500.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 2.25
+  Material-5:
+    type: NORMAL
+    material: CRIMSON_NYLIUM
+    priceType: Coins
+    customModelData: -1
+    value: 27000.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 2.7
   Material-6:
-    type: CUSTOM
-    customType: buy
-    useCustomItemsStorage: true
-    customItemsStorage: test
-    priceType: Points
-    commands:
-      - "spawn %player%"
-    value: 999
-    median: 1
-    stock: -1
+    type: NORMAL
+    material: WARPED_NYLIUM
+    priceType: Coins
+    customModelData: -1
+    value: 27000.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 2.7
   Material-7:
-    type: CUSTOM
-    customType: sell
-    useCustomItemsStorage: false
-    material: DIAMOND_SWORD
-    customModelData: 10021
-    customItemsStorage: test2
-    customItemStorageSell: true
-    priceType: Points
-    displayName: "&5ทดสอบการขาย"
-    lore:
-      - "&eบรรทัด999"
-      - "&eบรรทัด1000"
-    commands:
-      - "spawn %player%"
-    value: 9999
-    median: 1
+    type: NORMAL
+    material: OAK_WOOD
+    priceType: Coins
+    customModelData: -1
+    value: 50000.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 5.0
+  Material-8:
+    type: NORMAL
+    material: SPRUCE_WOOD
+    priceType: Coins
+    customModelData: -1
+    value: 50000.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 5.0
+  Material-9:
+    type: NORMAL
+    material: BIRCH_WOOD
+    priceType: Coins
+    customModelData: -1
+    value: 50000.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 5.0
+  Material-10:
+    type: NORMAL
+    material: JUNGLE_WOOD
+    priceType: Coins
+    customModelData: -1
+    value: 50000.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 5.0
+  Material-11:
+    type: NORMAL
+    material: ACACIA_WOOD
+    priceType: Coins
+    customModelData: -1
+    value: 50000.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 5.0
+  Material-12:
+    type: NORMAL
+    material: DARK_OAK_WOOD
+    priceType: Coins
+    customModelData: -1
+    value: 50000.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 5.0
+  Material-13:
+    type: NORMAL
+    material: MANGROVE_WOOD
+    priceType: Coins
+    customModelData: -1
+    value: 50000.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 5.0
+  Material-14:
+    type: NORMAL
+    material: SPONGE
+    priceType: Coins
+    customModelData: -1
+    value: 750000.0
+    median: 1.0
+    stock: 5000.0
+    previousPrice: 150.0
+  Material-15:
+    type: NORMAL
+    material: MOSSY_COBBLESTONE
+    priceType: Coins
+    customModelData: -1
+    value: 15000.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 1.5
+  Material-16:
+    type: NORMAL
+    material: GLOWSTONE
+    priceType: Coins
+    customModelData: -1
+    value: 75000.0
+    median: 1.0
+    stock: 5000.0
+    previousPrice: 15.0
+  Material-17:
+    type: NORMAL
+    material: PRISMARINE
+    priceType: Coins
+    customModelData: -1
+    value: 27500.0
+    median: 1.0
+    stock: 5000.0
+    previousPrice: 5.5
+  Material-18:
+    type: NORMAL
+    material: PRISMARINE_BRICKS
+    priceType: Coins
+    customModelData: -1
+    value: 27500.0
+    median: 1.0
+    stock: 5000.0
+    previousPrice: 5.5
+  Material-19:
+    type: NORMAL
+    material: DARK_PRISMARINE
+    priceType: Coins
+    customModelData: -1
+    value: 27500.0
+    median: 1.0
+    stock: 5000.0
+    previousPrice: 5.5
+  Material-20:
+    type: NORMAL
+    material: SEA_LANTERN
+    priceType: Coins
+    customModelData: -1
+    value: 32700.0
+    median: 1.0
+    stock: 5000.0
+    previousPrice: 6.54
+  Material-21:
+    type: NORMAL
+    material: OBSIDIAN
+    priceType: Coins
+    customModelData: -1
+    value: 28350.0
+    median: 1.0
+    stock: 5000.0
+    previousPrice: 5.67
+  Material-22:
+    type: NORMAL
+    material: CRYING_OBSIDIAN
+    priceType: Coins
+    customModelData: -1
+    value: 725000.0
+    median: 1.0
+    stock: 5000.0
+    previousPrice: 145.0
+  Material-23:
+    type: NORMAL
+    material: MYCELIUM
+    priceType: Coins
+    customModelData: -1
+    value: 90000.0
+    median: 1.0
+    stock: 20000.0
+    previousPrice: 4.5
+  Material-24:
+    type: NORMAL
+    material: SHROOMLIGHT
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 1.0
+    stock: 1000.0
+    previousPrice: 10.0
+  Material-25:
+    type: BUY_ONLY
+    material: HOPPER
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 1.0
     stock: -1
+  Material-26:
+    type: BUY_ONLY
+    material: BEACON
+    priceType: Coins
+    customModelData: -1
+    value: 50000.0
+    median: 1.0
+    stock: -1
+

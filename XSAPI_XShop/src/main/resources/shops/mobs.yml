@@ -1,2 +1,264 @@
 gui:
-  title: "&x&7&4&f&f&a&3Shop ➲ Mobs"
+  title: '&x&7&4&f&f&a&3Shop ➲ Mobs'
+items:
+  Material-1:
+    type: NORMAL
+    material: ROTTEN_FLESH
+    priceType: Coins
+    customModelData: -1
+    value: 13750.0
+    median: 1.0
+    stock: 5000.0
+    previousPrice: 2.75
+  Material-2:
+    type: NORMAL
+    material: BONE
+    priceType: Coins
+    customModelData: -1
+    value: 24525.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 2.4525
+  Material-3:
+    type: NORMAL
+    material: SPIDER_EYE
+    priceType: Coins
+    customModelData: -1
+    value: 25500.0
+    median: 1.0
+    stock: 10000.0
+    previousPrice: 2.55
+  Material-4:
+    type: NORMAL
+    material: GUNPOWDER
+    priceType: Coins
+    customModelData: -1
+    value: 37740.0
+    median: 1.0
+    stock: 8500.0
+    previousPrice: 4.44
+  Material-5:
+    type: NORMAL
+    material: STRING
+    priceType: Coins
+    customModelData: -1
+    value: 10455.0
+    median: 1.0
+    stock: 8500.0
+    previousPrice: 1.23
+  Material-6:
+    type: NORMAL
+    material: ENDER_PEARL
+    priceType: Coins
+    customModelData: -1
+    value: 10125.0
+    median: 1.0
+    stock: 500.0
+    previousPrice: 20.25
+  Material-7:
+    type: NORMAL
+    material: SLIME_BALL
+    priceType: Coins
+    customModelData: -1
+    value: 3891.9999999999995
+    median: 1.0
+    stock: 700.0
+    previousPrice: 5.56
+  Material-8:
+    type: NORMAL
+    material: MAGMA_CREAM
+    priceType: Coins
+    customModelData: -1
+    value: 5805.0
+    median: 1.0
+    stock: 750.0
+    previousPrice: 7.74
+  Material-9:
+    type: NORMAL
+    material: BLAZE_ROD
+    priceType: Coins
+    customModelData: -1
+    value: 15000.0
+    median: 1.0
+    stock: 1000.0
+    previousPrice: 15.0
+  Material-10:
+    type: NORMAL
+    material: WITHER_ROSE
+    priceType: Coins
+    customModelData: -1
+    value: 1500.0
+    median: 1.0
+    stock: 100.0
+    previousPrice: 15.0
+  Material-11:
+    type: NORMAL
+    material: PHANTOM_MEMBRANE
+    priceType: Coins
+    customModelData: -1
+    value: 5136.0
+    median: 1.0
+    stock: 800.0
+    previousPrice: 6.42
+  Material-12:
+    type: NORMAL
+    material: FEATHER
+    priceType: Coins
+    customModelData: -1
+    value: 2760.0
+    median: 1.0
+    stock: 1000.0
+    previousPrice: 2.76
+  Material-13:
+    type: NORMAL
+    material: LEATHER
+    priceType: Coins
+    customModelData: -1
+    value: 3120.0
+    median: 1.0
+    stock: 1000.0
+    previousPrice: 3.12
+  Material-14:
+    type: NORMAL
+    material: EGG
+    priceType: Coins
+    customModelData: -1
+    value: 5560.0
+    median: 1.0
+    stock: 1000.0
+    previousPrice: 5.56
+  Material-15:
+    type: NORMAL
+    material: RABBIT_HIDE
+    priceType: Coins
+    customModelData: -1
+    value: 1792.9999999999998
+    median: 1.0
+    stock: 550.0
+    previousPrice: 3.26
+  Material-16:
+    type: NORMAL
+    material: RABBIT_FOOT
+    priceType: Coins
+    customModelData: -1
+    value: 1785.0
+    median: 1.0
+    stock: 850.0
+    previousPrice: 2.1
+  Material-17:
+    type: NORMAL
+    material: INK_SAC
+    priceType: Coins
+    customModelData: -1
+    value: 5567.7
+    median: 1.0
+    stock: 1005.0
+    previousPrice: 5.54
+  Material-18:
+    type: NORMAL
+    material: GLOW_INK_SAC
+    priceType: Coins
+    customModelData: -1
+    value: 10522.35
+    median: 1.0
+    stock: 1005.0
+    previousPrice: 10.47
+  Material-19:
+    type: NORMAL
+    material: SCUTE
+    priceType: Coins
+    customModelData: -1
+    value: 26000.0
+    median: 1.0
+    stock: 1000.0
+    previousPrice: 26.0
+  Material-20:
+    type: NORMAL
+    material: PRISMARINE_SHARD
+    priceType: Coins
+    customModelData: -1
+    value: 3750.0
+    median: 1.0
+    stock: 1000.0
+    previousPrice: 3.75
+  Material-21:
+    type: NORMAL
+    material: PRISMARINE_CRYSTALS
+    priceType: Coins
+    customModelData: -1
+    value: 6640.0
+    median: 1.0
+    stock: 1000.0
+    previousPrice: 6.64
+  Material-22:
+    type: NORMAL
+    material: SHULKER_SHELL
+    priceType: Coins
+    customModelData: -1
+    value: 1275000.0
+    median: 1.0
+    stock: 500.0
+    previousPrice: 2550.0
+  Material-23:
+    type: NORMAL
+    material: ECHO_SHARD
+    priceType: Coins
+    customModelData: -1
+    value: 45000.0
+    median: 1.0
+    stock: 100.0
+    previousPrice: 450.0
+  Material-24:
+    type: NORMAL
+    material: GHAST_TEAR
+    priceType: Coins
+    customModelData: -1
+    value: 24000.0
+    median: 1.0
+    stock: 200.0
+    previousPrice: 120.0
+  Material-25:
+    type: NORMAL
+    material: NETHER_STAR
+    priceType: Coins
+    customModelData: -1
+    value: 275000.0
+    median: 1.0
+    stock: 10.0
+    previousPrice: 27500.0
+  Material-26:
+    type: NORMAL
+    material: COD
+    priceType: Coins
+    customModelData: -1
+    value: 10240.0
+    median: 1.0
+    stock: 1000.0
+    previousPrice: 10.24
+  Material-27:
+    type: NORMAL
+    material: SALMON
+    priceType: Coins
+    customModelData: -1
+    value: 11210.0
+    median: 1.0
+    stock: 1000.0
+    previousPrice: 11.21
+  Material-28:
+    type: NORMAL
+    material: TROPICAL_FISH
+    priceType: Coins
+    customModelData: -1
+    value: 10740.0
+    median: 1.0
+    stock: 1000.0
+    previousPrice: 10.74
+  Material-29:
+    type: NORMAL
+    material: PUFFERFISH
+    priceType: Coins
+    customModelData: -1
+    value: 12340.0
+    median: 1.0
+    stock: 1000.0
+    previousPrice: 12.34

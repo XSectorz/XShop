@@ -261,6 +261,7 @@ public class XShop {
 
         if(isUpdate) {
             p.openInventory(inv);
+            p.updateInventory();
         } else {
             p.openInventory(inv);
         }

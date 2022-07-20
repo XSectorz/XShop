@@ -6,3 +6,88 @@ xshop.storages.give - /xshop give <name> <player> || console command / player co
 xshop.reload - /xshop reload || console command / player command
 xshop.setstock - /xshop setstock <type> <name> <amount> || player command
 xshop.setprice - /xshop setprice <type> <name> <amount> || player command
+
+
+------- default example ------
+gui:
+  title: "&x&7&4&f&f&a&3Shop ➲ Blocks"
+items:
+  Material-1:
+    type: NORMAL
+    material: DIRT
+    priceType: Coins
+    customModelData: -1
+    value: 100
+    median: 9999
+    stock: 9999
+  Material-2:
+    type: SELL_ONLY
+    material: STONE
+    customModelData: -1
+    priceType: Coins
+    value: 100
+    median: 1
+    stock: -1
+  Material-3:
+    type: BUY_ONLY
+    material: SAND
+    customModelData: -1
+    priceType: Points
+    value: 120
+    median: 1
+    stock: -1
+  Material-4:
+    type: CUSTOM
+    material: DIAMOND_SWORD
+    customType: normal
+    priceType: Points
+    customModelData: 10022
+    displayName: "&5ทดสอบจ๊ะ"
+    lore:
+      - "&eบรรทัด1"
+      - "&eบรรทัด2"
+    commands:
+      - "spawn %player%"
+    value: 100
+    median: 5000
+    stock: -1
+  Material-5:
+    type: CUSTOM
+    customType: normal
+    useCustomItemsStorage: true
+    customItemsStorage: test
+    priceType: Coins
+    commands:
+      - "spawn %player%"
+    value: 999
+    median: 1
+    stock: -1
+  Material-6:
+    type: CUSTOM
+    customType: buy
+    useCustomItemsStorage: true
+    customItemsStorage: test
+    priceType: Points
+    commands:
+      - "spawn %player%"
+    value: 999
+    median: 1
+    stock: -1
+  Material-7:
+    type: CUSTOM
+    customType: sell
+    useCustomItemsStorage: false
+    material: DIAMOND_SWORD
+    customModelData: 10021
+    customItemsStorage: test2
+    customItemStorageSell: true
+    priceType: Points
+    displayName: "&5ทดสอบการขาย"
+    lore:
+      - "&eบรรทัด999"
+      - "&eบรรทัด1000"
+    commands:
+      - "spawn %player%"
+    value: 9999
+    median: 1
+    stock: -1

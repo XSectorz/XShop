@@ -232,11 +232,15 @@ public class InventoryGUI implements Listener {
 
                                 if(shopItems.getItemsType().equals(XShopItemsType.CUSTOM)) {
                                     XShopItemsCustom xsitemcustom = (XShopItemsCustom) shopItems;
-                                    for(String cmd : xsitemcustom.getCmd()) {
-                                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),cmd.replace("%player%",p.getName()));
+                                    for (int i = 0 ; i < Math.pow(2,e.getSlot()-10) ; i++) {
+                                        for(String cmd : xsitemcustom.getCmd()) {
+                                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),cmd.replace("%player%",p.getName()));
+                                        }
                                     }
                                     if(xsitemcustom.getCustomStorage()) {
                                         mat = storages.customConfig.getItemStack(xsitemcustom.getStorageName()).getType();
+                                    } else {
+                                        mat = shopItems.getMat();
                                     }
                                 } else {
                                     mat = shopItems.getMat();

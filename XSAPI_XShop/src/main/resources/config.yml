@@ -1,214 +1,258 @@
 version: 1.0
 
-update_timer: 240 #in minute(s)
-update_gui_timer: 1 #in second(s)
+update_timer: 240 # in minute(s)
+update_gui_timer: 1.5 # in second(s)
 
 gui:
-  gui_title: "&x&7&4&f&f&a&3Main-Shop"
-  up_trend: "&x&5&8&f&f&7&d⬆ +%value%%"
-  down_trend: "&x&f&f&5&3&5&3⬇ -%value%%"
-  slot: [11,12,13,14,15,16,20,21,22,23,24,25,29,30,31,32,33,34]
+  gui_title: '&x&7&4&f&f&a&3Main-Shop'
+  up_trend: '&x&5&8&f&f&7&d⬆ +%value%%'
+  down_trend: '&x&f&f&5&3&5&3⬇ -%value%%'
+  slot:
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+    - 16
+    - 20
+    - 21
+    - 22
+    - 23
+    - 24
+    - 25
+    - 29
+    - 30
+    - 31
+    - 32
+    - 33
+    - 34
   templates:
     normal:
-      displayName: "%type% %valueChange%"
+      displayName: '&f%type% %valueChange%'
       lore:
-        - "&r"
-        - "&aBuy: %price_to_buy%"
-        - "&cSell: %price_to_sell%"
-        - "&eStock: %stock%"
-        - "&r"
-        - "&dVolume: %total_volume%"
-        - "&6Volume Buy: %vol_buy% &7(%vol_percent_buy%)"
-        - "&6Volume Sell: %vol_sell% &7(%vol_percent_sell%)"
-        - "&r"
-        - "&aL-Click to buy item(s)"
-        - "&aR-Click to sell item(s)"
+        - '&r'
+        - '&x&8&4&f&f&7&9ข้อมูลสินค้า:'
+        - '&fราคาซื้อ: &x&4&d&e&a&4&9%price_to_buy%'
+        - '&fราคาขาย: &x&f&f&5&0&6&5%price_to_sell%'
+        - '&fจำนวนสินค้าในระบบ: &x&c&a&d&4&e&7%stock% &fชิ้น'
+        - '&r'
+        - '&fปริมาณการซื้อ-ขาย (4hr): &x&c&3&f&f&a&7%total_volume% &fชิ้น'
+        - '&fยอดการซื้อ: &x&c&3&f&f&a&7%vol_buy% &fชิ้น &x&4&d&e&a&4&9(%vol_percent_buy%)'
+        - '&fยอดการขาย: &x&c&3&f&f&a&7%vol_sell% &fชิ้น &x&f&f&5&0&6&5(%vol_percent_sell%)'
+        - '&r'
+        - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการซื้อไอเทม'
+        - '&f &x&8&4&f&f&7&9คลิก-ขวา เพื่อทำการขายไอเทม'
     sell_only:
-      displayName: "%type% %valueChange%"
+      displayName: '&f%type% %valueChange%'
       lore:
-        - "&r"
-        - "&cSell: %price_to_sell%"
-        - "&eStock: %stock%"
-        - "&r"
-        - "&dVolume: %total_volume%"
-        - "&r"
-        - "&aL-Click to sell item(s)"
+        - '&r'
+        - '&x&8&4&f&f&7&9ข้อมูลสินค้า:'
+        - '&fราคาขาย: &x&f&f&5&0&6&5%price_to_sell%'
+        - '&fจำนวนสินค้าในระบบ: &x&c&a&d&4&e&7%stock% &fชิ้น'
+        - '&r'
+        - '&fปริมาณการขาย (4hr): &x&c&3&f&f&a&7%total_volume% &fชิ้น'
+        - '&r'
+        - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการขายไอเทม'
     buy_only:
-      displayName: "%type% %valueChange%"
+      displayName: '&f%type% %valueChange%'
       lore:
-        - "&r"
-        - "&aBuy: %price_to_buy%"
-        - "&eStock: %stock%"
-        - "&r"
-        - "&dVolume: %total_volume%"
-        - "&r"
-        - "&aL-Click to buy item(s)"
+        - '&r'
+        - '&x&8&4&f&f&7&9ข้อมูลสินค้า:'
+        - '&fราคาซื้อ: &x&4&d&e&a&4&9%price_to_buy%'
+        - '&fจำนวนสินค้าในระบบ: &x&c&a&d&4&e&7%stock% &fชิ้น'
+        - '&r'
+        - '&fปริมาณการซื้อ (4hr): &x&c&3&f&f&a&7%total_volume% &fชิ้น'
+        - '&r'
+        - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการซื้อไอเทม'
     custom:
       normal:
-        displayName: "%type% %valueChange%"
+        displayName: '&f%type% %valueChange%'
         lore:
-          - "&r"
-          - "&aBuy: %price_to_buy%"
-          - "&cSell: %price_to_sell%"
-          - "&eStock: %stock%"
-          - "&r"
-          - "&dVolume: %total_volume%"
-          - "&6Volume Buy: %vol_buy% &7(%vol_percent_buy%)"
-          - "&6Volume Sell: %vol_sell% &7(%vol_percent_sell%)"
-          - "&r"
-          - "&aL-Click to buy item(s)"
-          - "&aR-Click to sell item(s)"
+          - '&r'
+          - '&x&8&4&f&f&7&9ข้อมูลสินค้า:'
+          - '&fราคาซื้อ: &x&4&d&e&a&4&9%price_to_buy%'
+          - '&fราคาขาย: &x&f&f&5&0&6&5%price_to_sell%'
+          - '&fจำนวนสินค้าในระบบ: &x&c&a&d&4&e&7%stock% &fชิ้น'
+          - '&r'
+          - '&fปริมาณการซื้อ-ขาย (4hr): &x&c&3&f&f&a&7%total_volume% &fชิ้น'
+          - '&fยอดการซื้อ: &x&c&3&f&f&a&7%vol_buy% &fชิ้น &x&4&d&e&a&4&9(%vol_percent_buy%)'
+          - '&fยอดการขาย: &x&c&3&f&f&a&7%vol_sell% &fชิ้น &x&f&f&5&0&6&5(%vol_percent_sell%)'
+          - '&r'
+          - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการซื้อไอเทม'
+          - '&f &x&8&4&f&f&7&9คลิก-ขวา เพื่อทำการขายไอเทม'
       buy:
-        displayName: "%type% %valueChange%"
+        displayName: '&f%type% %valueChange%'
         lore:
-          - "&r"
-          - "&aBuy: %price_to_buy%"
-          - "&eStock: %stock%"
-          - "&r"
-          - "&dVolume: %total_volume%"
-          - "&r"
-          - "&aL-Click to buy item(s)"
+          - '&r'
+          - '&x&8&4&f&f&7&9ข้อมูลสินค้า:'
+          - '&fราคาซื้อ: &x&4&d&e&a&4&9%price_to_buy%'
+          - '&fจำนวนสินค้าในระบบ: &x&c&a&d&4&e&7%stock% &fชิ้น'
+          - '&r'
+          - '&fปริมาณการซื้อ (4hr): &x&c&3&f&f&a&7%total_volume% &fชิ้น'
+          - '&r'
+          - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการซื้อไอเทม'
       sell:
-        displayName: "%type% %valueChange%"
+        displayName: '&f%type% %valueChange%'
         lore:
-          - "&r"
-          - "&cSell: %price_to_sell%"
-          - "&eStock: %stock%"
-          - "&r"
-          - "&dVolume: %total_volume%"
-          - "&r"
-          - "&aL-Click to sell item(s)"
+          - '&r'
+          - '&x&8&4&f&f&7&9ข้อมูลสินค้า:'
+          - '&fราคาขาย: &x&f&f&5&0&6&5%price_to_sell%'
+          - '&fจำนวนสินค้าในระบบ: &x&c&a&d&4&e&7%stock% &fชิ้น'
+          - '&r'
+          - '&fจำนวนสินค้าในระบบ: &x&c&a&d&4&e&7%stock% &fชิ้น'
+          - '&r'
+          - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการขายไอเทม'
   blocked_barrier:
     material: GRAY_STAINED_GLASS_PANE
     customModelData: 0
-    displayName: "§r"
-    slot: [1,2,3,4,5,6,7,8,10,17,19,26,28,35,37,38,39,40,41,42,43,44]
+    displayName: §r
+    slot:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 10
+      - 17
+      - 19
+      - 26
+      - 28
+      - 35
+      - 37
+      - 38
+      - 39
+      - 40
+      - 41
+      - 42
+      - 43
+      - 44
   menu:
     Block:
-      displayName: "&x&5&a&f&f&7&fBlocks"
+      displayName: '&x&5&a&f&f&7&fBlocks'
       lore:
-        - "&x&a&7&f&f&b&aสินค้าบล็อคต่างๆที่สามารถนำไป"
-        - "&x&a&7&f&f&b&aก่อสร้างหรือตกแต่งบ้านของคุณได้"
-        - "&r"
-        - "&x&d&0&f&f&d&a▪ บล็อคก่อสร้าง"
-        - "&x&d&0&f&f&d&a▪ บล็อคตกแต่ง"
-        - "&r"
-        - "&x&a&7&f&f&b&a▸ คลิก-ซ้ายเพื่อเข้าร้านค้า"
+        - '&x&a&7&f&f&b&aสินค้าบล็อคต่างๆที่สามารถนำไป'
+        - '&x&a&7&f&f&b&aก่อสร้างหรือตกแต่งบ้านของคุณได้'
+        - '&r'
+        - '&x&d&0&f&f&d&a▪ บล็อคก่อสร้าง'
+        - '&x&d&0&f&f&d&a▪ บล็อคตกแต่ง'
+        - '&r'
+        - '&x&a&7&f&f&b&a▸ คลิก-ซ้ายเพื่อเข้าร้านค้า'
       slot: 0
       material: STONE
       customModelData: 0
     Farming:
-      displayName: "&x&f&f&e&a&3&1Farming & Crops"
+      displayName: '&x&f&f&e&a&3&1Farming & Crops'
       lore:
-        - "&x&e&c&f&f&7&4รายการสินค้าการเกษตรของเซิฟเวอร์"
-        - "&x&e&c&f&f&7&4เป็นสินค้าที่ใช้ในการทำปศุสัตว์ด้วย"
-        - "&r"
-        - "&x&e&e&f&f&d&2▪ ข้าว"
-        - "&x&e&e&f&f&d&2▪ แตงโม"
-        - "&x&e&e&f&f&d&2▪ มัน"
-        - "&x&e&e&f&f&d&2▪ เมล็ดพันธุ์"
-        - "&r"
-        - "&x&f&f&e&a&3&1▸ คลิก-ซ้ายเพื่อเข้าร้านค้า"
+        - '&x&e&c&f&f&7&4รายการสินค้าการเกษตรของเซิฟเวอร์'
+        - '&x&e&c&f&f&7&4เป็นสินค้าที่ใช้ในการทำปศุสัตว์ด้วย'
+        - '&r'
+        - '&x&e&e&f&f&d&2▪ ข้าว'
+        - '&x&e&e&f&f&d&2▪ แตงโม'
+        - '&x&e&e&f&f&d&2▪ มัน'
+        - '&x&e&e&f&f&d&2▪ เมล็ดพันธุ์'
+        - '&r'
+        - '&x&f&f&e&a&3&1▸ คลิก-ซ้ายเพื่อเข้าร้านค้า'
       slot: 9
       material: WHEAT
       customModelData: 0
     Mobs:
-      displayName: "&x&f&f&4&8&5&eMobs"
+      displayName: '&x&f&f&4&8&5&eMobs'
       lore:
-        - "&x&f&f&7&9&7&9ไอเทมจากมอนเตอร์และบอส"
-        - "&x&f&f&7&9&7&9นำไอเทมที่ได้รับมาขายเพื่อรับเงิน"
-        - "&x&f&f&7&9&7&9เป็นรางวัลตอบแทนกันเถอะ!"
-        - "&r"
-        - "&x&f&f&d&0&d&2▪ เนื้อเน่า"
-        - "&x&f&f&d&0&d&2▪ ตาแมงมุม"
-        - "&x&f&f&d&0&d&2▪ กระดูก"
-        - "&x&f&f&d&0&d&2▪ ผงดินปืน"
-        - "&r"
-        - "&x&f&f&4&8&5&e▸ คลิก-ซ้ายเพื่อเข้าร้านค้า"
+        - '&x&f&f&7&9&7&9ไอเทมจากมอนเตอร์และบอส'
+        - '&x&f&f&7&9&7&9นำไอเทมที่ได้รับมาขายเพื่อรับเงิน'
+        - '&x&f&f&7&9&7&9เป็นรางวัลตอบแทนกันเถอะ!'
+        - '&r'
+        - '&x&f&f&d&0&d&2▪ เนื้อเน่า'
+        - '&x&f&f&d&0&d&2▪ ตาแมงมุม'
+        - '&x&f&f&d&0&d&2▪ กระดูก'
+        - '&x&f&f&d&0&d&2▪ ผงดินปืน'
+        - '&r'
+        - '&x&f&f&4&8&5&e▸ คลิก-ซ้ายเพื่อเข้าร้านค้า'
       slot: 18
       material: SPIDER_EYE
       customModelData: 0
     Minerals:
-      displayName: "&x&3&c&c&4&f&fMinerals"
+      displayName: '&x&3&c&c&4&f&fMinerals'
       lore:
-        - "&x&6&7&e&d&f&fแร่แท้จากเหมืองอันน่ากลัว"
-        - "&x&6&7&e&d&f&fยิ่งมีความหายากมากเท่าใด"
-        - "&x&6&7&e&d&f&fผลตอบแทนก็ยิ่งมากขึ้น"
-        - "&r"
-        - "&x&b&b&f&b&f&f▪ แร่เพชร"
-        - "&x&b&b&f&b&f&f▪ แร่มรกต"
-        - "&x&b&b&f&b&f&f▪ ทองคำ"
-        - "&x&b&b&f&b&f&f▪ เหล็ก"
-        - "&x&b&b&f&b&f&f▪ ถ่านหิน"
-        - "&r"
-        - "&x&3&c&c&4&f&f▸ คลิก-ซ้ายเพื่อเข้าร้านค้า"
+        - '&x&6&7&e&d&f&fแร่แท้จากเหมืองอันน่ากลัว'
+        - '&x&6&7&e&d&f&fยิ่งมีความหายากมากเท่าใด'
+        - '&x&6&7&e&d&f&fผลตอบแทนก็ยิ่งมากขึ้น'
+        - '&r'
+        - '&x&b&b&f&b&f&f▪ แร่เพชร'
+        - '&x&b&b&f&b&f&f▪ แร่มรกต'
+        - '&x&b&b&f&b&f&f▪ ทองคำ'
+        - '&x&b&b&f&b&f&f▪ เหล็ก'
+        - '&x&b&b&f&b&f&f▪ ถ่านหิน'
+        - '&r'
+        - '&x&3&c&c&4&f&f▸ คลิก-ซ้ายเพื่อเข้าร้านค้า'
       slot: 27
       material: DIAMOND
       customModelData: 0
     Miscellaneous:
-      displayName: "&x&f&f&8&6&2&fMiscellaneous"
+      displayName: '&x&f&f&8&6&2&fMiscellaneous'
       lore:
-        - "&x&f&f&b&4&5&dสินค้าสุดพิเศษจากทางเซิฟเวอร์"
-        - "&x&f&f&b&4&5&dที่หาได้จากการร่วมกิจกรรมหรืออื่นๆ"
-        - "&x&f&f&b&4&5&dภายในเซิฟเวอร์เท่านั้น!"
-        - "&r"
-        - "&x&f&f&d&6&a&7▪ ไอเทมกิจกรรม"
-        - "&r"
-        - "&x&f&f&8&6&2&f▸ คลิก-ซ้ายเพื่อเข้าร้านค้า"
+        - '&x&f&f&b&4&5&dสินค้าสุดพิเศษจากทางเซิฟเวอร์'
+        - '&x&f&f&b&4&5&dที่หาได้จากการร่วมกิจกรรมหรืออื่นๆ'
+        - '&x&f&f&b&4&5&dภายในเซิฟเวอร์เท่านั้น!'
+        - '&r'
+        - '&x&f&f&d&6&a&7▪ ไอเทมกิจกรรม'
+        - '&r'
+        - '&x&f&f&8&6&2&f▸ คลิก-ซ้ายเพื่อเข้าร้านค้า'
       slot: 36
       material: AXOLOTL_BUCKET
       customModelData: 0
   items:
     close:
-      displayName: "&x&f&f&7&6&7&6ปิดหน้าเมนู"
+      displayName: '&x&f&f&7&6&7&6ปิดหน้าเมนู'
       slot: 49
       material: PAPER
       customModelData: 10003
     next_page:
-      displayName: "&x&6&4&f&f&a&2หน้าถัดไป >"
+      displayName: '&x&6&4&f&f&a&2หน้าถัดไป >'
       slot: 50
       material: PAPER
       customModelData: 10001
     previous_page:
-      displayName: "&x&6&4&f&f&a&2< ย้อนกลับ"
+      displayName: '&x&6&4&f&f&a&2< ย้อนกลับ'
       slot: 48
       material: PAPER
       customModelData: 10000
 gui_confirm:
-  title_buy: "&x&7&4&f&f&a&3Shop ➲ Buy"
-  title_sell: "&x&7&4&f&f&a&3Shop ➲ Sell"
+  title_buy: '&x&7&4&f&f&a&3Shop ➲ Buy'
+  title_sell: '&x&7&4&f&f&a&3Shop ➲ Sell'
   back_button:
-    displayName: "&x&6&4&f&f&a&2< ย้อนกลับ"
+    displayName: '&x&6&4&f&f&a&2< ย้อนกลับ'
     material: PAPER
     customModelData: 10000
   info_button:
     material: GOLD_INGOT
     customModelData: 0
-    displayName: "&x&4&8&f&f&f&fเกี่ยวกับระบบตลาดกลาง"
+    displayName: '&x&4&8&f&f&f&fเกี่ยวกับระบบตลาดกลาง'
     lore:
-      - "&x&a&9&f&f&f&fราคาของสินค้าจะขึ้น-ลงตาม"
-      - "&x&a&9&f&f&f&fจำนวนสินค้าในตลาดและความ"
-      - "&x&a&9&f&f&f&fต้องการของผู้เล่นในเซิฟเวอร์"
-      - "&r"
-      - "&x&d&c&f&f&f&fยอดเงินคงเหลือ: &x&f&f&d&e&3&1%balance% Coins"
-      - "&x&d&c&f&f&f&fยอดพ้อยต์คงเหลือ: &x&5&3&d&6&f&f%points% Points"
-      - "&r"
+      - '&x&a&9&f&f&f&fราคาของสินค้าจะขึ้น-ลงตาม'
+      - '&x&a&9&f&f&f&fจำนวนสินค้าในตลาดและความ'
+      - '&x&a&9&f&f&f&fต้องการของผู้เล่นในเซิฟเวอร์'
+      - '&r'
+      - '&x&d&c&f&f&f&fยอดเงินคงเหลือ: &x&f&f&d&e&3&1%balance% Coins'
+      - '&x&d&c&f&f&f&fยอดพ้อยต์คงเหลือ: &x&5&3&d&6&f&f%points% Points'
+      - '&r'
   templates:
     buy:
-      displayName: "&e%type% &cx%multiple%"
+      displayName: '&e%type% &cx%multiple%'
       lore:
-        - "&r"
-        - "&x&8&8&f&f&a&2ราคาสินค้า: &x&f&f&d&e&3&1%price%"
-        - "&x&8&8&f&f&a&2จำนวนสินค้าคงเหลือ: &x&f&f&d&e&3&1%stock% ชิ้น"
-        - "&r"
-        - "&x&8&8&f&f&a&2คลิก-ซ้าย เพื่อดำเนินการซื้อ"
+        - '&r'
+        - '&x&8&8&f&f&a&2ราคาสินค้า: &x&f&f&d&e&3&1%price%'
+        - '&x&8&8&f&f&a&2จำนวนสินค้าคงเหลือ: &x&f&f&d&e&3&1%stock% ชิ้น'
+        - '&r'
+        - '&f &x&8&8&f&f&a&2คลิก-ซ้าย เพื่อดำเนินการซื้อ'
     sell:
-      displayName: "&e%type% &cx%multiple%"
+      displayName: '&e%type% &cx%multiple%'
       lore:
-        - "&r"
-        - "&x&8&8&f&f&a&2จะได้รับ: &x&f&f&d&e&3&1%price%"
-        - "&x&8&8&f&f&a&2จำนวนสินค้าคงเหลือ: &x&f&f&d&e&3&1%stock% ชิ้น"
-        - "&r"
-        - "&x&8&8&f&f&a&2คลิก-ซ้าย เพื่อดำเนินการขาย"
-
-
+        - '&r'
+        - '&x&8&8&f&f&a&2จะได้รับ: &x&f&f&d&e&3&1%price%'
+        - '&x&8&8&f&f&a&2จำนวนสินค้าคงเหลือ: &x&f&f&d&e&3&1%stock% ชิ้น'
+        - '&r'
+        - '&f &x&8&8&f&f&a&2คลิก-ซ้าย เพื่อดำเนินการขาย'
