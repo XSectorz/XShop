@@ -36,7 +36,7 @@ public class InventoryGUI implements Listener {
                     XShopDynamicShopCore.shopType.put(p.getUniqueId(),XShopType.valueOf(menu));
                     XShopDynamicShopCore.shopPage.put(p.getUniqueId(),1);
                     XShop.openInv(p, XShopDynamicShopCore.shopType.get(p.getUniqueId()),
-                            XShopDynamicShopCore.shopPage.get(p.getUniqueId()),false);
+                            XShopDynamicShopCore.shopPage.get(p.getUniqueId()),true);
 
                     return;
                 }
@@ -78,7 +78,7 @@ public class InventoryGUI implements Listener {
                                     if(shop.getShopItems().size() >= page*config.customConfig.getIntegerList("gui.slot").size() ) {
                                         XShopDynamicShopCore.shopPage.put(p.getUniqueId(), XShopDynamicShopCore.shopPage.get(p.getUniqueId()) + 1);
                                         XShop.openInv(p, XShopDynamicShopCore.shopType.get(p.getUniqueId()),
-                                                XShopDynamicShopCore.shopPage.get(p.getUniqueId()),false);
+                                                XShopDynamicShopCore.shopPage.get(p.getUniqueId()),true);
                                     }
                                 }
 
@@ -86,7 +86,7 @@ public class InventoryGUI implements Listener {
                                 if (XShopDynamicShopCore.shopPage.get(p.getUniqueId()) > 1) {
                                     XShopDynamicShopCore.shopPage.put(p.getUniqueId(), XShopDynamicShopCore.shopPage.get(p.getUniqueId()) - 1);
                                     XShop.openInv(p, XShopDynamicShopCore.shopType.get(p.getUniqueId()),
-                                            XShopDynamicShopCore.shopPage.get(p.getUniqueId()),false);
+                                            XShopDynamicShopCore.shopPage.get(p.getUniqueId()),true);
                                 }
                             }
                             return;

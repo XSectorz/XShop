@@ -1,14 +1,15 @@
 package net.xsapi.panat.xshop.xshopdynamicshop.core;
 
+import com.google.common.io.Files;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 import net.xsapi.panat.xshop.xshopdynamicshop.commands.XSCommands;
 import net.xsapi.panat.xshop.xshopdynamicshop.configuration.*;
-import net.xsapi.panat.xshop.xshopdynamicshop.gui.XShop;
 import net.xsapi.panat.xshop.xshopdynamicshop.listeners.InventoryClose;
 import net.xsapi.panat.xshop.xshopdynamicshop.listeners.InventoryGUI;
 import net.xsapi.panat.xshop.xshopdynamicshop.task.task_update;
 import net.xsapi.panat.xshop.xshopdynamicshop.task.task_updateUI;
+import net.xsapi.panat.xshop.xshopdynamicshop.utils.ResetPriceFeatures;
 import org.black_ixx.playerpoints.PlayerPoints;
 import org.black_ixx.playerpoints.PlayerPointsAPI;
 import org.bukkit.Bukkit;
@@ -16,21 +17,20 @@ import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
-import org.checkerframework.checker.units.qual.A;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public final class XShopDynamicShopCore extends JavaPlugin {
+
+    private static LinkedList<Player> playerOpenGUI = new LinkedList<Player>();
 
     public static ArrayList<XShopDynamic> shopList = new ArrayList<XShopDynamic>();
     public static HashMap<UUID,XShopType> shopType = new HashMap<UUID, XShopType>();
@@ -52,6 +52,9 @@ public final class XShopDynamicShopCore extends JavaPlugin {
         return plugin;
     }
 
+    public static LinkedList<Player> getPlayerOpenGUI() {
+        return XShopDynamicShopCore.playerOpenGUI;
+    }
 
     private boolean setupPermissions() {
         RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
@@ -345,13 +348,58 @@ public final class XShopDynamicShopCore extends JavaPlugin {
             Bukkit.getLogger().info("§x§f§f§c§e§2§2[XSHOP] PlayerPoint: §x§f§f§5§8§5§8Not Hook");
         }
 
-        Bukkit.getLogger().info("§aPlugin Enabled 1.19!");
-
         plugin = this;
         new loadConfig();
         prefix = messages.customConfig.getString("prefix");
 
         getCommand("xshop").setExecutor(new XSCommands());
+
+        if(config.customConfig.getBoolean("reset_price.enable")) {
+            Bukkit.getLogger().info("§x§f§f§c§e§2§2[XSHOP] ResetPrice: §x§5§d§f§f§6§3Enabled");
+
+            File directory = new File(plugin.getDataFolder() + "/temp");
+
+            if(!directory.exists()) {
+                Bukkit.getLogger().info("§x§5§d§f§f§6§3[XSHOP] temp file empty create new one...");
+
+                File dir = new File(plugin.getDataFolder()+"/shops");
+
+                File[] directoryListing = dir.listFiles();
+
+                if (directoryListing != null) {
+                    for (File child : directoryListing) {
+                        if (child.getName().endsWith(".yml")) {
+
+                            File dest = new File(plugin.getDataFolder() + "/temp/" + child.getName());
+                            dest.getParentFile().mkdirs();
+                            try {
+                                Files.copy(child, dest);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }
+                }
+
+                Bukkit.getLogger().info("§x§5§d§f§f§6§3[XSHOP] create temp file successful!");
+                config.customConfig.set("reset_price.time_stamp",System.currentTimeMillis()+
+                        config.customConfig.getLong("reset_price.repeat")*1000);
+                config.reload();
+
+            } else {
+                Bukkit.getLogger().info("§x§f§f§5§8§5§8[XSHOP] temp file already exists!");
+
+                if(System.currentTimeMillis()-config.customConfig.getLong("reset_price.time_stamp") >= 0L) {
+                    new ResetPriceFeatures().resetPrice();
+                    XShopDynamicShopCore.loadData();
+                    Bukkit.getLogger().info("§x§f§f§a§c§2§f[XShop] reset price tasks successfully!");
+                }
+
+            }
+
+        } else {
+            Bukkit.getLogger().info("§x§f§f§c§e§2§2[XSHOP] ResetPrice: §x§f§f§5§8§5§8Disabled");
+        }
 
         Bukkit.getLogger().info("§x§f§f§a§c§2§f******************************");
         Bukkit.getLogger().info("§x§f§f§a§c§2§f   XSAPI DynamicShop v1.0     ");

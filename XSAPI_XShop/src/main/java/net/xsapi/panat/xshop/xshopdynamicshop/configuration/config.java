@@ -30,7 +30,7 @@ public class config {
         }
     }
 
-    public void save() {
+    public static void save() {
         customConfigFile = new File(XShopDynamicShopCore.getPlugin().getDataFolder(), "config.yml");
         try {
             customConfig.options().copyDefaults(true);

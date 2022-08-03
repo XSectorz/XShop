@@ -1,7 +1,11 @@
 version: 1.0
 
 update_timer: 240 # in minute(s)
-update_gui_timer: 1.5 # in second(s)
+update_gui_timer: 2 # in second(s)
+reset_price:
+  enable: false
+  repeat: 15 # in day(s)
+  time_stamp: 0
 
 gui:
   gui_title: '&x&7&4&f&f&a&3Main-Shop'
@@ -220,6 +224,11 @@ gui:
       slot: 48
       material: PAPER
       customModelData: 10000
+    reset_timer:
+      displayName: "&fเวลารีเซ็ตราคา: &x&6&4&f&f&a&2%timer%"
+      slot: 53
+      material: CLOCK
+      customModelData: 0
 gui_confirm:
   title_buy: '&x&7&4&f&f&a&3Shop ➲ Buy'
   title_sell: '&x&7&4&f&f&a&3Shop ➲ Sell'

@@ -4,6 +4,7 @@ import net.xsapi.panat.xshop.xshopdynamicshop.configuration.*;
 import net.xsapi.panat.xshop.xshopdynamicshop.core.*;
 import net.xsapi.panat.xshop.xshopdynamicshop.task.task_updateUI;
 import net.xsapi.panat.xshop.xshopdynamicshop.utils.ItemCreator;
+import net.xsapi.panat.xshop.xshopdynamicshop.utils.TimeConverter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -58,8 +59,18 @@ public class XShop {
         }
 
         for (String items : config.customConfig.getConfigurationSection("gui.items").getKeys(false)) {
+            String displayName = config.customConfig.getString("gui.items." + items + ".displayName");
+
+            displayName = displayName.replace("%timer%",new TimeConverter().getTime((config.customConfig.getLong("reset_price.time_stamp")-System.currentTimeMillis())));
+
+            if(items.equalsIgnoreCase("reset_timer")) {
+                if(!config.customConfig.getBoolean("reset_price.enable")) {
+                    continue;
+                }
+            }
+
             inv.setItem(config.customConfig.getInt("gui.items." + items + ".slot"), ItemCreator.createItem(Material.getMaterial(config.customConfig.getString("gui.items." + items + ".material"))
-                    , 1, config.customConfig.getInt("gui.items." + items + ".customModelData"), config.customConfig.getString("gui.items." + items + ".displayName")
+                    , 1, config.customConfig.getInt("gui.items." + items + ".customModelData"), displayName
                     , new ArrayList<>(), false));
         }
 
@@ -260,11 +271,12 @@ public class XShop {
         }
 
         if(isUpdate) {
-            p.openInventory(inv);
-            p.updateInventory();
-        } else {
-            p.openInventory(inv);
+            if (!XShopDynamicShopCore.getPlayerOpenGUI().contains(p)) {
+                XShopDynamicShopCore.getPlayerOpenGUI().add(p);
+            }
         }
+
+        p.openInventory(inv);
     }
 
 }

@@ -28,7 +28,12 @@ public class XSCommands implements CommandExecutor {
                         XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
                         XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.NoneType);
                         XShop.openInv(sender, XShopDynamicShopCore.shopType.get(sender.getUniqueId()),
-                                XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),false);
+                                XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),true);
+
+                        if(!XShopDynamicShopCore.getPlayerOpenGUI().contains(sender)) {
+                            XShopDynamicShopCore.getPlayerOpenGUI().add(sender);
+                        }
+
                         return true;
                     } else {
                         sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
