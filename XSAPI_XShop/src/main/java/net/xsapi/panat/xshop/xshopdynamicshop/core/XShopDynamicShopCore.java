@@ -7,9 +7,11 @@ import net.xsapi.panat.xshop.xshopdynamicshop.commands.XSCommands;
 import net.xsapi.panat.xshop.xshopdynamicshop.configuration.*;
 import net.xsapi.panat.xshop.xshopdynamicshop.listeners.InventoryClose;
 import net.xsapi.panat.xshop.xshopdynamicshop.listeners.InventoryGUI;
+import net.xsapi.panat.xshop.xshopdynamicshop.listeners.SeasonsChangeEvent;
 import net.xsapi.panat.xshop.xshopdynamicshop.task.task_update;
 import net.xsapi.panat.xshop.xshopdynamicshop.task.task_updateUI;
 import net.xsapi.panat.xshop.xshopdynamicshop.utils.ResetPriceFeatures;
+import net.xsapi.panat.xsseasons.core.XSSeasons;
 import org.black_ixx.playerpoints.PlayerPoints;
 import org.black_ixx.playerpoints.PlayerPointsAPI;
 import org.bukkit.Bukkit;
@@ -17,7 +19,6 @@ import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -38,6 +39,7 @@ public final class XShopDynamicShopCore extends JavaPlugin {
     public static HashMap<UUID,String> shopPrivateName = new HashMap<UUID, String>();
 
     public static PlayerPointsAPI ppAPI = null;
+    public static XSSeasons xsseasonsAPI = null;
 
     public static String prefix = "";
 
@@ -162,6 +164,7 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                                 List<String> lore = new ArrayList<>();
                                 Material mat = null;
                                 XShopPriceType priceType = null;
+                                String customTags = "";
 
                                 if(fileConfig.get("items." + itemList + ".displayName") != null) {
                                     name = fileConfig.getString("items." + itemList + ".displayName");
@@ -177,6 +180,10 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                                     priceType = XShopPriceType.valueOf(fileConfig.getString("items." + itemList + ".priceType"));
 
                                 }
+                                if(fileConfig.get("items." + itemList + ".customTags") != null) {
+                                    customTags = fileConfig.getString("items." + itemList + ".customTags");
+
+                                }
 
                                 XShopItemsType typeItem = XShopItemsType.valueOf(fileConfig.getString("items." + itemList + ".type"));
 
@@ -187,6 +194,7 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                                 xsitemscustom.setStock(fileConfig.getDouble("items." + itemList + ".stock"));
                                 xsitemscustom.setCustomModelData(fileConfig.getInt("items." + itemList + ".customModelData"));
                                 xsitemscustom.setPriceType(priceType);
+                                xsitemscustom.setCustomTags(customTags);
                                 xsitemscustom.setCmd(new ArrayList<>(fileConfig.getStringList("items." + itemList + ".commands")));
 
                                 if(fileConfig.get("items." + itemList + ".previousPrice") == null) {
@@ -256,6 +264,10 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                                 xsitems.setMedian(fileConfig.getDouble("items." + itemList + ".median"));
                                 xsitems.setStock(fileConfig.getDouble("items." + itemList + ".stock"));
                                 xsitems.setCustomModelData(fileConfig.getInt("items." + itemList + ".customModelData"));
+
+                                if(fileConfig.get("items." + itemList + ".customTags") != null) {
+                                    xsitems.setCustomTags(fileConfig.getString("items." + itemList + ".customTags"));
+                                }
 
                                 if(fileConfig.get("items." + itemList + ".previousPrice") == null) {
                                     double stock = 1;
@@ -342,10 +354,21 @@ public final class XShopDynamicShopCore extends JavaPlugin {
             this.ppAPI = PlayerPoints.getInstance().getAPI();
         }
 
+        if (Bukkit.getPluginManager().getPlugin("XSSeasons") != null) {
+            this.xsseasonsAPI = XSSeasons.getPlugin();
+        }
+
         if (this.ppAPI != null) {
             Bukkit.getLogger().info("§x§f§f§c§e§2§2[XSHOP] PlayerPoint: §x§5§d§f§f§6§3Hook");
         } else {
             Bukkit.getLogger().info("§x§f§f§c§e§2§2[XSHOP] PlayerPoint: §x§f§f§5§8§5§8Not Hook");
+        }
+
+        if (this.xsseasonsAPI != null) {
+            Bukkit.getLogger().info("§x§f§f§c§e§2§2[XSHOP] XSSeasons: §x§5§d§f§f§6§3Hook");
+            Bukkit.getPluginManager().registerEvents(new SeasonsChangeEvent(),this);
+        } else {
+            Bukkit.getLogger().info("§x§f§f§c§e§2§2[XSHOP] XSSeasons: §x§f§f§5§8§5§8Not Hook");
         }
 
         plugin = this;

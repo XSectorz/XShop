@@ -13,6 +13,7 @@ public class XShopItems {
     private double stock;
     private double previousPrice;
     private XShopPriceType priceType;
+    private String customTags = "";
 
     private int volumeBuy = 0;
     private int volumeSell = 0;
@@ -21,6 +22,14 @@ public class XShopItems {
         this.mat = mat;
         this.itemsType = itemsType;
         this.privateName = privateName;
+    }
+
+    public void setCustomTags(String customTags) {
+        this.customTags = customTags;
+    }
+
+    public String getCustomTags() {
+        return this.customTags;
     }
 
     public void setPriceType(XShopPriceType priceType) {

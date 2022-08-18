@@ -4,7 +4,9 @@ import net.xsapi.panat.xshop.xshopdynamicshop.configuration.*;
 import net.xsapi.panat.xshop.xshopdynamicshop.core.*;
 import net.xsapi.panat.xshop.xshopdynamicshop.gui.XShop;
 import net.xsapi.panat.xshop.xshopdynamicshop.gui.XShopConfirm;
+import net.xsapi.panat.xsseasons.api.XSAPISeasons;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -206,6 +208,20 @@ public class InventoryGUI implements Listener {
                                     }
                                 }
 
+                                boolean isSeason = false;
+
+                                if(!shopItems.getCustomTags().isEmpty()) {
+                                    String season = shopItems.getCustomTags().split(":")[1];
+                                    XSAPISeasons seasonsAPI = new XSAPISeasons();
+
+                                    if(seasonsAPI.getSeason().getSeasonRealName().equalsIgnoreCase(season)) {
+                                        isSeason = true;
+                                    }
+                                }
+                                if(isSeason) {
+                                    price = price * 125 /100;
+                                }
+
                                 if(shopItems.getPriceType().equals(XShopPriceType.Points)) {
                                     if((XShopDynamicShopCore.getPlayerPoint().look(p.getUniqueId()))-price < 0) {
                                         p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("point_not_enough")).replace("&","§"));
@@ -217,6 +233,7 @@ public class InventoryGUI implements Listener {
                                         return;
                                     }
                                 }
+
 
                                 if(shopItems.getStock() != -1) {
                                     shopItems.setStock(shopItems.getStock()-Math.pow(2,e.getSlot()-10));
@@ -252,7 +269,14 @@ public class InventoryGUI implements Listener {
                                         itmstack.setItemMeta(itmstackMeta);
                                     }
 
-                                    p.getInventory().addItem(itmstack);
+                                    if(!shopItems.getCustomTags().isEmpty()) {
+                                        if(shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_SEASON")) {
+                                            String name = ChatColor.stripColor(shopItems.getCustomTags().split(":")[2].replace("&","§"));
+                                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"iagive " + p.getName() + " croper:" + name.toLowerCase() + " " + itmstack.getAmount() + " silent");
+                                        }
+                                    } else {
+                                        p.getInventory().addItem(itmstack);
+                                    }
                                 }
                                 XShopConfirm.openGUI(p,mat,XShopDynamicShopCore.shopPrivateName.get(p.getUniqueId()),true);
                                 p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("buy_complete")).replace("%price%",df.format(price))
@@ -285,12 +309,41 @@ public class InventoryGUI implements Listener {
                                     }
 
                                 }
+                                int itemsToRemove = (int) Math.pow(2,e.getSlot()-10);
 
-                                if(!p.getInventory().containsAtLeast(itmstack,(int) Math.pow(2,e.getSlot()-10))) {
-                                    p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("not_enough_item")).replace("%price%",df.format(price))
-                                            .replace("&","§"));
-                                    return;
+                                if(shopItems.getCustomTags().isEmpty()) {
+                                    if(!p.getInventory().containsAtLeast(itmstack,(int) Math.pow(2,e.getSlot()-10))) {
+                                        p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("not_enough_item")).replace("%price%",df.format(price))
+                                                .replace("&","§"));
+                                        return;
+                                    }
+                                } else {
+                                    int have = 0;
+                                    for(ItemStack invItem : p.getInventory().getContents()) {
+                                        if (invItem != null) {
+                                            if (invItem.getType().equals(itmstack.getType())) {
+                                                if (shopItems.getCustomModelData() != -1) {
+                                                    if (!invItem.hasItemMeta()) {
+                                                        continue;
+                                                    }
+                                                    if (invItem.getItemMeta().getCustomModelData() != shopItems.getCustomModelData()) {
+                                                        continue;
+                                                    }
+
+                                                    have++;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    if(have < itemsToRemove) {
+                                        p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("not_enough_item")).replace("%price%",df.format(price))
+                                                .replace("&","§"));
+                                        return;
+                                    }
                                 }
+
+
 
                                 if((shopItems.getStock() == -1)) {
                                     price = (shopItems.getValue()*shopItems.getMedian()*75/100)*Math.pow(2,e.getSlot()-10);
@@ -299,7 +352,19 @@ public class InventoryGUI implements Listener {
                                     shopItems.setStock(shopItems.getStock()+Math.pow(2,e.getSlot()-10));
                                 }
 
-                                int itemsToRemove = (int) Math.pow(2,e.getSlot()-10);
+                                boolean isSeason = false;
+
+                                if(!shopItems.getCustomTags().isEmpty()) {
+                                    String season = shopItems.getCustomTags().split(":")[1];
+                                    XSAPISeasons seasonsAPI = new XSAPISeasons();
+
+                                    if(seasonsAPI.getSeason().getSeasonRealName().equalsIgnoreCase(season)) {
+                                        isSeason = true;
+                                    }
+                                }
+                                if(isSeason) {
+                                    price = price * 125 /100;
+                                }
 
                                 shopItems.setVolumeSell(shopItems.getVolumeSell()+itemsToRemove);
 
@@ -316,21 +381,23 @@ public class InventoryGUI implements Listener {
                                                     }
                                                 }
 
-                                                if(invItem.hasItemMeta()) {
-                                                    if(!itmstack.hasItemMeta()) {
-                                                        continue;
-                                                    }
-                                                    if(invItem.getItemMeta().hasDisplayName()) {
-                                                        continue;
-                                                    }
-                                                    if(invItem.getItemMeta().hasEnchants()) {
-                                                        continue;
-                                                    }
-                                                    if(invItem.getItemMeta().hasLore()) {
-                                                        continue;
-                                                    }
-                                                    if(invItem.getItemMeta().hasAttributeModifiers()) {
-                                                        continue;
+                                                if(shopItems.getCustomTags().isEmpty()) {
+                                                    if(invItem.hasItemMeta()) {
+                                                        if(!itmstack.hasItemMeta()) {
+                                                            continue;
+                                                        }
+                                                        if(invItem.getItemMeta().hasDisplayName()) {
+                                                            continue;
+                                                        }
+                                                        if(invItem.getItemMeta().hasEnchants()) {
+                                                            continue;
+                                                        }
+                                                        if(invItem.getItemMeta().hasLore()) {
+                                                            continue;
+                                                        }
+                                                        if(invItem.getItemMeta().hasAttributeModifiers()) {
+                                                            continue;
+                                                        }
                                                     }
                                                 }
 

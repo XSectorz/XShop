@@ -40,7 +40,7 @@
                         </goals>
                         <configuration>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <outputFile>D:\Xsectorz\Server\Sur1_19\plugins\[XSAPI]_DynamicShop.jar</outputFile>
+                            <outputFile>D:\Xsectorz\Server\Sur1_19 - Copy\plugins\[XSAPI]_DynamicShop.jar</outputFile>
                         </configuration>
                     </execution>
                 </executions>
@@ -91,6 +91,13 @@
             <artifactId>playerpoints</artifactId>
             <version>3.2.4</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.xsapi.panat.xsseasons</groupId>
+            <artifactId>XSSeasons</artifactId>
+            <scope>system</scope>
+            <version>1.0-SNAPSHOT</version>
+            <systemPath>${basedir}\src\main\java\net\xsapi\panat\xshop\xshopdynamicshop\lib\[XSAPI]_XSSeasons.jar</systemPath>
         </dependency>
 
     </dependencies>

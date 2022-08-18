@@ -5,6 +5,7 @@ import net.xsapi.panat.xshop.xshopdynamicshop.configuration.messages;
 import net.xsapi.panat.xshop.xshopdynamicshop.configuration.storages;
 import net.xsapi.panat.xshop.xshopdynamicshop.core.*;
 import net.xsapi.panat.xshop.xshopdynamicshop.utils.ItemCreator;
+import net.xsapi.panat.xsseasons.api.XSAPISeasons;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -118,6 +119,12 @@ public class XShopConfirm {
             modelData = shopItems.getCustomModelData();
         }
 
+        if(!shopItems.getCustomTags().isEmpty()) {
+            if(shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_SEASON")) {
+                displayName = displayName.replace(shopItems.getMat().toString(),shopItems.getCustomTags().split(":")[2].replace("&","§"));
+            }
+        }
+
         DecimalFormat df2 = new DecimalFormat("#");
         df2.setGroupingUsed(true);
         df2.setGroupingSize(3);
@@ -136,11 +143,36 @@ public class XShopConfirm {
 
             String priceType = messages.customConfig.getString("price_" + shopItems.getPriceType().toString().toLowerCase());
 
+            boolean isSeason = false;
+
+            if(!shopItems.getCustomTags().isEmpty()) {
+                String season = shopItems.getCustomTags().split(":")[1];
+                XSAPISeasons seasonsAPI = new XSAPISeasons();
+
+                if(seasonsAPI.getSeason().getSeasonRealName().equalsIgnoreCase(season)) {
+                    isSeason = true;
+                }
+            }
+
+            double price = (shopItems.getMedian()*shopItems.getValue())/stockChecker;
+
             for(String lores : lore) {
                 if(isBuy) {
-                    lores = lores.replace("%price%",""+df.format(((shopItems.getMedian()*shopItems.getValue())/stockChecker)*Math.pow(2,i)) + " " + priceType);
+                    double v = price * Math.pow(2, i);
+                    if(isSeason) {
+                        lores = lores.replace("%price%","&8&m"+df.format(v) + "&f &x&f&f&d&e&3&1" + df.format(v*125/100) + " " + priceType);
+                    } else {
+                        lores = lores.replace("%price%",""+df.format(v) + " " + priceType);
+                    }
+
                 } else {
-                    lores = lores.replace("%price%",""+df.format(((shopItems.getMedian()*shopItems.getValue())/stockChecker*75)/100*Math.pow(2,i)) + " " + priceType);
+                    double v = (price * 75) / 100 * Math.pow(2, i);
+                    if(isSeason) {
+                        lores = lores.replace("%price%","&8&m"+df.format(v) + "&f &x&f&f&d&e&3&1" + df.format(v*125/100) + " " + priceType);
+                    } else {
+                        lores = lores.replace("%price%",""+df.format(v) + " " + priceType);
+                    }
+
                 }
 
                 if(shopItems.getStock() != -1) {

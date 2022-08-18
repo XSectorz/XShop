@@ -5,6 +5,9 @@ import net.xsapi.panat.xshop.xshopdynamicshop.core.*;
 import net.xsapi.panat.xshop.xshopdynamicshop.task.task_updateUI;
 import net.xsapi.panat.xshop.xshopdynamicshop.utils.ItemCreator;
 import net.xsapi.panat.xshop.xshopdynamicshop.utils.TimeConverter;
+import net.xsapi.panat.xsseasons.api.XSAPISeasons;
+import net.xsapi.panat.xsseasons.core.SeasonsHandler;
+import net.xsapi.panat.xsseasons.core.SeasonsInterface;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -61,9 +64,8 @@ public class XShop {
         for (String items : config.customConfig.getConfigurationSection("gui.items").getKeys(false)) {
             String displayName = config.customConfig.getString("gui.items." + items + ".displayName");
 
-            displayName = displayName.replace("%timer%",new TimeConverter().getTime((config.customConfig.getLong("reset_price.time_stamp")-System.currentTimeMillis())));
-
             if(items.equalsIgnoreCase("reset_timer")) {
+                displayName = displayName.replace("%timer%",new TimeConverter().getTime((config.customConfig.getLong("reset_price.time_stamp")-System.currentTimeMillis())));
                 if(!config.customConfig.getBoolean("reset_price.enable")) {
                     continue;
                 }
@@ -145,12 +147,34 @@ public class XShop {
 
                     String priceType = messages.customConfig.getString("price_" + shopItems.getPriceType().toString().toLowerCase());
 
+                    boolean isSeason = false;
+
+                    if(!shopItems.getCustomTags().isEmpty()) {
+                        String season = shopItems.getCustomTags().split(":")[1];
+                        XSAPISeasons seasonsAPI = new XSAPISeasons();
+
+                        if(seasonsAPI.getSeason().getSeasonRealName().equalsIgnoreCase(season)) {
+                            isSeason = true;
+                        }
+                    }
+
+                    double price = ((shopItems.getMedian() * shopItems.getValue()) / stockChecker);
+
                     for (String L : list) {
 
-                        L = L.replace("%price_to_buy%",
-                                "" + df.format((shopItems.getMedian() * shopItems.getValue()) / stockChecker) + " " + priceType);
-                        L = L.replace("%price_to_sell%",
-                                "" + df.format(((shopItems.getMedian() * shopItems.getValue()) / stockChecker * 75) / 100) + " " + priceType);
+                        if(isSeason) {
+                            L = L.replace("%price_to_buy%",
+                                    "&8&m" + df.format(price)+ "&f &x&4&d&e&a&4&9" + df.format(price*125/100) + " " + priceType);
+                            L = L.replace("%price_to_sell%",
+                                    "&8&m" + df.format((price * 75) / 100) + "&f &x&f&f&5&0&6&5" + df.format((price * 75) / 100*125/100) + " " + priceType);
+                        } else {
+                            L = L.replace("%price_to_buy%",
+                                    "" + df.format((price)) + " " + priceType);
+                            L = L.replace("%price_to_sell%",
+                                    "" + df.format(((price * 75) / 100)) + " " + priceType);
+                        }
+
+
                         L = L.replace("%total_volume%", (int) totalVol + "");
                         L = L.replace("%vol_buy%",shopItems.getVolumeBuy()+"");
                         L = L.replace("%vol_sell%",shopItems.getVolumeSell()+"");
@@ -232,6 +256,26 @@ public class XShop {
                         if (shopItems.getMat() != null) {
                             mat = shopItems.getMat();
                         }
+                    }
+
+                    if(!shopItems.getCustomTags().isEmpty()) {
+                        String tags = shopItems.getCustomTags();
+
+                        if(tags.split(":")[0].equalsIgnoreCase("XS_SEASON")) {
+                            display = display.replace(shopItems.getMat().toString(),tags.split(":")[2].replace("&","§"));
+
+                            String Season = tags.split(":")[1];
+                            XSAPISeasons seasonsAPI = new XSAPISeasons();
+                            if(seasonsAPI.getSeason().getSeasonRealName().equalsIgnoreCase(Season)) {
+                                listLore.add(0,"&r".replace("&", "§"));
+                                listLore.add(1,messages.customConfig.getString("xsseasons_included").replace("&", "§"));
+                            }
+
+                        }
+                    }
+
+                    if(shopItems.getCustomModelData() != -1) {
+                        modelData = shopItems.getCustomModelData();
                     }
 
                     String trend = "";

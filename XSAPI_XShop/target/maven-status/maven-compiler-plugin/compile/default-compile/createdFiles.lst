@@ -13,6 +13,7 @@ net\xsapi\panat\xshop\xshopdynamicshop\core\XShopItems.class
 net\xsapi\panat\xshop\xshopdynamicshop\core\XShopItemsType.class
 net\xsapi\panat\xshop\xshopdynamicshop\configuration\farming.class
 net\xsapi\panat\xshop\xshopdynamicshop\listeners\InventoryClose.class
+net\xsapi\panat\xshop\xshopdynamicshop\listeners\SeasonsChangeEvent.class
 net\xsapi\panat\xshop\xshopdynamicshop\configuration\mobs.class
 net\xsapi\panat\xshop\xshopdynamicshop\task\task_update.class
 net\xsapi\panat\xshop\xshopdynamicshop\configuration\miscellaneous.class

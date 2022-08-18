@@ -3,7 +3,7 @@ version: 1.0
 update_timer: 240 # in minute(s)
 update_gui_timer: 2 # in second(s)
 reset_price:
-  enable: false
+  enable: true
   repeat: 15 # in day(s)
   time_stamp: 0
 
@@ -44,8 +44,8 @@ gui:
         - '&fยอดการซื้อ: &x&c&3&f&f&a&7%vol_buy% &fชิ้น &x&4&d&e&a&4&9(%vol_percent_buy%)'
         - '&fยอดการขาย: &x&c&3&f&f&a&7%vol_sell% &fชิ้น &x&f&f&5&0&6&5(%vol_percent_sell%)'
         - '&r'
-        - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการซื้อไอเทม'
-        - '&f &x&8&4&f&f&7&9คลิก-ขวา เพื่อทำการขายไอเทม'
+        - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการซื้อไอเทม'
+        - '&f &x&8&4&f&f&7&9คลิก-ขวา เพื่อทำการขายไอเทม'
     sell_only:
       displayName: '&f%type% %valueChange%'
       lore:
@@ -56,7 +56,7 @@ gui:
         - '&r'
         - '&fปริมาณการขาย (4hr): &x&c&3&f&f&a&7%total_volume% &fชิ้น'
         - '&r'
-        - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการขายไอเทม'
+        - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการขายไอเทม'
     buy_only:
       displayName: '&f%type% %valueChange%'
       lore:
@@ -67,7 +67,7 @@ gui:
         - '&r'
         - '&fปริมาณการซื้อ (4hr): &x&c&3&f&f&a&7%total_volume% &fชิ้น'
         - '&r'
-        - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการซื้อไอเทม'
+        - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการซื้อไอเทม'
     custom:
       normal:
         displayName: '&f%type% %valueChange%'
@@ -82,8 +82,8 @@ gui:
           - '&fยอดการซื้อ: &x&c&3&f&f&a&7%vol_buy% &fชิ้น &x&4&d&e&a&4&9(%vol_percent_buy%)'
           - '&fยอดการขาย: &x&c&3&f&f&a&7%vol_sell% &fชิ้น &x&f&f&5&0&6&5(%vol_percent_sell%)'
           - '&r'
-          - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการซื้อไอเทม'
-          - '&f &x&8&4&f&f&7&9คลิก-ขวา เพื่อทำการขายไอเทม'
+          - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการซื้อไอเทม'
+          - '&f &x&8&4&f&f&7&9คลิก-ขวา เพื่อทำการขายไอเทม'
       buy:
         displayName: '&f%type% %valueChange%'
         lore:
@@ -94,7 +94,7 @@ gui:
           - '&r'
           - '&fปริมาณการซื้อ (4hr): &x&c&3&f&f&a&7%total_volume% &fชิ้น'
           - '&r'
-          - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการซื้อไอเทม'
+          - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการซื้อไอเทม'
       sell:
         displayName: '&f%type% %valueChange%'
         lore:
@@ -105,7 +105,7 @@ gui:
           - '&r'
           - '&fจำนวนสินค้าในระบบ: &x&c&a&d&4&e&7%stock% &fชิ้น'
           - '&r'
-          - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการขายไอเทม'
+          - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการขายไอเทม'
   blocked_barrier:
     material: GRAY_STAINED_GLASS_PANE
     customModelData: 0
@@ -256,7 +256,7 @@ gui_confirm:
         - '&x&8&8&f&f&a&2ราคาสินค้า: &x&f&f&d&e&3&1%price%'
         - '&x&8&8&f&f&a&2จำนวนสินค้าคงเหลือ: &x&f&f&d&e&3&1%stock% ชิ้น'
         - '&r'
-        - '&f &x&8&8&f&f&a&2คลิก-ซ้าย เพื่อดำเนินการซื้อ'
+        - '&f &x&8&8&f&f&a&2คลิก-ซ้าย เพื่อดำเนินการซื้อ'
     sell:
       displayName: '&e%type% &cx%multiple%'
       lore:
@@ -264,4 +264,4 @@ gui_confirm:
         - '&x&8&8&f&f&a&2จะได้รับ: &x&f&f&d&e&3&1%price%'
         - '&x&8&8&f&f&a&2จำนวนสินค้าคงเหลือ: &x&f&f&d&e&3&1%stock% ชิ้น'
         - '&r'
-        - '&f &x&8&8&f&f&a&2คลิก-ซ้าย เพื่อดำเนินการขาย'
+        - '&f &x&8&8&f&f&a&2คลิก-ซ้าย เพื่อดำเนินการขาย'
