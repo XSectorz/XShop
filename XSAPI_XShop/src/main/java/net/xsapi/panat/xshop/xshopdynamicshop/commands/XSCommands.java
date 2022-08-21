@@ -25,10 +25,11 @@ public class XSCommands implements CommandExecutor {
             if(command.getName().equalsIgnoreCase("xshop")) {
                 if (args.length == 0) {
                     if(sender.hasPermission("xshop.use")) {
+                        XShopDynamicShopCore.isUsingSpecialShop.put(sender.getUniqueId(),false);
                         XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
                         XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.NoneType);
                         XShop.openInv(sender, XShopDynamicShopCore.shopType.get(sender.getUniqueId()),
-                                XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),true);
+                                XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(sender.getUniqueId()));
 
                         if(!XShopDynamicShopCore.getPlayerOpenGUI().contains(sender)) {
                             XShopDynamicShopCore.getPlayerOpenGUI().add(sender);
@@ -64,6 +65,9 @@ public class XSCommands implements CommandExecutor {
                         if(sender.hasPermission("xshop.setprice")) {
                             sender.sendMessage((messages.customConfig.getString("cmd_xshop_setprice")).replace("&","§"));
                         }
+                        if(sender.hasPermission("xshop.farming")) {
+                            sender.sendMessage((messages.customConfig.getString("cmd_xshop_farming")).replace("&","§"));
+                        }
                         return true;
                     } else if(args[0].equalsIgnoreCase("reload")){
                         if(!sender.hasPermission("xshop.reload")) {
@@ -76,6 +80,22 @@ public class XSCommands implements CommandExecutor {
                         config.reload();
                         XShopDynamicShopCore.closeInventory();
                         sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("reload_complete")).replace("&","§"));
+                        return true;
+                    } else if(args[0].equalsIgnoreCase("farming")){
+                        if(!sender.hasPermission("xshop.farming")) {
+                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                            return false;
+                        }
+                        XShopDynamicShopCore.isUsingSpecialShop.put(sender.getUniqueId(),true);
+                        XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
+                        XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.Seasonitems);
+                        XShop.openInv(sender, XShopDynamicShopCore.shopType.get(sender.getUniqueId()),
+                                XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(sender
+                                        .getUniqueId()));
+
+                        if(!XShopDynamicShopCore.getPlayerOpenGUI().contains(sender)) {
+                            XShopDynamicShopCore.getPlayerOpenGUI().add(sender);
+                        }
                         return true;
                     }
                 } else if(args.length == 2) {

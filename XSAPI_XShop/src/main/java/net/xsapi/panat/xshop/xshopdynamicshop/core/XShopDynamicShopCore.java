@@ -11,6 +11,7 @@ import net.xsapi.panat.xshop.xshopdynamicshop.listeners.SeasonsChangeEvent;
 import net.xsapi.panat.xshop.xshopdynamicshop.task.task_update;
 import net.xsapi.panat.xshop.xshopdynamicshop.task.task_updateUI;
 import net.xsapi.panat.xshop.xshopdynamicshop.utils.ResetPriceFeatures;
+import net.xsapi.panat.xsseasons.api.XSAPISeasons;
 import net.xsapi.panat.xsseasons.core.XSSeasons;
 import org.black_ixx.playerpoints.PlayerPoints;
 import org.black_ixx.playerpoints.PlayerPointsAPI;
@@ -31,12 +32,16 @@ import java.util.*;
 
 public final class XShopDynamicShopCore extends JavaPlugin {
 
+    public static XSAPISeasons seasonsAPI = new XSAPISeasons();
     private static LinkedList<Player> playerOpenGUI = new LinkedList<Player>();
 
     public static ArrayList<XShopDynamic> shopList = new ArrayList<XShopDynamic>();
     public static HashMap<UUID,XShopType> shopType = new HashMap<UUID, XShopType>();
     public static HashMap<UUID,Integer> shopPage = new HashMap<UUID, Integer>();
     public static HashMap<UUID,String> shopPrivateName = new HashMap<UUID, String>();
+    public static HashMap<String,ArrayList<XShopItems>> seasonShops = new HashMap<>();
+
+    public static HashMap<UUID,Boolean> isUsingSpecialShop = new HashMap<UUID, Boolean>();
 
     public static PlayerPointsAPI ppAPI = null;
     public static XSSeasons xsseasonsAPI = null;
@@ -134,6 +139,11 @@ public final class XShopDynamicShopCore extends JavaPlugin {
         if(!shopList.isEmpty()) {
             shopList.clear();
         }
+        ArrayList<String> seasonList = new ArrayList<String>(Arrays.asList("Summer","Fall","Spring","Winter"));
+
+        for(String season : seasonList) {
+            seasonShops.put(season,new ArrayList<>());
+        }
 
         int shops = 0;
         int items = 0;
@@ -154,138 +164,183 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                     String Name = child.getName().replace(".yml","");
 
                     XShopDynamic XShopDynamic = new XShopDynamic(Name,XShopType.valueOf(Name.substring(0, 1).toUpperCase() + Name.substring(1)));
+                    ArrayList<String> strL = new ArrayList<String>(Arrays.asList("items","items_special"));
 
-                    if(fileConfig.get("items") != null) {
-                        for(String itemList : fileConfig.getConfigurationSection("items").getKeys(false)) {
+                    for(String item : strL) {
+                        if(fileConfig.get(item) != null) {
+                            for(String itemList : fileConfig.getConfigurationSection(item).getKeys(false)) {
+                                String season = "";
 
-                            if(fileConfig.getString("items." + itemList + ".type").equals("CUSTOM")) {
+                               // Bukkit.getLogger().info(item + "." + itemList + ".type" + "   FILE " + Name + "SIze: " + fileConfig.getConfigurationSection(item).getKeys(false).size());
+                                if(fileConfig.getString(item + "." + itemList + ".type").equals("CUSTOM")) {
 
-                                String name = "";
-                                List<String> lore = new ArrayList<>();
-                                Material mat = null;
-                                XShopPriceType priceType = null;
-                                String customTags = "";
+                                    String name = "";
+                                    List<String> lore = new ArrayList<>();
+                                    Material mat = null;
+                                    XShopPriceType priceType = null;
+                                    String customTags = "";
 
-                                if(fileConfig.get("items." + itemList + ".displayName") != null) {
-                                    name = fileConfig.getString("items." + itemList + ".displayName");
-                                }
-                                if(fileConfig.get("items." + itemList + ".lore") != null) {
-                                    lore = fileConfig.getStringList("items." + itemList + ".lore");
-                                }
-                                if(fileConfig.get("items." + itemList + ".material") != null) {
-                                    mat = Material.getMaterial(fileConfig.getString("items." + itemList + ".material"));
-                                }
+                                    if(fileConfig.get(item + "." + itemList + ".displayName") != null) {
+                                        name = fileConfig.getString(item + "." + itemList + ".displayName");
+                                    }
+                                    if(fileConfig.get(item + "." + itemList + ".lore") != null) {
+                                        lore = fileConfig.getStringList(item + "." + itemList + ".lore");
+                                    }
+                                    if(fileConfig.get(item + "." + itemList + ".material") != null) {
+                                        mat = Material.getMaterial(fileConfig.getString(item + "." + itemList + ".material"));
+                                    }
 
-                                if(fileConfig.get("items." + itemList + ".priceType") != null) {
-                                    priceType = XShopPriceType.valueOf(fileConfig.getString("items." + itemList + ".priceType"));
+                                    if(fileConfig.get(item + "." + itemList + ".priceType") != null) {
+                                        priceType = XShopPriceType.valueOf(fileConfig.getString(item + "." + itemList + ".priceType"));
 
-                                }
-                                if(fileConfig.get("items." + itemList + ".customTags") != null) {
-                                    customTags = fileConfig.getString("items." + itemList + ".customTags");
+                                    }
+                                    if(fileConfig.get(item + "." + itemList + ".customTags") != null) {
+                                        customTags = fileConfig.getString(item + "." + itemList + ".customTags");
+                                        season = fileConfig.getString(item + "." + itemList + ".customTags").split(":")[1];
+                                    }
 
-                                }
+                                    XShopItemsType typeItem = XShopItemsType.valueOf(fileConfig.getString(item + "." + itemList + ".type"));
 
-                                XShopItemsType typeItem = XShopItemsType.valueOf(fileConfig.getString("items." + itemList + ".type"));
+                                    XShopItemsCustom xsitemscustom = new XShopItemsCustom(name,new ArrayList<>(lore),mat,typeItem,itemList);
 
-                                XShopItemsCustom xsitemscustom = new XShopItemsCustom(name,new ArrayList<>(lore),mat,typeItem,itemList);
+                                    xsitemscustom.setValue(fileConfig.getDouble(item + "." + itemList + ".value"));
+                                    xsitemscustom.setMedian(fileConfig.getDouble(item + "." + itemList + ".median"));
+                                    xsitemscustom.setStock(fileConfig.getDouble(item + "." + itemList + ".stock"));
+                                    xsitemscustom.setCustomModelData(fileConfig.getInt(item + "." + itemList + ".customModelData"));
+                                    xsitemscustom.setPriceType(priceType);
+                                    xsitemscustom.setCustomTags(customTags);
+                                    xsitemscustom.setCmd(new ArrayList<>(fileConfig.getStringList(item + "." + itemList + ".commands")));
 
-                                xsitemscustom.setValue(fileConfig.getDouble("items." + itemList + ".value"));
-                                xsitemscustom.setMedian(fileConfig.getDouble("items." + itemList + ".median"));
-                                xsitemscustom.setStock(fileConfig.getDouble("items." + itemList + ".stock"));
-                                xsitemscustom.setCustomModelData(fileConfig.getInt("items." + itemList + ".customModelData"));
-                                xsitemscustom.setPriceType(priceType);
-                                xsitemscustom.setCustomTags(customTags);
-                                xsitemscustom.setCmd(new ArrayList<>(fileConfig.getStringList("items." + itemList + ".commands")));
+                                    if(fileConfig.get(item + "." + itemList + ".previousPrice") == null) {
+                                        double stock = 1;
 
-                                if(fileConfig.get("items." + itemList + ".previousPrice") == null) {
-                                    double stock = 1;
-
-                                    if(xsitemscustom.getStock() == -1) {
-                                        stock = 1;
+                                        if(xsitemscustom.getStock() == -1) {
+                                            stock = 1;
+                                        } else {
+                                            stock = xsitemscustom.getStock();
+                                        }
+                                        xsitemscustom.setPreviousPrice(xsitemscustom.getValue()*xsitemscustom.getMedian()/stock);
                                     } else {
-                                        stock = xsitemscustom.getStock();
+                                        xsitemscustom.setPreviousPrice(fileConfig.getDouble(item + "." + itemList + ".previousPrice"));
                                     }
-                                    xsitemscustom.setPreviousPrice(xsitemscustom.getValue()*xsitemscustom.getMedian()/stock);
-                                } else {
-                                    xsitemscustom.setPreviousPrice(fileConfig.getDouble("items." + itemList + ".previousPrice"));
-                                }
 
-                                if(fileConfig.get("items." + itemList + ".customItemsStorage") != null) {
+                                    if(fileConfig.get(item + "." + itemList + ".customItemsStorage") != null) {
 
-                                    String nameStorage =  fileConfig.getString("items." + itemList + ".customItemsStorage");
-                                    if(storages.customConfig.get(nameStorage) == null) {
-                                        Bukkit.getLogger().info(("&c[Xshop] Cannot load item &e" + itemList + " &cthis customStorage name is NULL").replace("&","§"));
+                                        String nameStorage =  fileConfig.getString(item + "." + itemList + ".customItemsStorage");
+                                        if(storages.customConfig.get(nameStorage) == null) {
+                                            Bukkit.getLogger().info(("&c[Xshop] Cannot load item &e" + itemList + " &cthis customStorage name is NULL").replace("&","§"));
+                                            continue;
+                                        }
+
+                                        ItemStack it = storages.customConfig.getItemStack(nameStorage);
+                                        xsitemscustom.setStorageName(nameStorage);
+                                        xsitemscustom.setItemStack(it);
+                                    }
+
+                                    if(mat == null) {
+                                        if(fileConfig.get(item + "." + itemList + ".customItemsStorage") == null) {
+                                            Bukkit.getLogger().info(("&c[Xshop] Cannot load item &e" + itemList + " &cthis item setup not complete!").replace("&","§"));
+                                            continue;
+                                        }
+                                    }
+
+                                    if(priceType == null) {
+                                        Bukkit.getLogger().info(("&c[Xshop] Cannot load item &e" + itemList + " &cprice type is null!").replace("&","§"));
                                         continue;
                                     }
 
-                                    ItemStack it = storages.customConfig.getItemStack(nameStorage);
-                                    xsitemscustom.setStorageName(nameStorage);
-                                    xsitemscustom.setItemStack(it);
-                                }
-
-                                if(mat == null) {
-                                    if(fileConfig.get("items." + itemList + ".customItemsStorage") == null) {
-                                        Bukkit.getLogger().info(("&c[Xshop] Cannot load item &e" + itemList + " &cthis item setup not complete!").replace("&","§"));
-                                        continue;
+                                    if(fileConfig.get(item + "." + itemList + ".useCustomItemsStorage") != null) {
+                                        xsitemscustom.setCustomItemStorage(fileConfig.getBoolean(item + "." + itemList + ".useCustomItemsStorage"));
                                     }
-                                }
 
-                                if(priceType == null) {
-                                    Bukkit.getLogger().info(("&c[Xshop] Cannot load item &e" + itemList + " &cprice type is null!").replace("&","§"));
-                                    continue;
-                                }
-
-                                if(fileConfig.get("items." + itemList + ".useCustomItemsStorage") != null) {
-                                    xsitemscustom.setCustomItemStorage(fileConfig.getBoolean("items." + itemList + ".useCustomItemsStorage"));
-                                }
-
-                                if(fileConfig.get("items." + itemList + ".customItemStorageSell") != null) {
-                                    if(xsitemscustom.getStorageName().isEmpty()) {
-                                        Bukkit.getLogger().info(("&c[Xshop] Cannot load item &e" + itemList + " &ccustomItemStorageSell is true but not have customItemsStorage!").replace("&","§"));
-                                        continue;
+                                    if(fileConfig.get(item + "." + itemList + ".customItemStorageSell") != null) {
+                                        if(xsitemscustom.getStorageName().isEmpty()) {
+                                            Bukkit.getLogger().info(("&c[Xshop] Cannot load item &e" + itemList + " &ccustomItemStorageSell is true but not have customItemsStorage!").replace("&","§"));
+                                            continue;
+                                        }
+                                        xsitemscustom.setIsCustomItemStorageSell(fileConfig.getBoolean(item + "." + itemList + ".customItemStorageSell"));
                                     }
-                                    xsitemscustom.setIsCustomItemStorageSell(fileConfig.getBoolean("items." + itemList + ".customItemStorageSell"));
-                                }
 
-                                if(fileConfig.get("items." + itemList + ".customType") == null) {
-                                    Bukkit.getLogger().info(("&c[Xshop] Cannot load item &e" + itemList + " &ccustomType is NULL!").replace("&","§"));
-                                    continue;
-                                } else {
-                                    xsitemscustom.setCustomType(fileConfig.getString("items." + itemList + ".customType"));
-                                }
-
-                                XShopDynamic.getShopItems().add(xsitemscustom);
-                            } else {
-                                Material mat = Material.getMaterial(fileConfig.getString("items." + itemList + ".material"));
-                                XShopItemsType typeItem = XShopItemsType.valueOf(fileConfig.getString("items." + itemList + ".type"));
-                                XShopItems xsitems = new XShopItems(mat,typeItem,itemList);
-                                xsitems.setPriceType(XShopPriceType.valueOf(fileConfig.getString("items." + itemList + ".priceType")));
-                                xsitems.setValue(fileConfig.getDouble("items." + itemList + ".value"));
-                                xsitems.setMedian(fileConfig.getDouble("items." + itemList + ".median"));
-                                xsitems.setStock(fileConfig.getDouble("items." + itemList + ".stock"));
-                                xsitems.setCustomModelData(fileConfig.getInt("items." + itemList + ".customModelData"));
-
-                                if(fileConfig.get("items." + itemList + ".customTags") != null) {
-                                    xsitems.setCustomTags(fileConfig.getString("items." + itemList + ".customTags"));
-                                }
-
-                                if(fileConfig.get("items." + itemList + ".previousPrice") == null) {
-                                    double stock = 1;
-
-                                    if(xsitems.getStock() == -1) {
-                                        stock = 1;
+                                    if(fileConfig.get(item + "." + itemList + ".customType") == null) {
+                                        Bukkit.getLogger().info(("&c[Xshop] Cannot load item &e" + itemList + " &ccustomType is NULL!").replace("&","§"));
+                                        continue;
                                     } else {
-                                        stock = xsitems.getStock();
+                                        xsitemscustom.setCustomType(fileConfig.getString(item + "." + itemList + ".customType"));
                                     }
-                                    xsitems.setPreviousPrice(xsitems.getValue()*xsitems.getMedian()/stock);
+
+                                    if(!season.isEmpty()) {
+                                        if(seasonShops.get(season) == null) {
+                                            seasonShops.put(season,new ArrayList<>());
+                                        }
+                                        ArrayList<XShopItems> seasonShopsTemp = seasonShops.get(season);
+                                        seasonShopsTemp.add(xsitemscustom);
+                                        seasonShops.put(season,seasonShopsTemp);
+                                        if(XShopDynamic.getShopType().equals(XShopType.Seasonitems)) {
+                                            XShopDynamic.getShopItems().add(xsitemscustom);
+                                        }
+                                    } else {
+                                        XShopDynamic.getShopItems().add(xsitemscustom);
+                                    }
+
+                                    if(item.equalsIgnoreCase("items_special")) {
+                                        for(String seasonTemp : seasonList) {
+                                            ArrayList<XShopItems> seasonShopsT = seasonShops.get(seasonTemp);
+                                            seasonShopsT.add(xsitemscustom);
+                                            seasonShops.put(season,new ArrayList<>());
+                                        }
+                                    }
                                 } else {
-                                    xsitems.setPreviousPrice(fileConfig.getDouble("items." + itemList + ".previousPrice"));
+                                    Material mat = Material.getMaterial(fileConfig.getString(item + "." + itemList + ".material"));
+                                    XShopItemsType typeItem = XShopItemsType.valueOf(fileConfig.getString(item + "." + itemList + ".type"));
+                                    XShopItems xsitems = new XShopItems(mat,typeItem,itemList);
+                                    xsitems.setPriceType(XShopPriceType.valueOf(fileConfig.getString(item + "." + itemList + ".priceType")));
+                                    xsitems.setValue(fileConfig.getDouble(item + "." + itemList + ".value"));
+                                    xsitems.setMedian(fileConfig.getDouble(item + "." + itemList + ".median"));
+                                    xsitems.setStock(fileConfig.getDouble(item + "." + itemList + ".stock"));
+                                    xsitems.setCustomModelData(fileConfig.getInt(item + "." + itemList + ".customModelData"));
+
+                                    if(fileConfig.get(item + "." + itemList + ".customTags") != null) {
+                                        xsitems.setCustomTags(fileConfig.getString(item + "." + itemList + ".customTags"));
+                                        season = fileConfig.getString(item + "." + itemList + ".customTags").split(":")[1];
+                                    }
+
+                                    if(fileConfig.get(item + "." + itemList + ".previousPrice") == null) {
+                                        double stock = 1;
+
+                                        if(xsitems.getStock() == -1) {
+                                            stock = 1;
+                                        } else {
+                                            stock = xsitems.getStock();
+                                        }
+                                        xsitems.setPreviousPrice(xsitems.getValue()*xsitems.getMedian()/stock);
+                                    } else {
+                                        xsitems.setPreviousPrice(fileConfig.getDouble(item + "." + itemList + ".previousPrice"));
+                                    }
+
+                                    if(!season.isEmpty()) {
+                                        if(seasonShops.get(season) == null) {
+                                            seasonShops.put(season,new ArrayList<>());
+                                        }
+                                        ArrayList<XShopItems> seasonShopsTemp = seasonShops.get(season);
+                                        seasonShopsTemp.add(xsitems);
+                                        seasonShops.put(season,seasonShopsTemp);
+                                        if(XShopDynamic.getShopType().equals(XShopType.Seasonitems)) {
+                                            XShopDynamic.getShopItems().add(xsitems);
+                                        }
+                                    } else {
+                                        XShopDynamic.getShopItems().add(xsitems);
+                                    }
+                                    if(item.equalsIgnoreCase("items_special")) {
+                                        for(String seasonTemp : seasonList) {
+                                            ArrayList<XShopItems> seasonShopsT = seasonShops.get(seasonTemp);
+                                            seasonShopsT.add(xsitems);
+                                            seasonShops.put(season,new ArrayList<>());
+                                        }
+                                    }
                                 }
 
-                                XShopDynamic.getShopItems().add(xsitems);
+                                items++;
                             }
-
-                            items++;
                         }
                     }
 
@@ -317,6 +372,9 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                         stock = 1;
                     } else {
                         stock = items.getStock();
+                    }
+                    if(items.getPrivateName().startsWith("SPECIAL_")) {
+                        continue;
                     }
 
                     fileConfig.set("items." + items.getPrivateName() + ".stock",items.getStock());

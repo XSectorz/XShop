@@ -10,9 +10,9 @@ items:
     displayName: '&f &aป้ายชื่อสัตว์กันหาย &f'
     lore:
       - '&r'
-      - '&f &x&c&0&f&f&c&aใช้ป้องกันสัตว์สูญหาย &f'
+      - '&f &x&c&0&f&f&c&aใช้ป้องกันสัตว์สูญหาย &f'
     commands:
-      - give nametag %player%
+      - give nametag %player% %amount%
     value: 5000.0
     median: 1.0
     stock: -1.0

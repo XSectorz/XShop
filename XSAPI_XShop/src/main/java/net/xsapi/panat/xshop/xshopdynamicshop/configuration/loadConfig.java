@@ -10,5 +10,6 @@ public class loadConfig {
         new farming().loadConfigu();
         new messages().loadConfigu();
         new storages().loadConfigu();
+        new seasonitems().loadConfigu();
     }
 }

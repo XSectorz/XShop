@@ -32,7 +32,8 @@ public class task_updateUI extends BukkitRunnable {
                 if (Bukkit.getPlayer(user.getName()) == null) {
                     continue;
                 }
-                XShop.openInv(user,XShopDynamicShopCore.shopType.get(user.getUniqueId()),XShopDynamicShopCore.shopPage.get(user.getUniqueId()),true);
+                XShop.openInv(user,XShopDynamicShopCore.shopType.get(user.getUniqueId()),XShopDynamicShopCore.shopPage.get(user.getUniqueId()),true,
+                        XShopDynamicShopCore.isUsingSpecialShop.get(user.getUniqueId()));
             }
         }
 

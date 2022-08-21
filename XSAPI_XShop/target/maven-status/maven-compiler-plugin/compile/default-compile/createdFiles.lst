@@ -20,6 +20,7 @@ net\xsapi\panat\xshop\xshopdynamicshop\configuration\miscellaneous.class
 net\xsapi\panat\xshop\xshopdynamicshop\configuration\block.class
 net\xsapi\panat\xshop\xshopdynamicshop\configuration\messages.class
 net\xsapi\panat\xshop\xshopdynamicshop\configuration\minerals.class
+net\xsapi\panat\xshop\xshopdynamicshop\configuration\seasonitems.class
 net\xsapi\panat\xshop\xshopdynamicshop\gui\XShopConfirm.class
 net\xsapi\panat\xshop\xshopdynamicshop\core\XShopPriceType.class
 net\xsapi\panat\xshop\xshopdynamicshop\configuration\storages.class

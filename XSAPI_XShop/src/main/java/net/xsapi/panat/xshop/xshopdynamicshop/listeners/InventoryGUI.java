@@ -30,18 +30,27 @@ public class InventoryGUI implements Listener {
         || e.getView().getTitle().equalsIgnoreCase(farming.customConfig.getString("gui.title").replace("&","§"))
         || e.getView().getTitle().equalsIgnoreCase(minerals.customConfig.getString("gui.title").replace("&","§"))
         || e.getView().getTitle().equalsIgnoreCase(miscellaneous.customConfig.getString("gui.title").replace("&","§"))
-        || e.getView().getTitle().equalsIgnoreCase(mobs.customConfig.getString("gui.title").replace("&","§"))) {
+        || e.getView().getTitle().equalsIgnoreCase(mobs.customConfig.getString("gui.title").replace("&","§"))
+        || e.getView().getTitle().equalsIgnoreCase(seasonitems.customConfig.getString("gui.title").replace("&","§"))) {
 
             e.setCancelled(true);
-            for(String menu : config.customConfig.getConfigurationSection("gui.menu").getKeys(false)) {
-                if(e.getSlot() == config.customConfig.getInt("gui.menu." + menu + ".slot")) {
-                    XShopDynamicShopCore.shopType.put(p.getUniqueId(),XShopType.valueOf(menu));
-                    XShopDynamicShopCore.shopPage.put(p.getUniqueId(),1);
-                    XShop.openInv(p, XShopDynamicShopCore.shopType.get(p.getUniqueId()),
-                            XShopDynamicShopCore.shopPage.get(p.getUniqueId()),true);
+            boolean isSpecial = XShopDynamicShopCore.isUsingSpecialShop.get(p.getUniqueId());
+            String menuType = "items";
+            String slotType = "slot";
+            if(!isSpecial) {
+                for(String menu : config.customConfig.getConfigurationSection("gui.menu").getKeys(false)) {
+                    if(e.getSlot() == config.customConfig.getInt("gui.menu." + menu + ".slot")) {
+                        XShopDynamicShopCore.shopType.put(p.getUniqueId(),XShopType.valueOf(menu));
+                        XShopDynamicShopCore.shopPage.put(p.getUniqueId(),1);
+                        XShop.openInv(p, XShopDynamicShopCore.shopType.get(p.getUniqueId()),
+                                XShopDynamicShopCore.shopPage.get(p.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(p.getUniqueId()));
 
-                    return;
+                        return;
+                    }
                 }
+            } else {
+                menuType = "items_special";
+                slotType = "slot_special";
             }
 
             if(XShopDynamicShopCore.shopType.get(p.getUniqueId()).equals(XShopType.NoneType)) {
@@ -66,29 +75,29 @@ public class InventoryGUI implements Listener {
                         }
                     }
 
-                    for(String pre_menu : config.customConfig.getConfigurationSection("gui.items").getKeys(false)) {
+                    for(String pre_menu : config.customConfig.getConfigurationSection("gui." + menuType).getKeys(false)) {
 
-                        if (e.getSlot() == config.customConfig.getInt("gui.items." + pre_menu + ".slot")
-                                && name.equalsIgnoreCase(config.customConfig.getString("gui.items." + pre_menu + ".displayName").replace("&", "§"))
-                                && customModelData == config.customConfig.getInt("gui.items." + pre_menu + ".customModelData")) {
+                        if (e.getSlot() == config.customConfig.getInt("gui." + menuType + "." + pre_menu + ".slot")
+                                && name.equalsIgnoreCase(config.customConfig.getString("gui." + menuType +"." + pre_menu + ".displayName").replace("&", "§"))
+                                && customModelData == config.customConfig.getInt("gui." +menuType+"." + pre_menu + ".customModelData")) {
 
                             if (pre_menu.equals("close")) {
                                 p.closeInventory();
-                            } else if (pre_menu.equals("next_page")) {
+                            } else if (pre_menu.equals("next_page") || pre_menu.equals("next_page_s")) {
 
                                 if(!shop.getShopItems().isEmpty()) {
-                                    if(shop.getShopItems().size() >= page*config.customConfig.getIntegerList("gui.slot").size() ) {
+                                    if(shop.getShopItems().size() >= page*config.customConfig.getIntegerList("gui." + slotType).size() ) {
                                         XShopDynamicShopCore.shopPage.put(p.getUniqueId(), XShopDynamicShopCore.shopPage.get(p.getUniqueId()) + 1);
                                         XShop.openInv(p, XShopDynamicShopCore.shopType.get(p.getUniqueId()),
-                                                XShopDynamicShopCore.shopPage.get(p.getUniqueId()),true);
+                                                XShopDynamicShopCore.shopPage.get(p.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(p.getUniqueId()));
                                     }
                                 }
 
-                            } else if (pre_menu.equals("previous_page")) {
+                            } else if (pre_menu.equals("previous_page") || pre_menu.equals("previous_page_s") ) {
                                 if (XShopDynamicShopCore.shopPage.get(p.getUniqueId()) > 1) {
                                     XShopDynamicShopCore.shopPage.put(p.getUniqueId(), XShopDynamicShopCore.shopPage.get(p.getUniqueId()) - 1);
                                     XShop.openInv(p, XShopDynamicShopCore.shopType.get(p.getUniqueId()),
-                                            XShopDynamicShopCore.shopPage.get(p.getUniqueId()),true);
+                                            XShopDynamicShopCore.shopPage.get(p.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(p.getUniqueId()));
                                 }
                             }
                             return;
@@ -98,14 +107,21 @@ public class InventoryGUI implements Listener {
 
                     if(!shop.getShopItems().isEmpty()) {
 
-                        int indexClickedSlot = config.customConfig.getIntegerList("gui.slot").indexOf(e.getSlot());
+                        int indexClickedSlot = config.customConfig.getIntegerList("gui." + slotType).indexOf(e.getSlot());
 
                         if(indexClickedSlot == -1) {
                             return;
                         }
-
-                        XShopItems itemClicked = shop.getShopItems().get(indexClickedSlot + ((page * config.customConfig.getIntegerList("gui.slot").size())
-                                - config.customConfig.getIntegerList("gui.slot").size()));
+                        XShopItems itemClicked = null;
+                        if(!isSpecial) {
+                            itemClicked = shop.getShopItems().get(indexClickedSlot + ((page * config.customConfig.getIntegerList("gui." + slotType).size())
+                                    - config.customConfig.getIntegerList("gui." + slotType).size()));
+                        } else {
+                            itemClicked = XShopDynamicShopCore.seasonShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName())
+                                    .get(indexClickedSlot + ((page * config.customConfig.getIntegerList("gui." + slotType).size())
+                                    - config.customConfig.getIntegerList("gui." + slotType).size()));
+                            //p.sendMessage(itemClicked.getPrivateName());
+                        }
 
                         Material mat = null;
 
@@ -181,7 +197,7 @@ public class InventoryGUI implements Listener {
                 if(it.hasItemMeta()) {
                     if(e.getSlot() == 30) {
                         XShop.openInv(p, XShopDynamicShopCore.shopType.get(p.getUniqueId()),
-                                XShopDynamicShopCore.shopPage.get(p.getUniqueId()),false);
+                                XShopDynamicShopCore.shopPage.get(p.getUniqueId()),false,XShopDynamicShopCore.isUsingSpecialShop.get(p.getUniqueId()));
                     } else {
                         if(e.getSlot() >= 10 && e.getSlot() <= 16 && e.getClick().equals(ClickType.LEFT)) {
                             XShopItems shopItems = XShopDynamicShopCore.getItemsByPrivateNameAndShop(XShopDynamicShopCore.shopType.get(p.getUniqueId()),
@@ -249,10 +265,8 @@ public class InventoryGUI implements Listener {
 
                                 if(shopItems.getItemsType().equals(XShopItemsType.CUSTOM)) {
                                     XShopItemsCustom xsitemcustom = (XShopItemsCustom) shopItems;
-                                    for (int i = 0 ; i < Math.pow(2,e.getSlot()-10) ; i++) {
-                                        for(String cmd : xsitemcustom.getCmd()) {
-                                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),cmd.replace("%player%",p.getName()));
-                                        }
+                                    for(String cmd : xsitemcustom.getCmd()) {
+                                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),cmd.replace("%amount%",""+Math.pow(2,e.getSlot()-10)).replace("%player%",p.getName()));
                                     }
                                     if(xsitemcustom.getCustomStorage()) {
                                         mat = storages.customConfig.getItemStack(xsitemcustom.getStorageName()).getType();
@@ -270,6 +284,7 @@ public class InventoryGUI implements Listener {
                                     }
 
                                     if(!shopItems.getCustomTags().isEmpty()) {
+
                                         if(shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_SEASON")) {
                                             String name = ChatColor.stripColor(shopItems.getCustomTags().split(":")[2].replace("&","§"));
                                             Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"iagive " + p.getName() + " croper:" + name.toLowerCase() + " " + itmstack.getAmount() + " silent");

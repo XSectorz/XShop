@@ -13,8 +13,8 @@ public class SeasonsChangeEvent implements Listener {
 
         SeasonsInterface seasons = e.getSeasons();
 
-        Bukkit.broadcastMessage("New Season is : " + seasons.getSeasonRealName());
-        Bukkit.broadcastMessage("New Season name is : " + seasons.getSeason_str());
+        //Bukkit.broadcastMessage("New Season is : " + seasons.getSeasonRealName());
+        //Bukkit.broadcastMessage("New Season name is : " + seasons.getSeason_str());
 
 
     }

@@ -14,15 +14,17 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.text.DecimalFormat;
 import java.util.*;
 
 public class XShop {
 
-    public static void openInv(Player p, XShopType shopType, int page,boolean isUpdate) {
+    public static void openInv(Player p, XShopType shopType, int page,boolean isUpdate,boolean isSpecial) {
 
         String title = "";
+        int size = 54;
 
         if (shopType.equals(XShopType.NoneType)) {
             title = config.customConfig.getString("gui.gui_title").replace("&", "§");
@@ -36,48 +38,45 @@ public class XShop {
             title = miscellaneous.customConfig.getString("gui.title").replace("&", "§");
         } else if (shopType.equals(XShopType.Mobs)) {
             title = mobs.customConfig.getString("gui.title").replace("&", "§");
+        } else if (shopType.equals(XShopType.Seasonitems)) {
+            title = seasonitems.customConfig.getString("gui.title").replace("&", "§");
+            size = 45;
         }
 
-        Inventory inv = Bukkit.createInventory(null, 54, title);
+        Inventory inv = Bukkit.createInventory(null, size, title);
+        String typeBarrier = "blocked_barrier";
+        String typeItems = "items";
 
-        for (int slot : config.customConfig.getIntegerList("gui.blocked_barrier.slot")) {
-            inv.setItem(slot, ItemCreator.createItem(Material.getMaterial(config.customConfig.getString("gui.blocked_barrier.material"))
-                    , 1, config.customConfig.getInt("gui.blocked_barrier.customModelData"), config.customConfig.getString("gui.blocked_barrier.displayName")
+        if(isSpecial) {
+            typeBarrier = "blocked_barrier_special";
+            typeItems = "items_special";
+        }
+        for (int slot : config.customConfig.getIntegerList("gui." + typeBarrier +".slot")) {
+            inv.setItem(slot, ItemCreator.createItem(Material.getMaterial(config.customConfig.getString("gui." + typeBarrier + ".material"))
+                    , 1, config.customConfig.getInt("gui." + typeBarrier + ".customModelData"), config.customConfig.getString("gui." + typeBarrier + ".displayName")
                     , new ArrayList<String>(), false));
         }
 
-        for (String menu : config.customConfig.getConfigurationSection("gui.menu").getKeys(false)) {
-            List<String> list = config.customConfig.getStringList("gui.menu." + menu + ".lore");
-            Collections.replaceAll(list, "&", "§");
+        if(!isSpecial) {
+            for (String menu : config.customConfig.getConfigurationSection("gui.menu").getKeys(false)) {
+                List<String> list = config.customConfig.getStringList("gui.menu." + menu + ".lore");
+                Collections.replaceAll(list, "&", "§");
 
-            boolean glowing = false;
+                boolean glowing = false;
 
-            if (shopType.toString().equalsIgnoreCase(menu)) {
-                glowing = true;
-            }
-
-            inv.setItem(config.customConfig.getInt("gui.menu." + menu + ".slot"), ItemCreator.createItem(Material.getMaterial(config.customConfig.getString("gui.menu." + menu + ".material"))
-                    , 1, config.customConfig.getInt("gui.menu." + menu + ".customModelData"), config.customConfig.getString("gui.menu." + menu + ".displayName")
-                    , new ArrayList<>(list), glowing));
-        }
-
-        for (String items : config.customConfig.getConfigurationSection("gui.items").getKeys(false)) {
-            String displayName = config.customConfig.getString("gui.items." + items + ".displayName");
-
-            if(items.equalsIgnoreCase("reset_timer")) {
-                displayName = displayName.replace("%timer%",new TimeConverter().getTime((config.customConfig.getLong("reset_price.time_stamp")-System.currentTimeMillis())));
-                if(!config.customConfig.getBoolean("reset_price.enable")) {
-                    continue;
+                if (shopType.toString().equalsIgnoreCase(menu)) {
+                    glowing = true;
                 }
+
+                inv.setItem(config.customConfig.getInt("gui.menu." + menu + ".slot"), ItemCreator.createItem(Material.getMaterial(config.customConfig.getString("gui.menu." + menu + ".material"))
+                        , 1, config.customConfig.getInt("gui.menu." + menu + ".customModelData"), config.customConfig.getString("gui.menu." + menu + ".displayName")
+                        , new ArrayList<>(list), glowing));
             }
 
-            inv.setItem(config.customConfig.getInt("gui.items." + items + ".slot"), ItemCreator.createItem(Material.getMaterial(config.customConfig.getString("gui.items." + items + ".material"))
-                    , 1, config.customConfig.getInt("gui.items." + items + ".customModelData"), displayName
-                    , new ArrayList<>(), false));
         }
+        XShopDynamic shop = null;
 
         if (!shopType.equals(XShopType.NoneType)) {
-            XShopDynamic shop = null;
 
             for (XShopDynamic shopList : XShopDynamicShopCore.shopList) {
                 if (shopList.getShopType().equals(shopType)) {
@@ -86,12 +85,15 @@ public class XShop {
             }
 
             if (!shop.getShopItems().isEmpty()) {
-
+                String typeSlot = "slot";
+                if(isSpecial) {
+                    typeSlot = "slot_special";
+                }
                 ArrayList<XShopItems> itemsIterator = new ArrayList<XShopItems>(shop.getShopItems());
-                int startIndex = (XShopDynamicShopCore.shopPage.get(p.getUniqueId()) * config.customConfig.getIntegerList("gui.slot").size())
-                        - config.customConfig.getIntegerList("gui.slot").size();
+                int startIndex = (XShopDynamicShopCore.shopPage.get(p.getUniqueId()) * config.customConfig.getIntegerList("gui." + typeSlot).size())
+                        - config.customConfig.getIntegerList("gui." + typeSlot).size();
 
-                List<Integer> slot = config.customConfig.getIntegerList("gui.slot");
+                List<Integer> slot = config.customConfig.getIntegerList("gui." + typeSlot);
 
                 Material mat = null;
                 ItemStack it = null;
@@ -99,10 +101,20 @@ public class XShop {
                 Map<Enchantment,Integer> enchant = new HashMap<>();
                 int modelData = 0;
                 int amount = 1;
+                int indexSlot = 0;
+                int specialCounter = 0;
 
-                for (int i = 0; i < slot.size() ; i++) {
+                if(isSpecial) {
+                    specialCounter = XShopDynamicShopCore.seasonShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size();
+                    specialCounter += seasonitems.customConfig.getConfigurationSection("items_special").getKeys(false).size();
+                   // p.sendMessage("SEASON: " + XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName() + " " + " COUNTER " + specialCounter);
+                }
+                int i = 0;
 
-                    if (startIndex + i >= XShopDynamicShopCore.shopPage.get(p.getUniqueId()) * config.customConfig.getIntegerList("gui.slot").size()) {
+                while (i < slot.size() || specialCounter > 0) {
+
+                    //Bukkit.broadcastMessage("I: " + i + " COUNTER " + specialCounter);
+                    if (startIndex + indexSlot >= XShopDynamicShopCore.shopPage.get(p.getUniqueId()) * config.customConfig.getIntegerList("gui."+typeSlot).size()) {
                         break;
                     }
 
@@ -110,8 +122,14 @@ public class XShop {
                         break;
                     }
 
-                    XShopItems shopItems = itemsIterator.get(startIndex + i);
+                    if(XShopDynamicShopCore.isUsingSpecialShop.get(p.getUniqueId())) {
+                        if(specialCounter <= 0) {
+                            break;
+                        }
+                    }
 
+                    XShopItems shopItems = itemsIterator.get(startIndex + i);
+                    //Bukkit.broadcastMessage("SHOP: " + shopItems.getPrivateName());
                     String display = "";
                     List<String> list = new ArrayList<>();
 
@@ -258,6 +276,10 @@ public class XShop {
                         }
                     }
 
+                    if(shopItems.getPrivateName().startsWith("SPECIAL_")) {
+                        specialCounter--;
+                    }
+
                     if(!shopItems.getCustomTags().isEmpty()) {
                         String tags = shopItems.getCustomTags();
 
@@ -269,6 +291,10 @@ public class XShop {
                             if(seasonsAPI.getSeason().getSeasonRealName().equalsIgnoreCase(Season)) {
                                 listLore.add(0,"&r".replace("&", "§"));
                                 listLore.add(1,messages.customConfig.getString("xsseasons_included").replace("&", "§"));
+                                specialCounter--;
+                            } else {
+                                i++;
+                                continue;
                             }
 
                         }
@@ -304,14 +330,49 @@ public class XShop {
                     display = display.replace("%valueChange%", trend);
 
                     if(isUseCustomItemStorage) {
-                        inv.setItem(slot.get(i), ItemCreator.createItem(mat, amount, modelData
+                        inv.setItem(slot.get(indexSlot), ItemCreator.createItem(mat, amount, modelData
                                 , display, listLore, false,enchant));
+                        indexSlot++;
+                        i++;
                         continue;
                     }
 
-                    inv.setItem(slot.get(i), ItemCreator.createItem(mat, amount, modelData, display, listLore, false));
+                    inv.setItem(slot.get(indexSlot), ItemCreator.createItem(mat, amount, modelData, display, listLore, false));
+                    indexSlot++;
+                    i++;
                 }
             }
+        }
+
+        for (String items : config.customConfig.getConfigurationSection("gui." + typeItems).getKeys(false)) {
+            String displayName = config.customConfig.getString("gui." + typeItems + "." + items + ".displayName");
+            ItemStack it = ItemCreator.createItem(Material.getMaterial(config.customConfig.getString("gui." + typeItems + "." + items + ".material"))
+                    , 1, config.customConfig.getInt("gui." + typeItems + "." + items + ".customModelData"), displayName
+                    , new ArrayList<>(), false);
+            ItemMeta itemMeta = it.getItemMeta();
+
+            if(items.equalsIgnoreCase("reset_timer")) {
+                displayName = displayName.replace("%timer%",new TimeConverter().getTime((config.customConfig.getLong("reset_price.time_stamp")-System.currentTimeMillis())));
+                if(!config.customConfig.getBoolean("reset_price.enable")) {
+                    continue;
+                }
+                itemMeta.setDisplayName(displayName.replace("&","§"));
+            } else if(items.equalsIgnoreCase("next_page_s")) {
+                if(!shop.getShopItems().isEmpty()) {
+                    if(XShopDynamicShopCore.seasonShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size()
+                            < page*config.customConfig.getIntegerList("gui." + typeBarrier +".slot").size() ) {
+                        itemMeta.setCustomModelData(10234);
+                    }
+                }
+
+            } else if(items.equalsIgnoreCase("previous_page_s")) {
+                if(XShopDynamicShopCore.shopPage.get(p.getUniqueId()) <= 1) {
+                    itemMeta.setCustomModelData(10233);
+                }
+            }
+            it.setItemMeta(itemMeta);
+
+            inv.setItem(config.customConfig.getInt("gui." + typeItems +"." + items + ".slot"), it);
         }
 
         if(isUpdate) {
