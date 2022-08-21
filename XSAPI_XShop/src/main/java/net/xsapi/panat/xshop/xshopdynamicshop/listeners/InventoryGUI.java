@@ -266,7 +266,7 @@ public class InventoryGUI implements Listener {
                                 if(shopItems.getItemsType().equals(XShopItemsType.CUSTOM)) {
                                     XShopItemsCustom xsitemcustom = (XShopItemsCustom) shopItems;
                                     for(String cmd : xsitemcustom.getCmd()) {
-                                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),cmd.replace("%amount%",""+Math.pow(2,e.getSlot()-10)).replace("%player%",p.getName()));
+                                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),cmd.replace("%amount%",""+(int) Math.pow(2,e.getSlot()-10)).replace("%player%",p.getName()));
                                     }
                                     if(xsitemcustom.getCustomStorage()) {
                                         mat = storages.customConfig.getItemStack(xsitemcustom.getStorageName()).getType();
