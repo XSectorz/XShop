@@ -40,6 +40,7 @@ public final class XShopDynamicShopCore extends JavaPlugin {
     public static HashMap<UUID,Integer> shopPage = new HashMap<UUID, Integer>();
     public static HashMap<UUID,String> shopPrivateName = new HashMap<UUID, String>();
     public static HashMap<String,ArrayList<XShopItems>> seasonShops = new HashMap<>();
+    public static HashMap<String,ArrayList<XShopItems>> fishShops = new HashMap<>();
 
     public static HashMap<UUID,Boolean> isUsingSpecialShop = new HashMap<UUID, Boolean>();
 
@@ -95,7 +96,9 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                         || title.equalsIgnoreCase(miscellaneous.customConfig.getString("gui.title").replace("&", "§"))
                         || title.equalsIgnoreCase(mobs.customConfig.getString("gui.title").replace("&", "§"))
                         || title.equalsIgnoreCase(config.customConfig.getString("gui_confirm.title_buy").replace("&", "§"))
-                        || title.equalsIgnoreCase(config.customConfig.getString("gui_confirm.title_sell").replace("&", "§"))) {
+                        || title.equalsIgnoreCase(config.customConfig.getString("gui_confirm.title_sell").replace("&", "§"))
+                        || title.equalsIgnoreCase(seasonitems.customConfig.getString("gui.title").replace("&", "§"))
+                        || title.equalsIgnoreCase(fishing.customConfig.getString("gui.title").replace("&", "§"))) {
                     p.closeInventory();
                 }
             }
@@ -143,6 +146,7 @@ public final class XShopDynamicShopCore extends JavaPlugin {
 
         for(String season : seasonList) {
             seasonShops.put(season,new ArrayList<>());
+            fishShops.put(season,new ArrayList<>());
         }
 
         int shops = 0;
@@ -196,7 +200,9 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                                     }
                                     if(fileConfig.get(item + "." + itemList + ".customTags") != null) {
                                         customTags = fileConfig.getString(item + "." + itemList + ".customTags");
-                                        season = fileConfig.getString(item + "." + itemList + ".customTags").split(":")[1];
+                                        if(customTags.startsWith("XS_SEASON") || customTags.startsWith("XS_FISH")) {
+                                            season = fileConfig.getString(item + "." + itemList + ".customTags").split(":")[1];
+                                        }
                                     }
 
                                     XShopItemsType typeItem = XShopItemsType.valueOf(fileConfig.getString(item + "." + itemList + ".type"));
@@ -269,24 +275,45 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                                     }
 
                                     if(!season.isEmpty()) {
-                                        if(seasonShops.get(season) == null) {
-                                            seasonShops.put(season,new ArrayList<>());
-                                        }
-                                        ArrayList<XShopItems> seasonShopsTemp = seasonShops.get(season);
-                                        seasonShopsTemp.add(xsitemscustom);
-                                        seasonShops.put(season,seasonShopsTemp);
-                                        if(XShopDynamic.getShopType().equals(XShopType.Seasonitems)) {
-                                            XShopDynamic.getShopItems().add(xsitemscustom);
+                                        if(Name.equalsIgnoreCase("seasonitems")) {
+                                            if(seasonShops.get(season) == null) {
+                                                seasonShops.put(season,new ArrayList<>());
+                                            }
+                                            ArrayList<XShopItems> seasonShopsTemp = seasonShops.get(season);
+                                            seasonShopsTemp.add(xsitemscustom);
+                                            seasonShops.put(season,seasonShopsTemp);
+                                            if(XShopDynamic.getShopType().equals(XShopType.Seasonitems)) {
+                                                XShopDynamic.getShopItems().add(xsitemscustom);
+                                            }
+                                        } else if(Name.equalsIgnoreCase("fishing")) {
+                                            if(fishShops.get(season) == null) {
+                                                fishShops.put(season,new ArrayList<>());
+                                            }
+                                            ArrayList<XShopItems> seasonShopsTemp = fishShops.get(season);
+                                            seasonShopsTemp.add(xsitemscustom);
+                                            fishShops.put(season,seasonShopsTemp);
+                                            if(XShopDynamic.getShopType().equals(XShopType.Fishing)) {
+                                                XShopDynamic.getShopItems().add(xsitemscustom);
+                                            }
                                         }
                                     } else {
                                         XShopDynamic.getShopItems().add(xsitemscustom);
                                     }
 
                                     if(item.equalsIgnoreCase("items_special")) {
-                                        for(String seasonTemp : seasonList) {
-                                            ArrayList<XShopItems> seasonShopsT = seasonShops.get(seasonTemp);
-                                            seasonShopsT.add(xsitemscustom);
-                                            seasonShops.put(season,new ArrayList<>());
+                                        if(Name.equalsIgnoreCase("seasonitems")) {
+                                            for(String seasonTemp : seasonList) {
+                                                ArrayList<XShopItems> seasonShopsT = seasonShops.get(seasonTemp);
+                                                seasonShopsT.add(xsitemscustom);
+                                                seasonShops.put(season,new ArrayList<>());
+                                            }
+                                        }
+                                        if(Name.equalsIgnoreCase("fishing")) {
+                                            for(String seasonTemp : seasonList) {
+                                                ArrayList<XShopItems> seasonShopsT = fishShops.get(seasonTemp);
+                                                seasonShopsT.add(xsitemscustom);
+                                                fishShops.put(season,new ArrayList<>());
+                                            }
                                         }
                                     }
                                 } else {
@@ -300,8 +327,11 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                                     xsitems.setCustomModelData(fileConfig.getInt(item + "." + itemList + ".customModelData"));
 
                                     if(fileConfig.get(item + "." + itemList + ".customTags") != null) {
-                                        xsitems.setCustomTags(fileConfig.getString(item + "." + itemList + ".customTags"));
-                                        season = fileConfig.getString(item + "." + itemList + ".customTags").split(":")[1];
+                                        String customTags = fileConfig.getString(item + "." + itemList + ".customTags");
+                                        xsitems.setCustomTags(customTags);
+                                        if(customTags.startsWith("XS_SEASON") || customTags.startsWith("XS_FISH")) {
+                                            season = fileConfig.getString(item + "." + itemList + ".customTags").split(":")[1];
+                                        }
                                     }
 
                                     if(fileConfig.get(item + "." + itemList + ".previousPrice") == null) {
@@ -318,23 +348,45 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                                     }
 
                                     if(!season.isEmpty()) {
-                                        if(seasonShops.get(season) == null) {
-                                            seasonShops.put(season,new ArrayList<>());
-                                        }
-                                        ArrayList<XShopItems> seasonShopsTemp = seasonShops.get(season);
-                                        seasonShopsTemp.add(xsitems);
-                                        seasonShops.put(season,seasonShopsTemp);
-                                        if(XShopDynamic.getShopType().equals(XShopType.Seasonitems)) {
-                                            XShopDynamic.getShopItems().add(xsitems);
+                                        if(Name.equalsIgnoreCase("seasonitems")) {
+                                            if(seasonShops.get(season) == null) {
+                                                seasonShops.put(season,new ArrayList<>());
+                                            }
+                                            ArrayList<XShopItems> seasonShopsTemp = seasonShops.get(season);
+                                            seasonShopsTemp.add(xsitems);
+                                            seasonShops.put(season,seasonShopsTemp);
+                                            if(XShopDynamic.getShopType().equals(XShopType.Seasonitems)) {
+                                                XShopDynamic.getShopItems().add(xsitems);
+                                            }
+                                        } else if(Name.equalsIgnoreCase("fishing")) {
+                                            if(fishShops.get(season) == null) {
+                                                fishShops.put(season,new ArrayList<>());
+                                            }
+                                            ArrayList<XShopItems> seasonShopsTemp = fishShops.get(season);
+                                            seasonShopsTemp.add(xsitems);
+                                            fishShops.put(season,seasonShopsTemp);
+                                            //Bukkit.getLogger().info("Season: " + season + " SIze: " + fishShops.get(season).size());
+                                            if(XShopDynamic.getShopType().equals(XShopType.Fishing)) {
+                                                XShopDynamic.getShopItems().add(xsitems);
+                                            }
                                         }
                                     } else {
                                         XShopDynamic.getShopItems().add(xsitems);
                                     }
                                     if(item.equalsIgnoreCase("items_special")) {
-                                        for(String seasonTemp : seasonList) {
-                                            ArrayList<XShopItems> seasonShopsT = seasonShops.get(seasonTemp);
-                                            seasonShopsT.add(xsitems);
-                                            seasonShops.put(season,new ArrayList<>());
+                                        if(Name.equalsIgnoreCase("seasonitems")) {
+                                            for(String seasonTemp : seasonList) {
+                                                ArrayList<XShopItems> seasonShopsT = seasonShops.get(seasonTemp);
+                                                seasonShopsT.add(xsitems);
+                                                seasonShops.put(season,new ArrayList<>());
+                                            }
+                                        }
+                                        if(Name.equalsIgnoreCase("fishing")) {
+                                            for(String seasonTemp : seasonList) {
+                                                ArrayList<XShopItems> seasonShopsT = fishShops.get(seasonTemp);
+                                                seasonShopsT.add(xsitems);
+                                                fishShops.put(season,new ArrayList<>());
+                                            }
                                         }
                                     }
                                 }

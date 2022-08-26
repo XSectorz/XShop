@@ -11,5 +11,6 @@ public class loadConfig {
         new messages().loadConfigu();
         new storages().loadConfigu();
         new seasonitems().loadConfigu();
+        new fishing().loadConfigu();
     }
 }

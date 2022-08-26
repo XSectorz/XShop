@@ -40,6 +40,11 @@ public class XShop {
             title = mobs.customConfig.getString("gui.title").replace("&", "§");
         } else if (shopType.equals(XShopType.Seasonitems)) {
             title = seasonitems.customConfig.getString("gui.title").replace("&", "§");
+            //p.sendMessage("title: " + title);
+            size = 45;
+        } else if (shopType.equals(XShopType.Fishing)) {
+            title = fishing.customConfig.getString("gui.title").replace("&", "§");
+            //p.sendMessage("title2: " + title);
             size = 45;
         }
 
@@ -105,8 +110,13 @@ public class XShop {
                 int specialCounter = 0;
 
                 if(isSpecial) {
-                    specialCounter = XShopDynamicShopCore.seasonShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size();
-                    specialCounter += seasonitems.customConfig.getConfigurationSection("items_special").getKeys(false).size();
+                    if(shopType.equals(XShopType.Seasonitems)) {
+                        specialCounter = XShopDynamicShopCore.seasonShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size();
+                        specialCounter += seasonitems.customConfig.getConfigurationSection("items_special").getKeys(false).size();
+                    } else if(shopType.equals(XShopType.Fishing)) {
+                        specialCounter = XShopDynamicShopCore.fishShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size();
+                        specialCounter += fishing.customConfig.getConfigurationSection("items_special").getKeys(false).size();
+                    }
                    // p.sendMessage("SEASON: " + XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName() + " " + " COUNTER " + specialCounter);
                 }
                 int i = 0;
@@ -283,7 +293,7 @@ public class XShop {
                     if(!shopItems.getCustomTags().isEmpty()) {
                         String tags = shopItems.getCustomTags();
 
-                        if(tags.split(":")[0].equalsIgnoreCase("XS_SEASON")) {
+                        if(tags.split(":")[0].equalsIgnoreCase("XS_SEASON") || tags.split(":")[0].equalsIgnoreCase("XS_FISH")) {
                             display = display.replace(shopItems.getMat().toString(),tags.split(":")[2].replace("&","§"));
 
                             String Season = tags.split(":")[1];
@@ -296,7 +306,6 @@ public class XShop {
                                 i++;
                                 continue;
                             }
-
                         }
                     }
 
@@ -359,9 +368,16 @@ public class XShop {
                 itemMeta.setDisplayName(displayName.replace("&","§"));
             } else if(items.equalsIgnoreCase("next_page_s")) {
                 if(!shop.getShopItems().isEmpty()) {
-                    if(XShopDynamicShopCore.seasonShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size()
-                            < page*config.customConfig.getIntegerList("gui." + typeBarrier +".slot").size() ) {
-                        itemMeta.setCustomModelData(10234);
+                    if(shopType.equals(XShopType.Seasonitems)) {
+                        if(XShopDynamicShopCore.seasonShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size()
+                                < page*config.customConfig.getIntegerList("gui." + typeBarrier +".slot").size() ) {
+                            itemMeta.setCustomModelData(10234);
+                        }
+                    } else if(shopType.equals(XShopType.Fishing)) {
+                        if(XShopDynamicShopCore.fishShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size()
+                                < page*config.customConfig.getIntegerList("gui." + typeBarrier +".slot").size() ) {
+                            itemMeta.setCustomModelData(10234);
+                        }
                     }
                 }
 

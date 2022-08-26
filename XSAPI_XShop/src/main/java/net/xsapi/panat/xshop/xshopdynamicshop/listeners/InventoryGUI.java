@@ -31,7 +31,8 @@ public class InventoryGUI implements Listener {
         || e.getView().getTitle().equalsIgnoreCase(minerals.customConfig.getString("gui.title").replace("&","§"))
         || e.getView().getTitle().equalsIgnoreCase(miscellaneous.customConfig.getString("gui.title").replace("&","§"))
         || e.getView().getTitle().equalsIgnoreCase(mobs.customConfig.getString("gui.title").replace("&","§"))
-        || e.getView().getTitle().equalsIgnoreCase(seasonitems.customConfig.getString("gui.title").replace("&","§"))) {
+        || e.getView().getTitle().equalsIgnoreCase(seasonitems.customConfig.getString("gui.title").replace("&","§"))
+        || e.getView().getTitle().equalsIgnoreCase(fishing.customConfig.getString("gui.title").replace("&","§"))) {
 
             e.setCancelled(true);
             boolean isSpecial = XShopDynamicShopCore.isUsingSpecialShop.get(p.getUniqueId());
@@ -117,9 +118,15 @@ public class InventoryGUI implements Listener {
                             itemClicked = shop.getShopItems().get(indexClickedSlot + ((page * config.customConfig.getIntegerList("gui." + slotType).size())
                                     - config.customConfig.getIntegerList("gui." + slotType).size()));
                         } else {
-                            itemClicked = XShopDynamicShopCore.seasonShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName())
-                                    .get(indexClickedSlot + ((page * config.customConfig.getIntegerList("gui." + slotType).size())
-                                    - config.customConfig.getIntegerList("gui." + slotType).size()));
+                            if(XShopDynamicShopCore.shopType.get(p.getUniqueId()).equals(XShopType.Seasonitems)) {
+                                itemClicked = XShopDynamicShopCore.seasonShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName())
+                                        .get(indexClickedSlot + ((page * config.customConfig.getIntegerList("gui." + slotType).size())
+                                                - config.customConfig.getIntegerList("gui." + slotType).size()));
+                            } else if(XShopDynamicShopCore.shopType.get(p.getUniqueId()).equals(XShopType.Fishing)) {
+                                itemClicked = XShopDynamicShopCore.fishShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName())
+                                        .get(indexClickedSlot + ((page * config.customConfig.getIntegerList("gui." + slotType).size())
+                                                - config.customConfig.getIntegerList("gui." + slotType).size()));
+                            }
                             //p.sendMessage(itemClicked.getPrivateName());
                         }
 
@@ -288,6 +295,10 @@ public class InventoryGUI implements Listener {
                                         if(shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_SEASON")) {
                                             String name = ChatColor.stripColor(shopItems.getCustomTags().split(":")[2].replace("&","§"));
                                             Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"iagive " + p.getName() + " croper:" + name.toLowerCase() + " " + itmstack.getAmount() + " silent");
+                                        }
+                                        if(shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_FISH")) {
+                                            String name = ChatColor.stripColor(shopItems.getCustomTags().split(":")[2].replace("&","§"));
+                                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"iagive " + p.getName() + " customfishing:" + name.toLowerCase().replace(" ","_") + " " + itmstack.getAmount() + " silent");
                                         }
                                     } else {
                                         p.getInventory().addItem(itmstack);

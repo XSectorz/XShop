@@ -1,5 +1,5 @@
 gui:
-  title: '&x&7&4&f&f&a&3Shop ➲ SeasonItems'
+  title: '&x&7&4&f&f&a&3Shop ➲ Plants Shop'
 items:
   Material-1:
     type: NORMAL
@@ -259,7 +259,7 @@ items_special:
     displayName: '&f &fปุ๋ยระดับ §x§7§4§d§8§8§71 &f'
     lore:
       - '&r'
-      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอาสโตของต้นไม้ &e10% &f'
+      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสโตของต้นไม้ &e10% &f'
     commands:
       - iagive %player% panatxsectorz:quality_1 %amount% silent
     value: 500.0
@@ -275,7 +275,7 @@ items_special:
     displayName: '&f &fปุ๋ยระดับ §x§7§4§d§8§8§72 &f'
     lore:
       - '&r'
-      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอาสโตของต้นไม้ &e20% &f'
+      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสโตของต้นไม้ &e20% &f'
     commands:
       - iagive %player% panatxsectorz:quality_2 %amount% silent
     value: 750.0
@@ -291,7 +291,7 @@ items_special:
     displayName: '&f &fปุ๋ยระดับ §x§7§4§d§8§8§73 &f'
     lore:
       - '&r'
-      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอาสโตของต้นไม้ &e30% &f'
+      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสโตของต้นไม้ &e30% &f'
     commands:
       - iagive %player% panatxsectorz:quality_3 %amount% silent
     value: 1000.0

@@ -28,3 +28,4 @@ net\xsapi\panat\xshop\xshopdynamicshop\configuration\loadConfig.class
 net\xsapi\panat\xshop\xshopdynamicshop\listeners\InventoryClose$1.class
 net\xsapi\panat\xshop\xshopdynamicshop\gui\XShop.class
 net\xsapi\panat\xshop\xshopdynamicshop\task\task_updateUI.class
+net\xsapi\panat\xshop\xshopdynamicshop\configuration\fishing.class

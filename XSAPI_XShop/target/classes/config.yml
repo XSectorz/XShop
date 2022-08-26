@@ -309,8 +309,8 @@ gui_confirm:
       - '&x&a&9&f&f&f&fจำนวนสินค้าในตลาดและความ'
       - '&x&a&9&f&f&f&fต้องการของผู้เล่นในเซิฟเวอร์'
       - '&r'
-      - '&x&d&c&f&f&f&fยอดเงินคงเหลือ: &x&f&f&d&e&3&1%balance% Coins'
-      - '&x&d&c&f&f&f&fยอดพ้อยต์คงเหลือ: &x&5&3&d&6&f&f%points% Points'
+      - '&x&d&c&f&f&f&fยอดเงินคงเหลือ: &x&f&f&d&e&3&1%balance% &f'
+      - '&x&d&c&f&f&f&fยอดพ้อยต์คงเหลือ: &x&5&3&d&6&f&f%points% &f'
       - '&r'
   templates:
     buy:
