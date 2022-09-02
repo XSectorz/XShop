@@ -6,6 +6,7 @@ softdepend: [PlayerPoints, XSSeasons]
 api-version: 1.19
 authors: [ PanatXsectorZ ]
 description: Intelligence Shop For Minecraft Server
+aliases: shop
 commands:
   xshop:
     description: command for xsapi-dynamicshop plugin

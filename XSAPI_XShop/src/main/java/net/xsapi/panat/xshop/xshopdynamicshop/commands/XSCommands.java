@@ -344,8 +344,7 @@ public class XSCommands implements CommandExecutor {
                         commandSender.sendMessage("§c[Xshop] §aReload complete!");
                         return true;
                     }
-                }
-                if(args.length == 3) {
+                } else if(args.length == 3) {
                     if(args[0].equalsIgnoreCase("give")) {
                         String name = args[1].toString();
 
@@ -370,6 +369,61 @@ public class XSCommands implements CommandExecutor {
                         target.getInventory().addItem(it);
                         commandSender.sendMessage(("&aSuccessful give item to player").replace("&", "§"));
                         return true;
+                    } else if (args[0].equalsIgnoreCase("open")) {
+                        if(Bukkit.getPlayer(args[2].toString()) == null) {
+                            return false;
+                        }
+
+                        Player sender = Bukkit.getPlayer(args[2].toString());
+
+                        if(args[1].equalsIgnoreCase("fishing")) {
+                            if(!sender.hasPermission("xshop.fishing")) {
+                                sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                                return false;
+                            }
+                            XShopDynamicShopCore.isUsingSpecialShop.put(sender.getUniqueId(),true);
+                            XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
+                            XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.Fishing);
+                            XShop.openInv(sender, XShopDynamicShopCore.shopType.get(sender.getUniqueId()),
+                                    XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(sender
+                                            .getUniqueId()));
+
+                            if(!XShopDynamicShopCore.getPlayerOpenGUI().contains(sender)) {
+                                XShopDynamicShopCore.getPlayerOpenGUI().add(sender);
+                            }
+                            return true;
+                        } else if(args[1].equalsIgnoreCase("farming")) {
+                            if(!sender.hasPermission("xshop.farming")) {
+                                sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                                return false;
+                            }
+                            XShopDynamicShopCore.isUsingSpecialShop.put(sender.getUniqueId(),true);
+                            XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
+                            XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.Seasonitems);
+                            XShop.openInv(sender, XShopDynamicShopCore.shopType.get(sender.getUniqueId()),
+                                    XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(sender
+                                            .getUniqueId()));
+
+                            if(!XShopDynamicShopCore.getPlayerOpenGUI().contains(sender)) {
+                                XShopDynamicShopCore.getPlayerOpenGUI().add(sender);
+                            }
+                            return true;
+                        } else if(args[1].equalsIgnoreCase("normal")) {
+                            if(!sender.hasPermission("xshop.use")) {
+                                sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                                return false;
+                            }
+                            XShopDynamicShopCore.isUsingSpecialShop.put(sender.getUniqueId(),false);
+                            XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
+                            XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.NoneType);
+                            XShop.openInv(sender, XShopDynamicShopCore.shopType.get(sender.getUniqueId()),
+                                    XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(sender.getUniqueId()));
+
+                            if(!XShopDynamicShopCore.getPlayerOpenGUI().contains(sender)) {
+                                XShopDynamicShopCore.getPlayerOpenGUI().add(sender);
+                            }
+                            return true;
+                        }
                     }
                 }
             }

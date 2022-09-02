@@ -4,11 +4,11 @@ update_timer: 240 # in minute(s)
 update_gui_timer: 2 # in second(s)
 reset_price:
   enable: true
-  repeat: 15 # in day(s)
+  repeat: 7 # in day(s)
   time_stamp: 0
 
 gui:
-  gui_title: '&x&7&4&f&f&a&3Main-Shop'
+  gui_title: '&f'
   up_trend: '&x&5&8&f&f&7&d⬆ +%value%%'
   down_trend: '&x&f&f&5&3&5&3⬇ -%value%%'
   slot:
@@ -129,32 +129,10 @@ gui:
           - '&r'
           - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการขายไอเทม'
   blocked_barrier:
-    material: GRAY_STAINED_GLASS_PANE
-    customModelData: 0
+    material: BRICK
+    customModelData: 10000
     displayName: §r
-    slot:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 10
-      - 17
-      - 19
-      - 26
-      - 28
-      - 35
-      - 37
-      - 38
-      - 39
-      - 40
-      - 41
-      - 42
-      - 43
-      - 44
+    slot: []
   blocked_barrier_special:
     material: PAPER
     customModelData: 10230
@@ -260,29 +238,29 @@ gui:
     close:
       displayName: '&x&f&f&7&6&7&6ปิดหน้าเมนู'
       slot: 49
-      material: PAPER
-      customModelData: 10003
+      material: BRICK
+      customModelData: 10000
     next_page:
       displayName: '&x&6&4&f&f&a&2หน้าถัดไป >'
       slot: 50
-      material: PAPER
-      customModelData: 10001
+      material: BRICK
+      customModelData: 10000
     previous_page:
       displayName: '&x&6&4&f&f&a&2< ย้อนกลับ'
       slot: 48
-      material: PAPER
+      material: BRICK
       customModelData: 10000
     reset_timer:
-      displayName: "&fเวลารีเซ็ตราคา: &x&6&4&f&f&a&2%timer%"
+      displayName: '&fเวลารีเซ็ตราคา: &x&6&4&f&f&a&2%timer%'
       slot: 53
-      material: CLOCK
-      customModelData: 0
+      material: BRICK
+      customModelData: 10000
   items_special:
     close:
       displayName: '&x&f&f&7&6&7&6ปิดหน้าเมนู'
       slot: 40
       material: PAPER
-      customModelData: 10224
+      customModelData: 10215
     next_page_s:
       displayName: '&x&6&4&f&f&a&2หน้าถัดไป >'
       slot: 26
@@ -293,16 +271,49 @@ gui:
       slot: 18
       material: PAPER
       customModelData: 10218
+    info_season:
+      displayName: '&f ระบบพืชฤดูกาล &f'
+      lore:
+        - "&r"
+        - "&7พืชของทางเซิฟเวอร์จะมีฤดูกาลเข้ามาเกี่ยวข้อง"
+        - "&7โดยทางร้านรับซื้อสินค้านั้นจะรับซื้อพืชต่างๆของ"
+        - "&7แต่ละฤดูแตกต่างกันไปขึ้นอยู่กับฤดูกาล"
+        - "&r"
+        - "&eฤดูกาลในเซิฟเวอร์"
+        - "&x&f&f&a&6&4&9▪ ฤดูร้อน"
+        - "&x&f&f&a&6&4&9▪ ฤดูฝน"
+        - "&x&f&f&a&6&4&9▪ ฤดูใบไม้ผลิ"
+        - "&x&f&f&a&6&4&9▪ ฤดูหนาว"
+      slot: 41
+      material: PAPER
+      customModelData: 10237
+    info_fishing:
+      displayName: '&f ระบบปลาชนิดใหม่ &f'
+      lore:
+        - "&r"
+        - "&7ปลาของทางเซิฟเวอร์สามารถหาได้จากการตกปลา"
+        - "&7ซึ่งความยากของการตกปลามากขึ้นเท่าใดปลายิ่ง"
+        - "&7หายากมาขึ้นเท่านั้นร้านค้าปลาจะรับซื้อปลาแตกต่าง"
+        - "&7กันตามฤดูกาลของทางเซิฟเวอร์"
+        - "&r"
+        - "&eฤดูกาลในเซิฟเวอร์"
+        - "&x&f&f&a&6&4&9▪ ฤดูร้อน"
+        - "&x&f&f&a&6&4&9▪ ฤดูฝน"
+        - "&x&f&f&a&6&4&9▪ ฤดูใบไม้ผลิ"
+        - "&x&f&f&a&6&4&9▪ ฤดูหนาว"
+      slot: 41
+      material: PAPER
+      customModelData: 10237
 gui_confirm:
-  title_buy: '&x&7&4&f&f&a&3Shop ➲ Buy'
-  title_sell: '&x&7&4&f&f&a&3Shop ➲ Sell'
+  title_buy: '&f &f'
+  title_sell: '&f'
   back_button:
     displayName: '&x&6&4&f&f&a&2< ย้อนกลับ'
-    material: PAPER
+    material: BRICK
     customModelData: 10000
   info_button:
-    material: GOLD_INGOT
-    customModelData: 0
+    material: BRICK
+    customModelData: 10000
     displayName: '&x&4&8&f&f&f&fเกี่ยวกับระบบตลาดกลาง'
     lore:
       - '&x&a&9&f&f&f&fราคาของสินค้าจะขึ้น-ลงตาม'

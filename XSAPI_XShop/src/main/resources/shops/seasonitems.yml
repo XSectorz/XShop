@@ -2,221 +2,221 @@ gui:
   title: '&x&7&4&f&f&a&3Shop ➲ Plants Shop'
 items:
   Material-1:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10031
     customTags: "XS_SEASON:Summer:&fpineapple"
-    value: 10000.0
+    value: 30.0
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-2:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10009
     customTags: "XS_SEASON:Summer:&fcorn"
-    value: 10000.0
+    value: 25.0
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-3:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10018
     customTags: "XS_SEASON:Summer:&fturnip"
-    value: 10000.0
+    value: 25.0
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-4:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10012
     customTags: "XS_SEASON:Summer:&ftomato"
-    value: 10000.0
+    value: 30.5
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-5:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10006
     customTags: "XS_SEASON:Summer:&frice"
-    value: 10000.0
+    value: 28.75
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-6:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10028
     customTags: "XS_SEASON:Summer:&frhubard"
-    value: 10000.0
+    value: 19.5
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-7:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10000
     customTags: "XS_SEASON:Fall:&fstrawberry"
-    value: 10000.0
+    value: 15.75
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-8:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10020
     customTags: "XS_SEASON:Fall:&fhops"
-    value: 10000.0
+    value: 20.75
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-9:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10024
     customTags: "XS_SEASON:Fall:&fvainilla"
-    value: 10000.0
+    value: 23.42
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-10:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10014
     customTags: "XS_SEASON:Fall:&fzucchini"
-    value: 10000.0
+    value: 27.71
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-11:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10013
     customTags: "XS_SEASON:Fall:&fcucumber"
-    value: 10000.0
+    value: 18.75
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-12:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10022
     customTags: "XS_SEASON:Fall:&fmustard"
-    value: 10000.0
+    value: 19.35
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-13:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10005
     customTags: "XS_SEASON:Spring:&fpepper"
-    value: 10000.0
+    value: 14.46
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-14:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10011
     customTags: "XS_SEASON:Spring:&fpeas"
-    value: 10000.0
+    value: 16.60
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-15:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10033
     customTags: "XS_SEASON:Spring:&fpeanut"
-    value: 10000.0
+    value: 15.75
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-16:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10025
     customTags: "XS_SEASON:Spring:&fonion"
-    value: 10000.0
+    value: 24.10
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-17:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10003
     customTags: "XS_SEASON:Spring:&fmint"
-    value: 10000.0
+    value: 22.31
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-18:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10027
     customTags: "XS_SEASON:Spring:&fcannabis"
-    value: 10000.0
+    value: 26.4
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-19:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10016
     customTags: "XS_SEASON:Spring:&fgrapes"
-    value: 10000.0
+    value: 24.78
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-20:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10019
     customTags: "XS_SEASON:Winter:&fcabagge"
-    value: 10000.0
+    value: 30.6
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-21:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10030
     customTags: "XS_SEASON:Winter:&fasparagus"
-    value: 10000.0
+    value: 26.89
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-22:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10010
     customTags: "XS_SEASON:Winter:&fgarlic"
-    value: 10000.0
+    value: 30.6
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-23:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10021
     customTags: "XS_SEASON:Winter:&feggplant"
-    value: 10000.0
+    value: 27.5
     median: 1.0
-    stock: 1000.0
+    stock: -1
   Material-24:
-    type: NORMAL
+    type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10023
     customTags: "XS_SEASON:Winter:&fginger"
-    value: 10000.0
+    value: 21.40
     median: 1.0
-    stock: 1000.0
+    stock: -1
 items_special:
   SPECIAL_01x:
     type: CUSTOM
@@ -230,10 +230,10 @@ items_special:
       - '&f &x&c&0&f&f&c&aใช้สำหรับรดน้ำต้นไม้ &f'
     commands:
       - iagive %player% croper:cantimplora_5 %amount% silent
-    value: 10000.0
+    value: 7500.0
     median: 1.0
     stock: -1.0
-    previousPrice: 10000.0
+    previousPrice: 7500.0
   SPECIAL_02x:
     type: CUSTOM
     material: PAPER
@@ -246,10 +246,10 @@ items_special:
       - '&f &x&c&0&f&f&c&aใช้สำหรับปลูกต้นไม้พิเศษ &f'
     commands:
       - iagive %player% croper:farm %amount% silent
-    value: 1000.0
+    value: 500.0
     median: 1.0
     stock: -1.0
-    previousPrice: 1000.0
+    previousPrice: 500.0
   SPECIAL_03x:
     type: CUSTOM
     material: PAPER
@@ -262,10 +262,10 @@ items_special:
       - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสโตของต้นไม้ &e10% &f'
     commands:
       - iagive %player% panatxsectorz:quality_1 %amount% silent
-    value: 500.0
+    value: 150.0
     median: 1.0
     stock: -1.0
-    previousPrice: 500.0
+    previousPrice: 150.0
   SPECIAL_04x:
     type: CUSTOM
     material: PAPER
@@ -278,10 +278,10 @@ items_special:
       - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสโตของต้นไม้ &e20% &f'
     commands:
       - iagive %player% panatxsectorz:quality_2 %amount% silent
-    value: 750.0
+    value: 250.0
     median: 1.0
     stock: -1.0
-    previousPrice: 750.0
+    previousPrice: 250.0
   SPECIAL_05x:
     type: CUSTOM
     material: PAPER
@@ -294,7 +294,7 @@ items_special:
       - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสโตของต้นไม้ &e30% &f'
     commands:
       - iagive %player% panatxsectorz:quality_3 %amount% silent
-    value: 1000.0
+    value: 350.0
     median: 1.0
     stock: -1.0
-    previousPrice: 1000.0
+    previousPrice: 350.0

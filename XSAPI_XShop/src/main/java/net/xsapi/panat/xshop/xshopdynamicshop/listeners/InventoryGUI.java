@@ -33,7 +33,13 @@ public class InventoryGUI implements Listener {
         || e.getView().getTitle().equalsIgnoreCase(mobs.customConfig.getString("gui.title").replace("&","§"))
         || e.getView().getTitle().equalsIgnoreCase(seasonitems.customConfig.getString("gui.title").replace("&","§"))
         || e.getView().getTitle().equalsIgnoreCase(fishing.customConfig.getString("gui.title").replace("&","§"))) {
-
+            if(e.getSlot() < 0) {
+                return;
+            }
+            if(e.getClickedInventory().equals(e.getView().getBottomInventory())){
+                e.setCancelled(true);
+                return;
+            }
             e.setCancelled(true);
             boolean isSpecial = XShopDynamicShopCore.isUsingSpecialShop.get(p.getUniqueId());
             String menuType = "items";
@@ -63,7 +69,12 @@ public class InventoryGUI implements Listener {
             if(it != null) {
                 if(it.hasItemMeta()) {
                     String name = it.getItemMeta().getDisplayName().replace("&","§");
-                    int customModelData = it.getItemMeta().getCustomModelData();
+
+                    int customModelData = 0;
+
+                    if(it.getItemMeta().hasCustomModelData()) {
+                        customModelData = it.getItemMeta().getCustomModelData();
+                    }
 
                     XShopType shopType = XShopDynamicShopCore.shopType.get(p.getUniqueId());
                     int page = XShopDynamicShopCore.shopPage.get(p.getUniqueId());
@@ -196,7 +207,13 @@ public class InventoryGUI implements Listener {
 
         if(e.getView().getTitle().equalsIgnoreCase(config.customConfig.getString("gui_confirm.title_buy").replace("&","§")
         ) || e.getView().getTitle().equalsIgnoreCase(config.customConfig.getString("gui_confirm.title_sell").replace("&","§"))) {
-
+            if(e.getSlot() < 0) {
+                return;
+            }
+            if(e.getClickedInventory().equals(e.getView().getBottomInventory())){
+                e.setCancelled(true);
+                return;
+            }
             ItemStack it = e.getCurrentItem();
             e.setCancelled(true);
 
@@ -352,11 +369,13 @@ public class InventoryGUI implements Listener {
                                                     if (!invItem.hasItemMeta()) {
                                                         continue;
                                                     }
-                                                    if (invItem.getItemMeta().getCustomModelData() != shopItems.getCustomModelData()) {
-                                                        continue;
-                                                    }
+                                                    if(invItem.getItemMeta().hasCustomModelData()) {
+                                                        if (invItem.getItemMeta().getCustomModelData() != shopItems.getCustomModelData()) {
+                                                            continue;
+                                                        }
 
-                                                    have++;
+                                                        have += invItem.getAmount();
+                                                    }
                                                 }
                                             }
                                         }
@@ -402,8 +421,10 @@ public class InventoryGUI implements Listener {
                                                     if(!invItem.hasItemMeta()) {
                                                         continue;
                                                     }
-                                                    if(invItem.getItemMeta().getCustomModelData() != shopItems.getCustomModelData()) {
-                                                        continue;
+                                                    if(invItem.getItemMeta().hasCustomModelData()) {
+                                                        if(invItem.getItemMeta().getCustomModelData() != shopItems.getCustomModelData()) {
+                                                            continue;
+                                                        }
                                                     }
                                                 }
 

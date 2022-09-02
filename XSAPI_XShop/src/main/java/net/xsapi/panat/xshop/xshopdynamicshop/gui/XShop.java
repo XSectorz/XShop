@@ -354,10 +354,23 @@ public class XShop {
         }
 
         for (String items : config.customConfig.getConfigurationSection("gui." + typeItems).getKeys(false)) {
+
+            if(items.equalsIgnoreCase("info_season")) {
+                if(shopType.equals(XShopType.Fishing)) {
+                    continue;
+                }
+            }
+            if(items.equalsIgnoreCase("info_fishing")) {
+                if(shopType.equals(XShopType.Seasonitems)) {
+                    continue;
+                }
+            }
+
             String displayName = config.customConfig.getString("gui." + typeItems + "." + items + ".displayName");
             ItemStack it = ItemCreator.createItem(Material.getMaterial(config.customConfig.getString("gui." + typeItems + "." + items + ".material"))
                     , 1, config.customConfig.getInt("gui." + typeItems + "." + items + ".customModelData"), displayName
                     , new ArrayList<>(), false);
+            ArrayList<String> lore = new ArrayList<>();
             ItemMeta itemMeta = it.getItemMeta();
 
             if(items.equalsIgnoreCase("reset_timer")) {
@@ -386,6 +399,15 @@ public class XShop {
                     itemMeta.setCustomModelData(10233);
                 }
             }
+            if(config.customConfig.get("gui." + typeItems +"." + items + ".lore") != null) {
+
+                for(String line : config.customConfig.getStringList("gui." + typeItems +"." + items + ".lore")) {
+                    line = line.replace("&", "§");
+                    lore.add(line);
+                }
+            }
+
+            itemMeta.setLore(lore);
             it.setItemMeta(itemMeta);
 
             inv.setItem(config.customConfig.getInt("gui." + typeItems +"." + items + ".slot"), it);
