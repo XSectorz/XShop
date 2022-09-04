@@ -186,7 +186,7 @@ public class XShop {
                         }
                     }
 
-                    double price = ((shopItems.getMedian() * shopItems.getValue()) / stockChecker);
+                    double price = ((shopItems.getMedian() * shopItems.getValue()) / (stockChecker+1));
 
                     for (String L : list) {
 

@@ -48,8 +48,10 @@ public class XShopConfirm {
         int modelData = 0;
 
         double stockChecker = 1;
+        double realStock = 0;
         if(shopItems.getStock() == -1) {
             stockChecker = 1;
+            realStock = -1;
         } else {
             stockChecker = shopItems.getStock();
         }
@@ -130,6 +132,49 @@ public class XShopConfirm {
         df2.setGroupingUsed(true);
         df2.setGroupingSize(3);
         String tempData = "";
+
+        ArrayList<Double> listPriceBuy = new ArrayList<>();
+        ArrayList<Double> listPriceSell = new ArrayList<>();
+        double price = 0;
+        double priceSell = 0;
+        int countMultipier = 0;
+        double tStock = stockChecker+1;
+        double tStockSell = stockChecker+1;
+
+        for(int data = 1 ; data <= 64 ; data++) {
+
+            boolean isOutofStock = false;
+
+            if(tStock <= 0) { //out of stock not calculate
+                isOutofStock = true;
+            }
+
+            if(!isOutofStock) {
+                price = price + (shopItems.getMedian()*shopItems.getValue())/tStock;
+            }
+
+            priceSell = priceSell + (shopItems.getMedian()*shopItems.getValue())/tStockSell;
+
+            tStock -= 1;
+            tStockSell += 1;
+
+            if(data%(int) (Math.pow(2, countMultipier)) == 0) { //1 2 4 8 16 32 64
+                if(isOutofStock) {
+                    listPriceBuy.add(-1.0);
+                } else {
+                    if(price <= 0) {
+                        price = -1;
+                    }
+                    listPriceBuy.add(price);
+                }
+                listPriceSell.add(priceSell*75/100);
+                countMultipier += 1;
+            }
+        }
+
+        XShopDynamicShopCore.shopConfirmPrice.put(p.getUniqueId(),listPriceBuy);
+        XShopDynamicShopCore.shopConfirmPriceSell.put(p.getUniqueId(),listPriceSell);
+
         for(int i = 0 ; i < 7 ; i++) {
 
             if(i == 0) {
@@ -155,23 +200,63 @@ public class XShopConfirm {
                 }
             }
 
-            double price = (shopItems.getMedian()*shopItems.getValue())/stockChecker;
 
             for(String lores : lore) {
+
                 if(isBuy) {
-                    double v = price * Math.pow(2, i);
-                    if(isSeason) {
-                        lores = lores.replace("%price%","&8&m"+df.format(v) + "&f &x&f&f&d&e&3&1" + df.format(v*125/100) + " " + priceType);
+                    double value = 0;
+                    if(realStock == -1) {
+                        value = price * Math.pow(2, i);
                     } else {
-                        lores = lores.replace("%price%",""+df.format(v) + " " + priceType);
+                        value = listPriceBuy.get(i);
+                    }
+
+                    String v = df.format(value);
+                    if(value <= 0) {
+                        v = "&cไม่สามาถซื้อได้";
+                    }
+
+                    if(isSeason) {
+
+                        v = df.format(value);
+                        value = (value*125/100);
+
+                        if(value <= 0) {
+                            v = "&cไม่สามาถซื้อได้";
+                            lores = lores.replace("%price%","&8&m"+v + "&f &x&f&f&d&e&3&1");
+                        } else {
+                            lores = lores.replace("%price%","&8&m"+v + "&f &x&f&f&d&e&3&1" + df.format(value) + " " + priceType);
+                        }
+
+                    } else {
+                        lores = lores.replace("%price%",""+ v + " " + priceType);
                     }
 
                 } else {
-                    double v = (price * 75) / 100 * Math.pow(2, i);
-                    if(isSeason) {
-                        lores = lores.replace("%price%","&8&m"+df.format(v) + "&f &x&f&f&d&e&3&1" + df.format(v*125/100) + " " + priceType);
+                   // double v = (price * 75) / 100 * Math.pow(2, i);
+                    double value = 0;
+                    if(realStock == -1) {
+                        value = price * Math.pow(2, i);
                     } else {
-                        lores = lores.replace("%price%",""+df.format(v) + " " + priceType);
+                        value = listPriceSell.get(i);
+                    }
+
+                    String v = df.format(value);
+                    if(value <= 0) {
+                        v = "&cไม่สามารถขายได้";
+                    }
+
+                    if(isSeason) {
+                        value = value*125/100;
+                        if(value <= 0) {
+                            v = "&cไม่สามาถขายได้";
+                            lores = lores.replace("%price%","&8&m"+v);
+                        } else {
+                            lores = lores.replace("%price%","&8&m"+v + "&f &x&f&f&d&e&3&1" + df.format(value*125/100) + " " + priceType);
+                        }
+
+                    } else {
+                        lores = lores.replace("%price%",""+v + " " + priceType);
                     }
 
                 }

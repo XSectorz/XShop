@@ -241,11 +241,16 @@ public class InventoryGUI implements Listener {
                                     price = shopItems.getValue()*shopItems.getMedian()*Math.pow(2,e.getSlot()-10);
                                 } else {
                                     if(shopItems.getStock()-Math.pow(2,e.getSlot()-10) >= 1) {
-                                        price = Math.pow(2,e.getSlot()-10)*((shopItems.getValue()*shopItems.getMedian())/shopItems.getStock());
+                                        price = XShopDynamicShopCore.shopConfirmPrice.get(p.getUniqueId()).get((e.getSlot()-10));
+                                        //Bukkit.broadcastMessage("PRICE: " + price);
                                     } else {
                                         p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("out_of_stock")).replace("&","§"));
                                         return;
                                     }
+                                }
+
+                                if(price <= 0) {
+                                    return;
                                 }
 
                                 boolean isSeason = false;
@@ -393,7 +398,8 @@ public class InventoryGUI implements Listener {
                                 if((shopItems.getStock() == -1)) {
                                     price = (shopItems.getValue()*shopItems.getMedian()*75/100)*Math.pow(2,e.getSlot()-10);
                                 } else {
-                                    price = Math.pow(2,e.getSlot()-10)*(((shopItems.getValue()*shopItems.getMedian())/shopItems.getStock()*75/100));
+                                    //price = Math.pow(2,e.getSlot()-10)*(((shopItems.getValue()*shopItems.getMedian())/shopItems.getStock()*75/100));
+                                    price = XShopDynamicShopCore.shopConfirmPriceSell.get(p.getUniqueId()).get(e.getSlot()-10);
                                     shopItems.setStock(shopItems.getStock()+Math.pow(2,e.getSlot()-10));
                                 }
 
