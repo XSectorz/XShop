@@ -138,8 +138,13 @@ public class XShopConfirm {
         double price = 0;
         double priceSell = 0;
         int countMultipier = 0;
-        double tStock = stockChecker+1;
-        double tStockSell = stockChecker+1;
+        double tStock = stockChecker;
+        double tStockSell = stockChecker;
+
+        if(realStock != -1) {
+            tStock += 1;
+            tStockSell += 1;
+        }
 
         for(int data = 1 ; data <= 64 ; data++) {
 

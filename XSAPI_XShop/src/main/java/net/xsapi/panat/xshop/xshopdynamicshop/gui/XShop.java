@@ -160,8 +160,10 @@ public class XShop {
                     ArrayList<String> listLore = new ArrayList<String>();
 
                     double stockChecker = 1;
+                    double realStock = 0;
                     if (shopItems.getStock() == -1) {
                         stockChecker = 1;
+                        realStock = -1;
                     } else {
                         stockChecker = shopItems.getStock();
                     }
@@ -186,7 +188,12 @@ public class XShop {
                         }
                     }
 
-                    double price = ((shopItems.getMedian() * shopItems.getValue()) / (stockChecker+1));
+                    double price = ((shopItems.getMedian() * shopItems.getValue()) / (stockChecker));
+
+                    if(realStock != -1) {
+                        price = ((shopItems.getMedian() * shopItems.getValue()) / (stockChecker+1));
+                    }
+
 
                     for (String L : list) {
 
