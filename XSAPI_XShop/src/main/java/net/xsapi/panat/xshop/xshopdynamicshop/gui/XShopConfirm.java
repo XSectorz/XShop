@@ -205,6 +205,11 @@ public class XShopConfirm {
                 }
             }
 
+            if(realStock == -1) {
+                price =  (shopItems.getMedian()*shopItems.getValue())/1;
+                //Bukkit.broadcastMessage("PRICE: " + price);
+            }
+
 
             for(String lores : lore) {
 
@@ -241,7 +246,7 @@ public class XShopConfirm {
                    // double v = (price * 75) / 100 * Math.pow(2, i);
                     double value = 0;
                     if(realStock == -1) {
-                        value = price * Math.pow(2, i);
+                        value = (price * 75) / 100  * Math.pow(2, i);
                     } else {
                         value = listPriceSell.get(i);
                     }
@@ -257,7 +262,7 @@ public class XShopConfirm {
                             v = "&cไม่สามาถขายได้";
                             lores = lores.replace("%price%","&8&m"+v);
                         } else {
-                            lores = lores.replace("%price%","&8&m"+v + "&f &x&f&f&d&e&3&1" + df.format(value*125/100) + " " + priceType);
+                            lores = lores.replace("%price%","&8&m"+v + "&f &x&f&f&d&e&3&1" + df.format(value) + " " + priceType);
                         }
 
                     } else {
