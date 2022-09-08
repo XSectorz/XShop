@@ -5,7 +5,7 @@ items:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10031
+    customModelData: 10064
     customTags: "XS_SEASON:Summer:&fpineapple"
     value: 30.0
     median: 1.0
@@ -14,16 +14,34 @@ items:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10009
+    customModelData: 10040
     customTags: "XS_SEASON:Summer:&fcorn"
     value: 25.0
+    median: 1.0
+    stock: -1
+  Material-2-1:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10041
+    customTags: "XS_SEASON:Summer:&fCorn_silver_star"
+    value: 30.0
+    median: 1.0
+    stock: -1
+  Material-2-2:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10042
+    customTags: "XS_SEASON:Summer:&fCorn_golden_star"
+    value: 35.0
     median: 1.0
     stock: -1
   Material-3:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10018
+    customModelData: 10066
     customTags: "XS_SEASON:Summer:&fturnip"
     value: 25.0
     median: 1.0
@@ -32,16 +50,43 @@ items:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10012
+    customModelData: 10049
     customTags: "XS_SEASON:Summer:&ftomato"
-    value: 30.5
+    value: 20.1
+    median: 1.0
+    stock: -1
+  Material-4-1:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10050
+    customTags: "XS_SEASON:Summer:&ftomato_silver_star"
+    value: 24.4
+    median: 1.0
+    stock: -1
+  Material-4-2:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10051
+    customTags: "XS_SEASON:Summer:&ftomato_golden_star"
+    value: 27.85
+    median: 1.0
+    stock: -1
+  Material-4-3:
+    type: SELL_ONLY
+    material: PAPER
+    priceType: Coins
+    customModelData: 10471
+    customTags: "XS_SEASON:Summer:&fgigantic_tomato"
+    value: 105.47
     median: 1.0
     stock: -1
   Material-5:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10006
+    customModelData: 10067
     customTags: "XS_SEASON:Summer:&frice"
     value: 28.75
     median: 1.0
@@ -50,8 +95,8 @@ items:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10028
-    customTags: "XS_SEASON:Summer:&frhubard"
+    customModelData: 10063
+    customTags: "XS_SEASON:Summer:&frhubarb"
     value: 19.5
     median: 1.0
     stock: -1
@@ -59,7 +104,7 @@ items:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10000
+    customModelData: 10065
     customTags: "XS_SEASON:Fall:&fstrawberry"
     value: 15.75
     median: 1.0
@@ -68,7 +113,7 @@ items:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10020
+    customModelData: 10058
     customTags: "XS_SEASON:Fall:&fhops"
     value: 20.75
     median: 1.0
@@ -77,7 +122,7 @@ items:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10024
+    customModelData: 10069
     customTags: "XS_SEASON:Fall:&fvainilla"
     value: 23.42
     median: 1.0
@@ -86,7 +131,7 @@ items:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10014
+    customModelData: 10068
     customTags: "XS_SEASON:Fall:&fzucchini"
     value: 27.71
     median: 1.0
@@ -95,7 +140,7 @@ items:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10013
+    customModelData: 10054
     customTags: "XS_SEASON:Fall:&fcucumber"
     value: 18.75
     median: 1.0
@@ -104,7 +149,7 @@ items:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10022
+    customModelData: 10060
     customTags: "XS_SEASON:Fall:&fmustard"
     value: 19.35
     median: 1.0
@@ -113,16 +158,34 @@ items:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10005
+    customModelData: 10046
     customTags: "XS_SEASON:Spring:&fpepper"
     value: 14.46
+    median: 1.0
+    stock: -1
+  Material-13-1:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10047
+    customTags: "XS_SEASON:Spring:&fpepper_silver_star"
+    value: 18.8
+    median: 1.0
+    stock: -1
+  Material-13-2:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10048
+    customTags: "XS_SEASON:Spring:&fpepper_golden_star"
+    value: 22.7
     median: 1.0
     stock: -1
   Material-14:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10011
+    customModelData: 10062
     customTags: "XS_SEASON:Spring:&fpeas"
     value: 16.60
     median: 1.0
@@ -131,7 +194,7 @@ items:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10033
+    customModelData: 10061
     customTags: "XS_SEASON:Spring:&fpeanut"
     value: 15.75
     median: 1.0
@@ -140,7 +203,7 @@ items:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10025
+    customModelData: 10059
     customTags: "XS_SEASON:Spring:&fonion"
     value: 24.10
     median: 1.0
@@ -149,7 +212,7 @@ items:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10003
+    customModelData: 10057
     customTags: "XS_SEASON:Spring:&fmint"
     value: 22.31
     median: 1.0
@@ -158,7 +221,7 @@ items:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10027
+    customModelData: 10053
     customTags: "XS_SEASON:Spring:&fcannabis"
     value: 26.4
     median: 1.0
@@ -167,43 +230,106 @@ items:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10016
-    customTags: "XS_SEASON:Spring:&fgrapes"
-    value: 24.78
+    customModelData: 10043
+    customTags: "XS_SEASON:Spring:&fgrape"
+    value: 18.78
+    median: 1.0
+    stock: -1
+  Material-19-1:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10044
+    customTags: "XS_SEASON:Spring:&fgrape_silver_star"
+    value: 22.67
+    median: 1.0
+    stock: -1
+  Material-19-2:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10045
+    customTags: "XS_SEASON:Spring:&fgrape_golden_star"
+    value: 26.16
     median: 1.0
     stock: -1
   Material-20:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10019
+    customModelData: 10037
     customTags: "XS_SEASON:Winter:&fcabagge"
-    value: 30.6
+    value: 20.6
+    median: 1.0
+    stock: -1
+  Material-20-1:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10038
+    customTags: "XS_SEASON:Winter:&fcabagge_silver_star"
+    value: 24.3
+    median: 1.0
+    stock: -1
+  Material-20-2:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10039
+    customTags: "XS_SEASON:Winter:&fcabagge_golden_star"
+    value: 30.7
+    median: 1.0
+    stock: -1
+  Material-20-3:
+    type: SELL_ONLY
+    material: PAPER
+    priceType: Coins
+    customModelData: 10447
+    customTags: "XS_SEASON:Winter:&fgigantic_cabbage"
+    value: 108.14
     median: 1.0
     stock: -1
   Material-21:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10030
+    customModelData: 10052
     customTags: "XS_SEASON:Winter:&fasparagus"
-    value: 26.89
+    value: 23.89
     median: 1.0
     stock: -1
   Material-22:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10010
+    customModelData: 10034
     customTags: "XS_SEASON:Winter:&fgarlic"
-    value: 30.6
+    value: 20.16
+    median: 1.0
+    stock: -1
+  Material-22-1:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10035
+    customTags: "XS_SEASON:Winter:&fgarlic_silver_star"
+    value: 24.71
+    median: 1.0
+    stock: -1
+  Material-22-2:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10035
+    customTags: "XS_SEASON:Winter:&fgarlic_golden_star"
+    value: 28.62
     median: 1.0
     stock: -1
   Material-23:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10021
+    customModelData: 10055
     customTags: "XS_SEASON:Winter:&feggplant"
     value: 27.5
     median: 1.0
@@ -212,7 +338,7 @@ items:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10023
+    customModelData: 10056
     customTags: "XS_SEASON:Winter:&fginger"
     value: 21.40
     median: 1.0
@@ -220,81 +346,175 @@ items:
 items_special:
   SPECIAL_01x:
     type: CUSTOM
-    material: STONE_SWORD
+    material: GOLDEN_HORSE_ARMOR
     customType: buy
     priceType: Coins
-    customModelData: 10005
-    displayName: '&f &fบัวรดน้ำ &f'
+    customModelData: 10000
+    displayName: '&f &fบัวรดน้ำ คอปเปอร์ &f'
     lore:
       - '&r'
       - '&f &x&c&0&f&f&c&aใช้สำหรับรดน้ำต้นไม้ &f'
-    commands:
-      - iagive %player% croper:cantimplora_5 %amount% silent
-    value: 7500.0
-    median: 1.0
-    stock: -1.0
-    previousPrice: 7500.0
-  SPECIAL_02x:
-    type: CUSTOM
-    material: PAPER
-    customType: buy
-    priceType: Coins
-    customModelData: 10038
-    displayName: '&f &fแปลงผัก &f'
-    lore:
       - '&r'
-      - '&f &x&c&0&f&f&c&aใช้สำหรับปลูกต้นไม้พิเศษ &f'
+      - '&f ความจุถังน้ำ &x&c&0&f&f&c&a3 &fช่อง'
     commands:
-      - iagive %player% croper:farm %amount% silent
-    value: 500.0
-    median: 1.0
-    stock: -1.0
-    previousPrice: 500.0
-  SPECIAL_03x:
-    type: CUSTOM
-    material: PAPER
-    customType: buy
-    priceType: Coins
-    customModelData: 10105
-    displayName: '&f &fปุ๋ยระดับ §x§7§4§d§8§8§71 &f'
-    lore:
-      - '&r'
-      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสโตของต้นไม้ &e10% &f'
-    commands:
-      - iagive %player% panatxsectorz:quality_1 %amount% silent
-    value: 150.0
-    median: 1.0
-    stock: -1.0
-    previousPrice: 150.0
-  SPECIAL_04x:
-    type: CUSTOM
-    material: PAPER
-    customType: buy
-    priceType: Coins
-    customModelData: 10106
-    displayName: '&f &fปุ๋ยระดับ §x§7§4§d§8§8§72 &f'
-    lore:
-      - '&r'
-      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสโตของต้นไม้ &e20% &f'
-    commands:
-      - iagive %player% panatxsectorz:quality_2 %amount% silent
+      - iagive %player% customcrops:watering_can_1 %amount% silent
     value: 250.0
     median: 1.0
     stock: -1.0
     previousPrice: 250.0
+  SPECIAL_02x:
+    type: CUSTOM
+    material: GOLDEN_HORSE_ARMOR
+    customType: buy
+    priceType: Coins
+    customModelData: 10001
+    displayName: '&f &fบัวรดน้ำ เหล็กกล้า &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aใช้สำหรับรดน้ำต้นไม้ &f'
+      - '&r'
+      - '&f ความจุถังน้ำ &x&c&0&f&f&c&a4 &fช่อง'
+    commands:
+      - iagive %player% customcrops:watering_can_2 %amount% silent
+    value: 2500.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 2500.0
+  SPECIAL_03x:
+    type: CUSTOM
+    material: GOLDEN_HORSE_ARMOR
+    customType: buy
+    priceType: Coins
+    customModelData: 10002
+    displayName: '&f &fบัวรดน้ำ ทองคำ &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aใช้สำหรับรดน้ำต้นไม้ &f'
+      - '&r'
+      - '&f ความจุถังน้ำ &x&c&0&f&f&c&a4 &fช่อง'
+    commands:
+      - iagive %player% customcrops:watering_can_3 %amount% silent
+    value: 50000.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 50000.0
+  SPECIAL_04x:
+    type: CUSTOM
+    material: GOLDEN_HORSE_ARMOR
+    customType: buy
+    priceType: Points
+    customModelData: 10003
+    displayName: '&f &fบัวรดน้ำ อินเรเดี่ยม &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aใช้สำหรับรดน้ำต้นไม้ &f'
+      - '&r'
+      - '&f ความจุถังน้ำ &x&c&0&f&f&c&a5 &fช่อง'
+    commands:
+      - iagive %player% customcrops:watering_can_4 %amount% silent
+    value: 2000.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 2000.0
   SPECIAL_05x:
     type: CUSTOM
     material: PAPER
     customType: buy
     priceType: Coins
-    customModelData: 10107
+    customModelData: 10419
+    displayName: '&f &fแปลงผัก &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aใช้สำหรับปลูกต้นไม้พิเศษ &f'
+    commands:
+      - iagive %player% customcrops:pot %amount% silent
+    value: 500.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 500.0
+  SPECIAL_06x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Coins
+    customModelData: 10433
+    displayName: '&f &fปุ๋ยระดับ §x§7§4§d§8§8§71 &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสโตของต้นไม้ &e10% &f'
+    commands:
+      - iagive %player% customcrops:quality_1 %amount% silent
+    value: 150.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 150.0
+  SPECIAL_07x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Coins
+    customModelData: 10434
+    displayName: '&f &fปุ๋ยระดับ §x§7§4§d§8§8§72 &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสโตของต้นไม้ &e20% &f'
+    commands:
+      - iagive %player% customcrops:quality_2 %amount% silent
+    value: 250.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 250.0
+  SPECIAL_08x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Coins
+    customModelData: 10435
     displayName: '&f &fปุ๋ยระดับ §x§7§4§d§8§8§73 &f'
     lore:
       - '&r'
       - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสโตของต้นไม้ &e30% &f'
     commands:
-      - iagive %player% panatxsectorz:quality_3 %amount% silent
+      - iagive %player% customcrops:quality_3 %amount% silent
     value: 350.0
     median: 1.0
     stock: -1.0
     previousPrice: 350.0
+  SPECIAL_09x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Points
+    customModelData: 10422
+    displayName: '&f &fสปริงค์เกอร์ ระดับไม้ &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aใช้สำหรับการรดน้ำอัติโนมัติ &f'
+      - '&r'
+      - '&f ความจุน้ำ &x&c&0&f&f&c&a5 &fช่อง'
+      - '&f รดน้ำในรัศมี &x&c&0&f&f&c&a3x3 &fช่อง'
+    commands:
+      - iagive %player% customcrops:sprinkler_1_item %amount% silent
+    value: 200.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 200.0
+  SPECIAL_10x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Points
+    customModelData: 10424
+    displayName: '&f &fสปริงค์เกอร์ ระดับทอง &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aใช้สำหรับการรดน้ำอัติโนมัติ &f'
+      - '&r'
+      - '&f ความจุน้ำ &x&c&0&f&f&c&a7 &fช่อง'
+      - '&f รดน้ำในรัศมี &x&c&0&f&f&c&a5x5 &fช่อง'
+    commands:
+      - iagive %player% customcrops:sprinkler_2_item %amount% silent
+    value: 500.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 500.0

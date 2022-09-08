@@ -233,4 +233,139 @@ items:
     value: 50000.0
     median: 1.0
     stock: -1
-
+  Material-27:
+    type: NORMAL
+    material: WHITE_WOOL
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-28:
+    type: NORMAL
+    material: ORANGE_WOOL
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-29:
+    type: NORMAL
+    material: MAGENTA_WOOL
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-30:
+    type: NORMAL
+    material: LIGHT_BLUE_WOOL
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-31:
+    type: NORMAL
+    material: YELLOW_WOOL
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-32:
+    type: NORMAL
+    material: LIME_WOOL
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-33:
+    type: NORMAL
+    material: PINK_WOOL
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-34:
+    type: NORMAL
+    material: GRAY_WOOL
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-35:
+    type: NORMAL
+    material: LIGHT_GRAY_WOOL
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-36:
+    type: NORMAL
+    material: LIGHT_GRAY_WOOL
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-37:
+    type: NORMAL
+    material: CYAN_WOOL
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-38:
+    type: NORMAL
+    material: PURPLE_WOOL
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-39:
+    type: NORMAL
+    material: BLUE_WOOL
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-40:
+    type: NORMAL
+    material: BROWN_WOOL
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-41:
+    type: NORMAL
+    material: GREEN_WOOL
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-42:
+    type: NORMAL
+    material: RED_WOOL
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-43:
+    type: NORMAL
+    material: BLACK_WOOL
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000

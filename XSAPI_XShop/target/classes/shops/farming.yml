@@ -2,7 +2,7 @@ gui:
   title: '&f &f&f'
 items:
   Material-1:
-    type: NORMAL
+    type: BUY_ONLY
     material: WHEAT_SEEDS
     priceType: Coins
     customModelData: -1
@@ -11,7 +11,7 @@ items:
     stock: -1.0
     previousPrice: 0.25
   Material-2:
-    type: NORMAL
+    type: BUY_ONLY
     material: PUMPKIN_SEEDS
     priceType: Coins
     customModelData: -1
@@ -20,7 +20,7 @@ items:
     stock: -1.0
     previousPrice: 0.28
   Material-3:
-    type: NORMAL
+    type: BUY_ONLY
     material: MELON_SEEDS
     priceType: Coins
     customModelData: -1
@@ -29,7 +29,7 @@ items:
     stock: -1.0
     previousPrice: 0.28
   Material-4:
-    type: NORMAL
+    type: BUY_ONLY
     material: BEETROOT_SEEDS
     priceType: Coins
     customModelData: -1

@@ -316,7 +316,7 @@ public class InventoryGUI implements Listener {
 
                                         if(shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_SEASON")) {
                                             String name = ChatColor.stripColor(shopItems.getCustomTags().split(":")[2].replace("&","§"));
-                                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"iagive " + p.getName() + " croper:" + name.toLowerCase() + " " + itmstack.getAmount() + " silent");
+                                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"iagive " + p.getName() + " customcrops:" + name.toLowerCase() + " " + itmstack.getAmount() + " silent");
                                         }
                                         if(shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_FISH")) {
                                             String name = ChatColor.stripColor(shopItems.getCustomTags().split(":")[2].replace("&","§"));
