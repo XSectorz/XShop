@@ -112,10 +112,10 @@ public class XShop {
                 if(isSpecial) {
                     if(shopType.equals(XShopType.Seasonitems)) {
                         specialCounter = XShopDynamicShopCore.seasonShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size();
-                        specialCounter += seasonitems.customConfig.getConfigurationSection("items_special").getKeys(false).size();
+                        //specialCounter += seasonitems.customConfig.getConfigurationSection("items_special").getKeys(false).size();
                     } else if(shopType.equals(XShopType.Fishing)) {
                         specialCounter = XShopDynamicShopCore.fishShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size();
-                        specialCounter += fishing.customConfig.getConfigurationSection("items_special").getKeys(false).size();
+                        //specialCounter += fishing.customConfig.getConfigurationSection("items_special").getKeys(false).size();
                     }
                    // p.sendMessage("SEASON: " + XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName() + " " + " COUNTER " + specialCounter);
                 }
@@ -123,7 +123,7 @@ public class XShop {
 
                 while (i < slot.size() || specialCounter > 0) {
 
-                    //Bukkit.broadcastMessage("I: " + i + " COUNTER " + specialCounter);
+                    //Bukkit.broadcastMessage("I: " + i + "/"+ slot.size() + " " + " COUNTER " + specialCounter);
                     if (startIndex + indexSlot >= XShopDynamicShopCore.shopPage.get(p.getUniqueId()) * config.customConfig.getIntegerList("gui."+typeSlot).size()) {
                         break;
                     }
@@ -390,12 +390,12 @@ public class XShop {
                 if(!shop.getShopItems().isEmpty()) {
                     if(shopType.equals(XShopType.Seasonitems)) {
                         if(XShopDynamicShopCore.seasonShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size()
-                                < page*config.customConfig.getIntegerList("gui." + typeBarrier +".slot").size() ) {
+                                < (page*config.customConfig.getIntegerList("gui." + typeBarrier +".slot").size())+1 ) {
                             itemMeta.setCustomModelData(10234);
                         }
                     } else if(shopType.equals(XShopType.Fishing)) {
                         if(XShopDynamicShopCore.fishShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size()
-                                < page*config.customConfig.getIntegerList("gui." + typeBarrier +".slot").size() ) {
+                                < (page*config.customConfig.getIntegerList("gui." + typeBarrier +".slot").size())+1 ) {
                             itemMeta.setCustomModelData(10234);
                         }
                     }
