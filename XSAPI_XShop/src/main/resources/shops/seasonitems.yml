@@ -320,7 +320,7 @@ items:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
-    customModelData: 10035
+    customModelData: 10036
     customTags: "XS_SEASON:Winter:&fgarlic_golden_star"
     value: 28.62
     median: 1.0
@@ -441,7 +441,18 @@ items_special:
     displayName: '&f &fปุ๋ยระดับ §x§7§4§d§8§8§71 &f'
     lore:
       - '&r'
-      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสโตของต้นไม้ &e10% &f'
+      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสได้รับพืชคุณภาพดีขึ้น &f'
+      - '&f เป็นพืชระดับปกติ &e70%'
+      - '&f เป็นพืชระดับเงิน &e20%'
+      - '&f เป็นพืชระดับทองคำ &e10%'
+      - '&r'
+      - '&f มีพืชบางชนิดเท่านั้นที่สามารถใช้งานได้'
+      - '&x&f&f&a&6&4&9▪ ข้าวโพด'
+      - '&x&f&f&a&6&4&9▪ มะเขือเทศ'
+      - '&x&f&f&a&6&4&9▪ พริกไทย'
+      - '&x&f&f&a&6&4&9▪ องุ่น'
+      - '&x&f&f&a&6&4&9▪ กระหล่ำปี'
+      - '&x&f&f&a&6&4&9▪ กระเทียม'
     commands:
       - iagive %player% customcrops:quality_1 %amount% silent
     value: 150.0
@@ -457,7 +468,18 @@ items_special:
     displayName: '&f &fปุ๋ยระดับ §x§7§4§d§8§8§72 &f'
     lore:
       - '&r'
-      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสโตของต้นไม้ &e20% &f'
+      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสได้รับพืชคุณภาพดีขึ้น &f'
+      - '&f เป็นพืชระดับปกติ &e50%'
+      - '&f เป็นพืชระดับเงิน &e40%'
+      - '&f เป็นพืชระดับทองคำ &e10%'
+      - '&r'
+      - '&f มีพืชบางชนิดเท่านั้นที่สามารถใช้งานได้'
+      - '&x&f&f&a&6&4&9▪ ข้าวโพด'
+      - '&x&f&f&a&6&4&9▪ มะเขือเทศ'
+      - '&x&f&f&a&6&4&9▪ พริกไทย'
+      - '&x&f&f&a&6&4&9▪ องุ่น'
+      - '&x&f&f&a&6&4&9▪ กระหล่ำปี'
+      - '&x&f&f&a&6&4&9▪ กระเทียม'
     commands:
       - iagive %player% customcrops:quality_2 %amount% silent
     value: 250.0
@@ -473,13 +495,126 @@ items_special:
     displayName: '&f &fปุ๋ยระดับ §x§7§4§d§8§8§73 &f'
     lore:
       - '&r'
-      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสโตของต้นไม้ &e30% &f'
+      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสได้รับพืชคุณภาพดีขึ้น &f'
+      - '&f เป็นพืชระดับปกติ &e40%'
+      - '&f เป็นพืชระดับเงิน &e40%'
+      - '&f เป็นพืชระดับทองคำ &e20%'
+      - '&r'
+      - '&f มีพืชบางชนิดเท่านั้นที่สามารถใช้งานได้'
+      - '&x&f&f&a&6&4&9▪ ข้าวโพด'
+      - '&x&f&f&a&6&4&9▪ มะเขือเทศ'
+      - '&x&f&f&a&6&4&9▪ พริกไทย'
+      - '&x&f&f&a&6&4&9▪ องุ่น'
+      - '&x&f&f&a&6&4&9▪ กระหล่ำปี'
+      - '&x&f&f&a&6&4&9▪ กระเทียม'
     commands:
       - iagive %player% customcrops:quality_3 %amount% silent
     value: 350.0
     median: 1.0
     stock: -1.0
     previousPrice: 350.0
+  SPECIAL_11x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Coins
+    customModelData: 10427
+    displayName: '&f &fปุ๋ยสูตรหมักพิเศษ §x§7§4§d§8§8§71 &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มอัตราการเติบโตของพืช &e10% &f'
+      - '&f ปุ๋ยจะคงอยู่ในกระถางทั้งสิ้น &e14 &fครั้ง'
+    commands:
+      - iagive %player% customcrops:speed_1 %amount% silent
+    value: 250.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 250.0
+  SPECIAL_12x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Coins
+    customModelData: 10428
+    displayName: '&f &fปุ๋ยสูตรหมักพิเศษ §x§7§4§d§8§8§72 &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มอัตราการเติบโตของพืช &e20% &f'
+      - '&f ปุ๋ยจะคงอยู่ในกระถางทั้งสิ้น &e14 &fครั้ง'
+    commands:
+      - iagive %player% customcrops:speed_2 %amount% silent
+    value: 500.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 500.0
+  SPECIAL_13x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Coins
+    customModelData: 10429
+    displayName: '&f &fปุ๋ยสูตรหมักพิเศษ §x§7§4§d§8§8§73 &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มอัตราการเติบโตของพืช &e30% &f'
+      - '&f ปุ๋ยจะคงอยู่ในกระถางทั้งสิ้น &e14 &fครั้ง'
+    commands:
+      - iagive %player% customcrops:speed_3 %amount% silent
+    value: 1000.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 1000.0
+  SPECIAL_14x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Coins
+    customModelData: 10430
+    displayName: '&f &fดินกักเก็บน้ำ §x§7§4§d§8§8§71 &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aเมื่อใช้งานมีโอกาสจะกักเก็บน้ำเมื่อพืชเติบโต &e10% &f'
+      - '&f ดินจะคงอยู่ในกระถางทั้งสิ้น &e28 &fครั้ง'
+    commands:
+      - iagive %player% customcrops:retaining_1 %amount% silent
+    value: 500.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 500.0
+  SPECIAL_15x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Coins
+    customModelData: 10431
+    displayName: '&f &fดินกักเก็บน้ำ §x§7§4§d§8§8§72 &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aเมื่อใช้งานมีโอกาสจะกักเก็บน้ำเมื่อพืชเติบโต &e20% &f'
+      - '&f ดินจะคงอยู่ในกระถางทั้งสิ้น &e28 &fครั้ง'
+    commands:
+      - iagive %player% customcrops:retaining_2 %amount% silent
+    value: 900.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 900.0
+  SPECIAL_16x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Coins
+    customModelData: 10432
+    displayName: '&f &fดินกักเก็บน้ำ §x§7§4§d§8§8§73 &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aเมื่อใช้งานมีโอกาสจะกักเก็บน้ำเมื่อพืชเติบโต &e30% &f'
+      - '&f ดินจะคงอยู่ในกระถางทั้งสิ้น &e28 &fครั้ง'
+    commands:
+      - iagive %player% customcrops:retaining_1 %amount% silent
+    value: 1500.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 1500.0
   SPECIAL_09x:
     type: CUSTOM
     material: PAPER

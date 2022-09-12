@@ -112,18 +112,23 @@ public class XShop {
                 if(isSpecial) {
                     if(shopType.equals(XShopType.Seasonitems)) {
                         specialCounter = XShopDynamicShopCore.seasonShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size();
+                        itemsIterator = XShopDynamicShopCore.seasonShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName());
+                        specialCounter -= startIndex;
                         //specialCounter += seasonitems.customConfig.getConfigurationSection("items_special").getKeys(false).size();
                     } else if(shopType.equals(XShopType.Fishing)) {
                         specialCounter = XShopDynamicShopCore.fishShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size();
+                        itemsIterator = XShopDynamicShopCore.fishShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName());
+                        specialCounter -= startIndex;
                         //specialCounter += fishing.customConfig.getConfigurationSection("items_special").getKeys(false).size();
                     }
-                   // p.sendMessage("SEASON: " + XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName() + " " + " COUNTER " + specialCounter);
+                    //p.sendMessage("SEASON: " + XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName() + " " + " COUNTER " + specialCounter);
+                    //p.sendMessage("START INDEX: " + startIndex);
                 }
                 int i = 0;
 
                 while (i < slot.size() || specialCounter > 0) {
 
-                    //Bukkit.broadcastMessage("I: " + i + "/"+ slot.size() + " " + " COUNTER " + specialCounter);
+                   /// Bukkit.broadcastMessage("I: " + (i+startIndex) + "/"+ slot.size() + " " + " COUNTER " + specialCounter);
                     if (startIndex + indexSlot >= XShopDynamicShopCore.shopPage.get(p.getUniqueId()) * config.customConfig.getIntegerList("gui."+typeSlot).size()) {
                         break;
                     }
