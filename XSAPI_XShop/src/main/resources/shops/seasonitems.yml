@@ -6,343 +6,381 @@ items:
     material: APPLE
     priceType: Coins
     customModelData: 10064
-    customTags: "XS_SEASON:Summer:&fpineapple"
+    customTags: XS_SEASON:Summer:&fpineapple
     value: 30.0
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 30.0
   Material-2:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10040
-    customTags: "XS_SEASON:Summer:&fcorn"
+    customTags: XS_SEASON:Summer:&fcorn
     value: 25.0
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 25.0
   Material-2-1:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10041
-    customTags: "XS_SEASON:Summer:&fCorn_silver_star"
+    customTags: XS_SEASON:Summer:&fCorn_silver_star
     value: 30.0
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 30.0
   Material-2-2:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10042
-    customTags: "XS_SEASON:Summer:&fCorn_golden_star"
+    customTags: XS_SEASON:Summer:&fCorn_golden_star
     value: 35.0
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 35.0
   Material-3:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10066
-    customTags: "XS_SEASON:Summer:&fturnip"
+    customTags: XS_SEASON:Summer:&fturnip
     value: 25.0
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 25.0
   Material-4:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10049
-    customTags: "XS_SEASON:Summer:&ftomato"
+    customTags: XS_SEASON:Summer:&ftomato
     value: 20.1
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 20.1
   Material-4-1:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10050
-    customTags: "XS_SEASON:Summer:&ftomato_silver_star"
+    customTags: XS_SEASON:Summer:&ftomato_silver_star
     value: 24.4
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 24.4
   Material-4-2:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10051
-    customTags: "XS_SEASON:Summer:&ftomato_golden_star"
+    customTags: XS_SEASON:Summer:&ftomato_golden_star
     value: 27.85
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 27.85
   Material-4-3:
     type: SELL_ONLY
     material: PAPER
     priceType: Coins
     customModelData: 10471
-    customTags: "XS_SEASON:Summer:&fgigantic_tomato"
+    customTags: XS_SEASON:Summer:&fgigantic_tomato
     value: 105.47
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 105.47
   Material-5:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10067
-    customTags: "XS_SEASON:Summer:&frice"
+    customTags: XS_SEASON:Summer:&frice
     value: 28.75
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 28.75
   Material-6:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10063
-    customTags: "XS_SEASON:Summer:&frhubarb"
+    customTags: XS_SEASON:Summer:&frhubarb
     value: 19.5
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 19.5
   Material-7:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10065
-    customTags: "XS_SEASON:Fall:&fstrawberry"
+    customTags: XS_SEASON:Fall:&fstrawberry
     value: 15.75
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 15.75
   Material-8:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10058
-    customTags: "XS_SEASON:Fall:&fhops"
+    customTags: XS_SEASON:Fall:&fhops
     value: 20.75
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 20.75
   Material-9:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10069
-    customTags: "XS_SEASON:Fall:&fvainilla"
+    customTags: XS_SEASON:Fall:&fvainilla
     value: 23.42
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 23.42
   Material-10:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10068
-    customTags: "XS_SEASON:Fall:&fzucchini"
+    customTags: XS_SEASON:Fall:&fzucchini
     value: 27.71
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 27.71
   Material-11:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10054
-    customTags: "XS_SEASON:Fall:&fcucumber"
+    customTags: XS_SEASON:Fall:&fcucumber
     value: 18.75
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 18.75
   Material-12:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10060
-    customTags: "XS_SEASON:Fall:&fmustard"
+    customTags: XS_SEASON:Fall:&fmustard
     value: 19.35
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 19.35
   Material-13:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10046
-    customTags: "XS_SEASON:Spring:&fpepper"
+    customTags: XS_SEASON:Spring:&fpepper
     value: 14.46
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 14.46
   Material-13-1:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10047
-    customTags: "XS_SEASON:Spring:&fpepper_silver_star"
+    customTags: XS_SEASON:Spring:&fpepper_silver_star
     value: 18.8
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 18.8
   Material-13-2:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10048
-    customTags: "XS_SEASON:Spring:&fpepper_golden_star"
+    customTags: XS_SEASON:Spring:&fpepper_golden_star
     value: 22.7
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 22.7
   Material-14:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10062
-    customTags: "XS_SEASON:Spring:&fpeas"
-    value: 16.60
+    customTags: XS_SEASON:Spring:&fpeas
+    value: 16.6
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 16.6
   Material-15:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10061
-    customTags: "XS_SEASON:Spring:&fpeanut"
+    customTags: XS_SEASON:Spring:&fpeanut
     value: 15.75
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 15.75
   Material-16:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10059
-    customTags: "XS_SEASON:Spring:&fonion"
-    value: 24.10
+    customTags: XS_SEASON:Spring:&fonion
+    value: 24.1
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 24.1
   Material-17:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10057
-    customTags: "XS_SEASON:Spring:&fmint"
+    customTags: XS_SEASON:Spring:&fmint
     value: 22.31
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 22.31
   Material-18:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10053
-    customTags: "XS_SEASON:Spring:&fcannabis"
+    customTags: XS_SEASON:Spring:&fcannabis
     value: 26.4
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 26.4
   Material-19:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10043
-    customTags: "XS_SEASON:Spring:&fgrape"
+    customTags: XS_SEASON:Spring:&fgrape
     value: 18.78
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 18.78
   Material-19-1:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10044
-    customTags: "XS_SEASON:Spring:&fgrape_silver_star"
+    customTags: XS_SEASON:Spring:&fgrape_silver_star
     value: 22.67
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 22.67
   Material-19-2:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10045
-    customTags: "XS_SEASON:Spring:&fgrape_golden_star"
+    customTags: XS_SEASON:Spring:&fgrape_golden_star
     value: 26.16
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 26.16
   Material-20:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10037
-    customTags: "XS_SEASON:Winter:&fcabagge"
+    customTags: XS_SEASON:Winter:&fcabagge
     value: 20.6
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 20.6
   Material-20-1:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10038
-    customTags: "XS_SEASON:Winter:&fcabagge_silver_star"
+    customTags: XS_SEASON:Winter:&fcabagge_silver_star
     value: 24.3
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 24.3
   Material-20-2:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10039
-    customTags: "XS_SEASON:Winter:&fcabagge_golden_star"
+    customTags: XS_SEASON:Winter:&fcabagge_golden_star
     value: 30.7
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 30.7
   Material-20-3:
     type: SELL_ONLY
     material: PAPER
     priceType: Coins
     customModelData: 10447
-    customTags: "XS_SEASON:Winter:&fgigantic_cabbage"
+    customTags: XS_SEASON:Winter:&fgigantic_cabbage
     value: 108.14
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 108.14
   Material-21:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10052
-    customTags: "XS_SEASON:Winter:&fasparagus"
+    customTags: XS_SEASON:Winter:&fasparagus
     value: 23.89
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 23.89
   Material-22:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10034
-    customTags: "XS_SEASON:Winter:&fgarlic"
+    customTags: XS_SEASON:Winter:&fgarlic
     value: 20.16
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 20.16
   Material-22-1:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10035
-    customTags: "XS_SEASON:Winter:&fgarlic_silver_star"
+    customTags: XS_SEASON:Winter:&fgarlic_silver_star
     value: 24.71
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 24.71
   Material-22-2:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10036
-    customTags: "XS_SEASON:Winter:&fgarlic_golden_star"
+    customTags: XS_SEASON:Winter:&fgarlic_golden_star
     value: 28.62
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 28.62
   Material-23:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10055
-    customTags: "XS_SEASON:Winter:&feggplant"
+    customTags: XS_SEASON:Winter:&feggplant
     value: 27.5
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 27.5
   Material-24:
     type: SELL_ONLY
     material: APPLE
     priceType: Coins
     customModelData: 10056
-    customTags: "XS_SEASON:Winter:&fginger"
-    value: 21.40
+    customTags: XS_SEASON:Winter:&fginger
+    value: 21.4
     median: 1.0
-    stock: -1
+    stock: -1.0
+    previousPrice: 21.4
 items_special:
   SPECIAL_01x:
     type: CUSTOM
@@ -391,7 +429,7 @@ items_special:
       - '&r'
       - '&f &x&c&0&f&f&c&aใช้สำหรับรดน้ำต้นไม้ &f'
       - '&r'
-      - '&f ความจุถังน้ำ &x&c&0&f&f&c&a4 &fช่อง'
+      - '&f ความจุถังน้ำ &x&c&0&f&f&c&a5 &fช่อง'
     commands:
       - iagive %player% customcrops:watering_can_3 %amount% silent
     value: 50000.0
@@ -409,7 +447,7 @@ items_special:
       - '&r'
       - '&f &x&c&0&f&f&c&aใช้สำหรับรดน้ำต้นไม้ &f'
       - '&r'
-      - '&f ความจุถังน้ำ &x&c&0&f&f&c&a5 &fช่อง'
+      - '&f ความจุถังน้ำ &x&c&0&f&f&c&a6 &fช่อง'
     commands:
       - iagive %player% customcrops:watering_can_4 %amount% silent
     value: 2000.0

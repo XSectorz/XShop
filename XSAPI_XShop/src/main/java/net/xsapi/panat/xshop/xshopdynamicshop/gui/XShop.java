@@ -166,11 +166,15 @@ public class XShop {
 
                     double stockChecker = 1;
                     double realStock = 0;
+                    double addition_stock = 0;
                     if (shopItems.getStock() == -1) {
                         stockChecker = 1;
                         realStock = -1;
                     } else {
                         stockChecker = shopItems.getStock();
+                        if(shopItems.getStock() == 1) {
+                            addition_stock+=1;
+                        }
                     }
 
                     float totalVol = shopItems.getVolumeBuy()+shopItems.getVolumeSell();
@@ -196,7 +200,7 @@ public class XShop {
                     double price = ((shopItems.getMedian() * shopItems.getValue()) / (stockChecker));
 
                     if(realStock != -1) {
-                        price = ((shopItems.getMedian() * shopItems.getValue()) / (stockChecker+1));
+                        price = ((shopItems.getMedian() * shopItems.getValue()) / (stockChecker+1+addition_stock));
                     }
 
 
@@ -331,7 +335,7 @@ public class XShop {
                     if (shopItems.getStock() == -1) {
                         stock = 1;
                     } else {
-                        stock = shopItems.getStock();
+                        stock = shopItems.getStock()+addition_stock;
                     }
 
                     if (shopItems.getValue() * shopItems.getMedian() / stock < shopItems.getPreviousPrice()) {

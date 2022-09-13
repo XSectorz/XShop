@@ -49,11 +49,15 @@ public class XShopConfirm {
 
         double stockChecker = 1;
         double realStock = 0;
+        double addition_stock = 0;
         if(shopItems.getStock() == -1) {
             stockChecker = 1;
             realStock = -1;
         } else {
             stockChecker = shopItems.getStock();
+            if(shopItems.getStock() == 1) {
+                addition_stock+=1;
+            }
         }
 
         DecimalFormat df = new DecimalFormat("0.00");
@@ -155,10 +159,10 @@ public class XShopConfirm {
             }
 
             if(!isOutofStock) {
-                price = price + (shopItems.getMedian()*shopItems.getValue())/tStock;
+                price = price + (shopItems.getMedian()*shopItems.getValue())/(tStock+addition_stock);
             }
 
-            priceSell = priceSell + (shopItems.getMedian()*shopItems.getValue())/tStockSell;
+            priceSell = priceSell + (shopItems.getMedian()*shopItems.getValue())/(tStockSell+addition_stock);
 
             tStock -= 1;
             tStockSell += 1;
