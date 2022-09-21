@@ -7,6 +7,11 @@ reset_price:
   repeat: 7 # in day(s)
   time_stamp: 0
 
+whitelist-worlds:
+  enabled: true
+  worlds:
+  - "ExampleWorld"
+
 gui:
   gui_title: '&f'
   up_trend: '&x&5&8&f&f&7&d⬆ +%value%%'

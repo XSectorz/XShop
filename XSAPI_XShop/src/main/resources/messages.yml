@@ -40,6 +40,7 @@ cmd_xshop_reload: "&x&f&f&c&a&4&3▪ /xshop reload &x&f&f&f&b&9&aทำการ
 cmd_xshop_setstock: "&x&f&f&c&a&4&3▪ /xshop setstock <type> <name> <amount> &x&f&f&f&b&9&aทำการตั้งค่าจำนวนสินค้า"
 cmd_xshop_setprice: "&x&f&f&c&a&4&3▪ /xshop setprice <type> <name> <amount> &x&f&f&f&b&9&aทำการตั้งค่าราคาสินค้า"
 cmd_xshop_farming: "&x&f&f&c&a&4&3▪ /xshop farming &x&f&f&f&b&9&aเปิดร้านค้าพืชฤดูกาล"
+blocked_worlds: "&x&f&f&7&4&7&4กรุณาไปเปิดร้านค้าที่ (Spawn) เท่านั้น"
 time_days: " วัน"
 time_day: " วัน"
 time_hours: " ชั่วโมง"

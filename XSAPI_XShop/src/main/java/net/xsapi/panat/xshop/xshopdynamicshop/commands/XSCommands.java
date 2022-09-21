@@ -25,6 +25,12 @@ public class XSCommands implements CommandExecutor {
             if(command.getName().equalsIgnoreCase("xshop")) {
                 if (args.length == 0) {
                     if(sender.hasPermission("xshop.use")) {
+                        if(config.customConfig.getBoolean("whitelist-worlds.enabled")) {
+                            if(!config.customConfig.getStringList("whitelist-worlds.worlds").contains(sender.getWorld().getName())) {
+                                sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("blocked_worlds")).replace("&","§"));
+                                return false;
+                            }
+                        }
                         XShopDynamicShopCore.isUsingSpecialShop.put(sender.getUniqueId(),false);
                         XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
                         XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.NoneType);
