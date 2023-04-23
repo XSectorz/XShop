@@ -470,13 +470,29 @@ items_special:
     median: 1.0
     stock: -1.0
     previousPrice: 500.0
+  SPECIAL_05_1x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Coins
+    customModelData: 10570
+    displayName: '&f &fหุ่นไล่กา &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aใช้สำหรับป้องกันพืชโดนนกกิน &f'
+    commands:
+      - iagive %player% customcrops:scarecrow %amount% silent
+    value: 1000.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 1000.0
   SPECIAL_06x:
     type: CUSTOM
     material: PAPER
     customType: buy
     priceType: Coins
     customModelData: 10433
-    displayName: '&f &fปุ๋ยระดับ §x§7§4§d§8§8§71 &f'
+    displayName: '&f &fปุ๋ยระดับ &a1 &f'
     lore:
       - '&r'
       - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสได้รับพืชคุณภาพดีขึ้น &f'
@@ -503,7 +519,7 @@ items_special:
     customType: buy
     priceType: Coins
     customModelData: 10434
-    displayName: '&f &fปุ๋ยระดับ §x§7§4§d§8§8§72 &f'
+    displayName: '&f &fปุ๋ยระดับ &a2 &f'
     lore:
       - '&r'
       - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสได้รับพืชคุณภาพดีขึ้น &f'
@@ -530,7 +546,7 @@ items_special:
     customType: buy
     priceType: Coins
     customModelData: 10435
-    displayName: '&f &fปุ๋ยระดับ §x§7§4§d§8§8§73 &f'
+    displayName: '&f &fปุ๋ยระดับ &a3 &f'
     lore:
       - '&r'
       - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสได้รับพืชคุณภาพดีขึ้น &f'
@@ -557,7 +573,7 @@ items_special:
     customType: buy
     priceType: Coins
     customModelData: 10427
-    displayName: '&f &fปุ๋ยสูตรหมักพิเศษ §x§7§4§d§8§8§71 &f'
+    displayName: '&f &fปุ๋ยสูตรหมักพิเศษ &a1 &f'
     lore:
       - '&r'
       - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มอัตราการเติบโตของพืช &e10% &f'
@@ -574,7 +590,7 @@ items_special:
     customType: buy
     priceType: Coins
     customModelData: 10428
-    displayName: '&f &fปุ๋ยสูตรหมักพิเศษ §x§7§4§d§8§8§72 &f'
+    displayName: '&f &fปุ๋ยสูตรหมักพิเศษ &a2 &f'
     lore:
       - '&r'
       - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มอัตราการเติบโตของพืช &e20% &f'
@@ -591,7 +607,7 @@ items_special:
     customType: buy
     priceType: Coins
     customModelData: 10429
-    displayName: '&f &fปุ๋ยสูตรหมักพิเศษ §x§7§4§d§8§8§73 &f'
+    displayName: '&f &fปุ๋ยสูตรหมักพิเศษ &a3 &f'
     lore:
       - '&r'
       - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มอัตราการเติบโตของพืช &e30% &f'
@@ -608,7 +624,7 @@ items_special:
     customType: buy
     priceType: Coins
     customModelData: 10430
-    displayName: '&f &fดินกักเก็บน้ำ §x§7§4§d§8§8§71 &f'
+    displayName: '&f &fดินกักเก็บน้ำ &a1 &f'
     lore:
       - '&r'
       - '&f &x&c&0&f&f&c&aเมื่อใช้งานมีโอกาสจะกักเก็บน้ำเมื่อพืชเติบโต &e10% &f'
@@ -625,7 +641,7 @@ items_special:
     customType: buy
     priceType: Coins
     customModelData: 10431
-    displayName: '&f &fดินกักเก็บน้ำ §x§7§4§d§8§8§72 &f'
+    displayName: '&f &fดินกักเก็บน้ำ &a2 &f'
     lore:
       - '&r'
       - '&f &x&c&0&f&f&c&aเมื่อใช้งานมีโอกาสจะกักเก็บน้ำเมื่อพืชเติบโต &e20% &f'
@@ -642,17 +658,137 @@ items_special:
     customType: buy
     priceType: Coins
     customModelData: 10432
-    displayName: '&f &fดินกักเก็บน้ำ §x§7§4§d§8§8§73 &f'
+    displayName: '&f &fดินกักเก็บน้ำ &a3 &f'
     lore:
       - '&r'
       - '&f &x&c&0&f&f&c&aเมื่อใช้งานมีโอกาสจะกักเก็บน้ำเมื่อพืชเติบโต &e30% &f'
       - '&f ดินจะคงอยู่ในกระถางทั้งสิ้น &e28 &fครั้ง'
     commands:
-      - iagive %player% customcrops:retaining_1 %amount% silent
+      - iagive %player% customcrops:retaining_3 %amount% silent
     value: 1500.0
     median: 1.0
     stock: -1.0
     previousPrice: 1500.0
+  SPECIAL_19_1x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Coins
+    customModelData: 10571
+    displayName: '&f &fดินบำรุงพันธุ์ &a1 &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aโอกาสได้รับเมล็ดเพิ่มขึ้นเมื่อเก็บเกี่ยว &e50% &f'
+      - '&r'
+      - '&f &fจำนวนเมล็ดที่จะได้รับเพิ่มขึ้น &e+1'
+      - '&f ดินจะคงอยู่ในกระถางทั้งสิ้น &e14 &fครั้ง'
+    commands:
+      - iagive %player% customcrops:quantity_1 %amount% silent
+    value: 250.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 250.0
+  SPECIAL_20_1x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Coins
+    customModelData: 10572
+    displayName: '&f &fดินบำรุงพันธุ์ &a2 &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aโอกาสได้รับเมล็ดเพิ่มขึ้นเมื่อเก็บเกี่ยว &e50% &f'
+      - '&r'
+      - '&f &fจำนวนเมล็ดที่จะได้รับเพิ่มขึ้น &e+2'
+      - '&f ดินจะคงอยู่ในกระถางทั้งสิ้น &e14 &fครั้ง'
+    commands:
+      - iagive %player% customcrops:quantity_2 %amount% silent
+    value: 450.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 450.0
+  SPECIAL_20_2x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Coins
+    customModelData: 10573
+    displayName: '&f &fดินบำรุงพันธุ์ &a3 &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aโอกาสได้รับเมล็ดเพิ่มขึ้นเมื่อเก็บเกี่ยว &e80% &f'
+      - '&r'
+      - '&f &fจำนวนเมล็ดที่จะได้รับเพิ่มขึ้น &e+2'
+      - '&f ดินจะคงอยู่ในกระถางทั้งสิ้น &e14 &fครั้ง'
+    commands:
+      - iagive %player% customcrops:quantity_3 %amount% silent
+    value: 650.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 650.0
+  SPECIAL_21_1x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Points
+    customModelData: 10574
+    displayName: '&f &fดินเพิ่มสรรพคุณ &a1 &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสเป็นพืชขนาดใหญ่ &f'
+      - '&f เพิ่มโอกาส &e+2%'
+      - '&r'
+      - '&f มีพืชบางชนิดเท่านั้นที่สามารถใช้งานได้'
+      - '&x&f&f&a&6&4&9▪ มะเขือเทศ'
+      - '&x&f&f&a&6&4&9▪ กระหล่ำปี'
+    commands:
+      - iagive %player% customcrops:gigantic_1 %amount% silent
+    value: 40.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 40.0
+  SPECIAL_21_2x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Points
+    customModelData: 10575
+    displayName: '&f &fดินเพิ่มสรรพคุณ &a2 &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสเป็นพืชขนาดใหญ่ &f'
+      - '&f เพิ่มโอกาส &e+4%'
+      - '&r'
+      - '&f มีพืชบางชนิดเท่านั้นที่สามารถใช้งานได้'
+      - '&x&f&f&a&6&4&9▪ มะเขือเทศ'
+      - '&x&f&f&a&6&4&9▪ กระหล่ำปี'
+    commands:
+      - iagive %player% customcrops:gigantic_2 %amount% silent
+    value: 60.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 60.0
+  SPECIAL_21_3x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Points
+    customModelData: 10576
+    displayName: '&f &fดินเพิ่มสรรพคุณ &a3 &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aเมื่อใช้งานเพิ่มโอกาสเป็นพืชขนาดใหญ่ &f'
+      - '&f เพิ่มโอกาส &e+8%'
+      - '&r'
+      - '&f มีพืชบางชนิดเท่านั้นที่สามารถใช้งานได้'
+      - '&x&f&f&a&6&4&9▪ มะเขือเทศ'
+      - '&x&f&f&a&6&4&9▪ กระหล่ำปี'
+    commands:
+      - iagive %player% customcrops:gigantic_3 %amount% silent
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 100.0
   SPECIAL_09x:
     type: CUSTOM
     material: PAPER
@@ -691,3 +827,39 @@ items_special:
     median: 1.0
     stock: -1.0
     previousPrice: 500.0
+  SPECIAL_10_1x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Points
+    customModelData: 10566
+    displayName: '&f &fสปริงค์เกอร์ ระดับไทเทเนี่ยม &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aใช้สำหรับการรดน้ำอัติโนมัติ &f'
+      - '&r'
+      - '&f ความจุน้ำ &x&c&0&f&f&c&a10 &fช่อง'
+      - '&f รดน้ำในรัศมี &x&c&0&f&f&c&a7x7 &fช่อง'
+    commands:
+      - iagive %player% customcrops:sprinkler_3_item %amount% silent
+    value: 750.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 750.0
+  SPECIAL_10_2x:
+    type: CUSTOM
+    material: PAPER
+    customType: buy
+    priceType: Coins
+    customModelData: 10577
+    displayName: '&f &fเครื่องตรวจดิน &f'
+    lore:
+      - '&r'
+      - '&f &x&c&0&f&f&c&aใช้สำหรับตรวจสอบปุ๋ยในดิน &f'
+    commands:
+      - iagive %player% customcrops:soil_surveyor %amount% silent
+    value: 1000.0
+    median: 1.0
+    stock: -1.0
+    previousPrice: 1000.0
+

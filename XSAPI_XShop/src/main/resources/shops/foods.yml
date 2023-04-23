@@ -1,0 +1,246 @@
+gui:
+  title: '&x&7&4&f&f&a&3Shop ➲ Food Shop'
+items:
+  Material-1:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10087
+    customTags: "XS_FOODS:All:&fApple Turnover"
+    value: 384.74
+    median: 1.0
+    stock: -1.0
+  Material-2:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10070
+    customTags: "XS_FOODS:All:&fBacon Eggs"
+    value: 387.68
+    median: 1.0
+    stock: -1.0
+  Material-3:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10071
+    customTags: "XS_FOODS:All:&fBeef Kebab"
+    value: 386.11
+    median: 1.0
+    stock: -1.0
+  Material-4:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10072
+    customTags: "XS_FOODS:All:&fBeef Sandwich"
+    value: 389.11
+    median: 1.0
+    stock: -1.0
+  Material-5:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10073
+    customTags: "XS_FOODS:All:&fBerry Milk"
+    value: 386.56
+    median: 1.0
+    stock: -1.0
+  Material-6:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10074
+    customTags: "XS_FOODS:All:&fBrownie"
+    value: 390.47
+    median: 1.0
+    stock: -1.0
+  Material-7:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10075
+    customTags: "XS_FOODS:All:&fCandy Apple"
+    value: 385.21
+    median: 1.0
+    stock: -1.0
+  Material-8:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10076
+    customTags: "XS_FOODS:All:&fChicken Kebab"
+    value: 388.21
+    median: 1.0
+    stock: -1.0
+  Material-9:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10077
+    customTags: "XS_FOODS:All:&fChicken Sandwich"
+    value: 392.95
+    median: 1.0
+    stock: -1.0
+  Material-10:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10078
+    customTags: "XS_FOODS:All:&fChocolate Bar"
+    value: 388.51
+    median: 1.0
+    stock: -1.0
+  Material-11:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10079
+    customTags: "XS_FOODS:All:&fChocolate Milk"
+    value: 390.12
+    median: 1.0
+    stock: -1.0
+  Material-12:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10080
+    customTags: "XS_FOODS:All:&fCod Sandwich"
+    value: 393.14
+    median: 1.0
+    stock: -1.0
+  Material-13:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10081
+    customTags: "XS_FOODS:All:&fCod Sushi"
+    value: 388.62
+    median: 1.0
+    stock: -1.0
+  Material-14:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10083
+    customTags: "XS_FOODS:All:&fCotton Candy"
+    value: 385.42
+    median: 1.0
+    stock: -1.0
+  Material-15:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10084
+    customTags: "XS_FOODS:All:&fDonut"
+    value: 387.88
+    median: 1.0
+    stock: -1.0
+  Material-16:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10085
+    customTags: "XS_FOODS:All:&fEgg Basket"
+    value: 388.99
+    median: 1.0
+    stock: -1.0
+  Material-17:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10088
+    customTags: "XS_FOODS:All:&fFish Chips"
+    value: 390.12
+    median: 1.0
+    stock: -1.0
+  Material-18:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10089
+    customTags: "XS_FOODS:All:&fFruit Salad"
+    value: 391.61
+    median: 1.0
+    stock: -1.0
+  Material-19:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10090
+    customTags: "XS_FOODS:All:&fGlazed Ham"
+    value: 390.28
+    median: 1.0
+    stock: -1.0
+  Material-20:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10091
+    customTags: "XS_FOODS:All:&fHam Sandwich"
+    value: 392.41
+    median: 1.0
+    stock: -1.0
+  Material-21:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10092
+    customTags: "XS_FOODS:All:&fLollipop"
+    value: 386.19
+    median: 1.0
+    stock: -1.0
+  Material-22:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10093
+    customTags: "XS_FOODS:All:&fMilk Steak"
+    value: 393.46
+    median: 1.0
+    stock: -1.0
+  Material-23:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10094
+    customTags: "XS_FOODS:All:&fPancakes"
+    value: 390.40
+    median: 1.0
+    stock: -1.0
+  Material-24:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10095
+    customTags: "XS_FOODS:All:&fPorkchops Applesauce"
+    value: 392.40
+    median: 1.0
+    stock: -1.0
+  Material-25:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10096
+    customTags: "XS_FOODS:All:&fSalmon Sandwich"
+    value: 388.19
+    median: 1.0
+    stock: -1.0
+  Material-26:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10097
+    customTags: "XS_FOODS:All:&fSalmon Sushi"
+    value: 390.20
+    median: 1.0
+    stock: -1.0
+  Material-27:
+    type: SELL_ONLY
+    material: APPLE
+    priceType: Coins
+    customModelData: 10098
+    customTags: "XS_FOODS:All:&fSteak Eggs"
+    value: 389.08
+    median: 1.0
+    stock: -1.0

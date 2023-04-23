@@ -7,7 +7,7 @@ items:
     priceType: Coins
     customModelData: 641
     customTags: "XS_FISH:Summer:&fTuna Fish"
-    value: 2.5
+    value: 6.5
     median: 1.0
     stock: -1.0
   Material-2:
@@ -16,7 +16,7 @@ items:
     priceType: Coins
     customModelData: 666
     customTags: "XS_FISH:Summer:&fTuna Fish Silver Star"
-    value: 3.75
+    value: 7.75
     median: 1.0
     stock: -1.0
   Material-3:
@@ -25,7 +25,7 @@ items:
     priceType: Coins
     customModelData: 667
     customTags: "XS_FISH:Summer:&fTuna Fish Golden Star"
-    value: 6.75
+    value: 9.75
     median: 1.0
     stock: -1.0
   Material-4:
@@ -34,7 +34,7 @@ items:
     priceType: Coins
     customModelData: 642
     customTags: "XS_FISH:Summer:&fPike Fish"
-    value: 2.56
+    value: 6.56
     median: 1.0
     stock: -1.0
   Material-5:
@@ -43,7 +43,7 @@ items:
     priceType: Coins
     customModelData: 664
     customTags: "XS_FISH:Summer:&fPike Fish Silver Star"
-    value: 4.77
+    value: 7.77
     median: 1
     stock: -1.0
   Material-6:
@@ -52,7 +52,7 @@ items:
     priceType: Coins
     customModelData: 665
     customTags: "XS_FISH:Summer:&fPike Fish Golden Star"
-    value: 7.71
+    value: 9.71
     median: 1.0
     stock: -1.0
   Material-7:
@@ -61,7 +61,7 @@ items:
     priceType: Coins
     customModelData: 643
     customTags: "XS_FISH:Summer:&fGolden Fish"
-    value: 3.10
+    value: 6.10
     median: 1.0
     stock: -1.0
   Material-8:
@@ -79,7 +79,7 @@ items:
     priceType: Coins
     customModelData: 659
     customTags: "XS_FISH:Summer:&fGolden Fish Golden Star"
-    value: 10.85
+    value: 14.85
     median: 1.0
     stock: -1.0
   Material-10:
@@ -88,7 +88,7 @@ items:
     priceType: Coins
     customModelData: 644
     customTags: "XS_FISH:Summer:&fPerch Fish"
-    value: 2.99
+    value: 6.99
     median: 1.0
     stock: -1.0
   Material-11:
@@ -97,7 +97,7 @@ items:
     priceType: Coins
     customModelData: 660
     customTags: "XS_FISH:Summer:&fPerch Fish Silver Star"
-    value: 4.74
+    value: 7.74
     median: 1.0
     stock: -1.0
   Material-12:
@@ -106,7 +106,7 @@ items:
     priceType: Coins
     customModelData: 661
     customTags: "XS_FISH:Summer:&fPerch Fish Golden Star"
-    value: 6.31
+    value: 14.31
     median: 1.0
     stock: -1.0
   Material-16:
@@ -115,7 +115,7 @@ items:
     priceType: Coins
     customModelData: 645
     customTags: "XS_FISH:Fall:&fMullet Fish"
-    value: 3.75
+    value: 6.75
     median: 1.0
     stock: -1.0
   Material-17:
@@ -124,7 +124,7 @@ items:
     priceType: Coins
     customModelData: 662
     customTags: "XS_FISH:Fall:&fMullet Fish Silver Star"
-    value: 6.21
+    value: 9.21
     median: 1.0
     stock: -1.0
   Material-18:
@@ -133,7 +133,7 @@ items:
     priceType: Coins
     customModelData: 663
     customTags: "XS_FISH:Fall:&fMullet Fish Golden Star"
-    value: 8.10
+    value: 13.10
     median: 1.0
     stock: -1.0
   Material-16-1:
@@ -142,7 +142,7 @@ items:
     priceType: Coins
     customModelData: 680
     customTags: "XS_FISH:Fall:&fSunfish Fish"
-    value: 4.6
+    value: 6.6
     median: 1.0
     stock: -1.0
   Material-17-1:
@@ -151,7 +151,7 @@ items:
     priceType: Coins
     customModelData: 681
     customTags: "XS_FISH:Fall:&fSunfish Fish Silver Star"
-    value: 6.68
+    value: 8.68
     median: 1.0
     stock: -1.0
   Material-18-1:
@@ -160,7 +160,7 @@ items:
     priceType: Coins
     customModelData: 682
     customTags: "XS_FISH:Fall:&fSunfish Fish Golden Star"
-    value: 8.89
+    value: 12.89
     median: 1.0
     stock: -1.0
   Material-22:
@@ -169,7 +169,7 @@ items:
     priceType: Coins
     customModelData: 668
     customTags: "XS_FISH:Fall:&fSardine Fish"
-    value: 3.10
+    value: 6.10
     median: 1.0
     stock: -1.0
   Material-23:
@@ -178,7 +178,7 @@ items:
     priceType: Coins
     customModelData: 669
     customTags: "XS_FISH:Fall:&fSardine Fish Silver Star"
-    value: 6.15
+    value: 10.15
     median: 1.0
     stock: -1.0
   Material-24:
@@ -187,7 +187,7 @@ items:
     priceType: Coins
     customModelData: 670
     customTags: "XS_FISH:Fall:&fSardine Fish Golden Star"
-    value: 8.17
+    value: 13.17
     median: 1.0
     stock: -1.0
   Material-19:
@@ -196,7 +196,7 @@ items:
     priceType: Coins
     customModelData: 692
     customTags: "XS_FISH:Spring:&fSturgeon Fish"
-    value: 3.41
+    value: 6.41
     median: 1.0
     stock: -1.0
   Material-20:
@@ -205,7 +205,7 @@ items:
     priceType: Coins
     customModelData: 693
     customTags: "XS_FISH:Spring:&fSturgeon Fish Silver Star"
-    value: 5.5
+    value: 9.5
     median: 1.0
     stock: -1.0
   Material-21:
@@ -214,7 +214,7 @@ items:
     priceType: Coins
     customModelData: 694
     customTags: "XS_FISH:Spring:&fSturgeon Fish Golden Star"
-    value: 8.56
+    value: 14.56
     median: 1.0
     stock: -1.0
   Material-25:
@@ -223,7 +223,7 @@ items:
     priceType: Coins
     customModelData: 689
     customTags: "XS_FISH:Spring:&fWoodskip Fish"
-    value: 3.0
+    value: 6.0
     median: 1.0
     stock: -1.0
   Material-26:
@@ -232,7 +232,7 @@ items:
     priceType: Coins
     customModelData: 690
     customTags: "XS_FISH:Spring:&fWoodskip Fish Silver Star"
-    value: 4.45
+    value: 9.45
     median: 1.0
     stock: -1.0
   Material-27:
@@ -241,7 +241,7 @@ items:
     priceType: Coins
     customModelData: 691
     customTags: "XS_FISH:Spring:&fWoodskip Fish Golden Star"
-    value: 10.1
+    value: 13.1
     median: 1.0
     stock: -1.0
   Material-28:
@@ -250,7 +250,7 @@ items:
     priceType: Coins
     customModelData: 683
     customTags: "XS_FISH:Spring:&fRed Snapper Fish"
-    value: 2.5
+    value: 6.5
     median: 1.0
     stock: -1.0
   Material-29:
@@ -259,7 +259,7 @@ items:
     priceType: Coins
     customModelData: 684
     customTags: "XS_FISH:Spring:&fRed Snapper Fish Silver Star"
-    value: 5.78
+    value: 9.78
     median: 1.0
     stock: -1.0
   Material-30:
@@ -268,7 +268,7 @@ items:
     priceType: Coins
     customModelData: 685
     customTags: "XS_FISH:Spring:&fRed Snapper Fish Golden Star"
-    value: 8.89
+    value: 14.89
     median: 1.0
     stock: -1.0
   Material-34:
@@ -277,7 +277,7 @@ items:
     priceType: Coins
     customModelData: 686
     customTags: "XS_FISH:Spring:&fSalmon Void Fish"
-    value: 3.3
+    value: 6.3
     median: 1.0
     stock: -1.0
   Material-35:
@@ -286,7 +286,7 @@ items:
     priceType: Coins
     customModelData: 687
     customTags: "XS_FISH:Spring:&fSalmon Void Fish Silver Star"
-    value: 6.6
+    value: 9.6
     median: 1.0
     stock: -1.0
   Material-36:
@@ -295,7 +295,7 @@ items:
     priceType: Coins
     customModelData: 688
     customTags: "XS_FISH:Spring:&fSalmon Void Fish Golden Star"
-    value: 10.6
+    value: 14.6
     median: 1.0
     stock: -1.0
   Material-37:
@@ -304,7 +304,7 @@ items:
     priceType: Coins
     customModelData: 674
     customTags: "XS_FISH:Winter:&fCat Fish"
-    value: 5.72
+    value: 6.72
     median: 1.0
     stock: -1.0
   Material-38:
@@ -313,7 +313,7 @@ items:
     priceType: Coins
     customModelData: 675
     customTags: "XS_FISH:Winter:&fCat Fish Silver Star"
-    value: 6.78
+    value: 9.78
     median: 1.0
     stock: -1.0
   Material-39:
@@ -322,7 +322,7 @@ items:
     priceType: Coins
     customModelData: 676
     customTags: "XS_FISH:Winter:&fCat Fish Golden Star"
-    value: 7.55
+    value: 14.55
     median: 1.0
     stock: -1.0
   Material-40:
@@ -331,7 +331,7 @@ items:
     priceType: Coins
     customModelData: 677
     customTags: "XS_FISH:Winter:&fOctopus Fish"
-    value: 4.89
+    value: 6.89
     median: 1.0
     stock: -1.0
   Material-41:
@@ -340,7 +340,7 @@ items:
     priceType: Coins
     customModelData: 678
     customTags: "XS_FISH:Winter:&fOctopus Fish Silver Star"
-    value: 8.61
+    value: 9.61
     median: 1.0
     stock: -1.0
   Material-42:
@@ -367,7 +367,7 @@ items:
     priceType: Coins
     customModelData: 672
     customTags: "XS_FISH:Winter:&fCarp Fish Silver Star"
-    value: 8.7
+    value: 10.7
     median: 1.0
     stock: -1.0
   Material-45:
@@ -376,7 +376,7 @@ items:
     priceType: Coins
     customModelData: 673
     customTags: "XS_FISH:Winter:&fCarp Fish Golden Star"
-    value: 13.47
+    value: 15.47
     median: 1.0
     stock: -1.0
 items_special:

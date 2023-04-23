@@ -3,6 +3,7 @@ package net.xsapi.panat.xshop.xshopdynamicshop.listeners;
 import net.xsapi.panat.xshop.xshopdynamicshop.configuration.*;
 import net.xsapi.panat.xshop.xshopdynamicshop.core.XShopDynamicShopCore;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

@@ -41,6 +41,8 @@ public final class XShopDynamicShopCore extends JavaPlugin {
     public static HashMap<UUID,String> shopPrivateName = new HashMap<UUID, String>();
     public static HashMap<String,ArrayList<XShopItems>> seasonShops = new HashMap<>();
     public static HashMap<String,ArrayList<XShopItems>> fishShops = new HashMap<>();
+
+    public static ArrayList<XShopItems> foodsShops = new ArrayList<>();
     public static HashMap<UUID,ArrayList<Double>> shopConfirmPrice = new HashMap<>();
     public static HashMap<UUID,ArrayList<Double>> shopConfirmPriceSell = new HashMap<>();
 
@@ -100,7 +102,8 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                         || title.equalsIgnoreCase(config.customConfig.getString("gui_confirm.title_buy").replace("&", "§"))
                         || title.equalsIgnoreCase(config.customConfig.getString("gui_confirm.title_sell").replace("&", "§"))
                         || title.equalsIgnoreCase(seasonitems.customConfig.getString("gui.title").replace("&", "§"))
-                        || title.equalsIgnoreCase(fishing.customConfig.getString("gui.title").replace("&", "§"))) {
+                        || title.equalsIgnoreCase(fishing.customConfig.getString("gui.title").replace("&", "§"))
+                        || title.equalsIgnoreCase(foods.customConfig.getString("gui.title").replace("&", "§"))) {
                     p.closeInventory();
                 }
             }
@@ -149,6 +152,7 @@ public final class XShopDynamicShopCore extends JavaPlugin {
         for(String season : seasonList) {
             seasonShops.put(season,new ArrayList<>());
             fishShops.put(season,new ArrayList<>());
+            foodsShops.clear();
         }
 
         int shops = 0;
@@ -168,6 +172,7 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                     }
 
                     String Name = child.getName().replace(".yml","");
+
 
                     XShopDynamic XShopDynamic = new XShopDynamic(Name,XShopType.valueOf(Name.substring(0, 1).toUpperCase() + Name.substring(1)));
                     ArrayList<String> strL = new ArrayList<String>(Arrays.asList("items","items_special"));
@@ -202,7 +207,7 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                                     }
                                     if(fileConfig.get(item + "." + itemList + ".customTags") != null) {
                                         customTags = fileConfig.getString(item + "." + itemList + ".customTags");
-                                        if(customTags.startsWith("XS_SEASON") || customTags.startsWith("XS_FISH")) {
+                                        if(customTags.startsWith("XS_SEASON") || customTags.startsWith("XS_FISH") || customTags.startsWith("XS_FOODS")) {
                                             season = fileConfig.getString(item + "." + itemList + ".customTags").split(":")[1];
                                         }
                                     }
@@ -297,6 +302,11 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                                             if(XShopDynamic.getShopType().equals(XShopType.Fishing)) {
                                                 XShopDynamic.getShopItems().add(xsitemscustom);
                                             }
+                                        } else if(Name.equalsIgnoreCase("foods")) {
+                                            foodsShops.add(xsitemscustom);
+                                            if(XShopDynamic.getShopType().equals(XShopType.Foods)) {
+                                                XShopDynamic.getShopItems().add(xsitemscustom);
+                                            }
                                         }
                                     } else {
                                         XShopDynamic.getShopItems().add(xsitemscustom);
@@ -331,7 +341,7 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                                     if(fileConfig.get(item + "." + itemList + ".customTags") != null) {
                                         String customTags = fileConfig.getString(item + "." + itemList + ".customTags");
                                         xsitems.setCustomTags(customTags);
-                                        if(customTags.startsWith("XS_SEASON") || customTags.startsWith("XS_FISH")) {
+                                        if(customTags.startsWith("XS_SEASON") || customTags.startsWith("XS_FISH") || customTags.startsWith("XS_FOODS")) {
                                             season = fileConfig.getString(item + "." + itemList + ".customTags").split(":")[1];
                                         }
                                     }
@@ -369,6 +379,11 @@ public final class XShopDynamicShopCore extends JavaPlugin {
                                             fishShops.put(season,seasonShopsTemp);
                                             //Bukkit.getLogger().info("Season: " + season + " SIze: " + fishShops.get(season).size());
                                             if(XShopDynamic.getShopType().equals(XShopType.Fishing)) {
+                                                XShopDynamic.getShopItems().add(xsitems);
+                                            }
+                                        } else if(Name.equalsIgnoreCase("foods")) {
+                                            foodsShops.add(xsitems);
+                                            if(XShopDynamic.getShopType().equals(XShopType.Foods)) {
                                                 XShopDynamic.getShopItems().add(xsitems);
                                             }
                                         }

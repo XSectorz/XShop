@@ -46,6 +46,10 @@ public class XShop {
             title = fishing.customConfig.getString("gui.title").replace("&", "§");
             //p.sendMessage("title2: " + title);
             size = 45;
+        } else if (shopType.equals(XShopType.Foods)) {
+            title = foods.customConfig.getString("gui.title").replace("&", "§");
+            //p.sendMessage("title2: " + title);
+            size = 45;
         }
 
         Inventory inv = Bukkit.createInventory(null, size, title);
@@ -80,7 +84,6 @@ public class XShop {
 
         }
         XShopDynamic shop = null;
-
         if (!shopType.equals(XShopType.NoneType)) {
 
             for (XShopDynamic shopList : XShopDynamicShopCore.shopList) {
@@ -88,6 +91,8 @@ public class XShop {
                     shop = shopList;
                 }
             }
+
+            //Bukkit.broadcastMessage("SIZE" + shop.getShopItems().size());
 
             if (!shop.getShopItems().isEmpty()) {
                 String typeSlot = "slot";
@@ -120,11 +125,18 @@ public class XShop {
                         itemsIterator = XShopDynamicShopCore.fishShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName());
                         specialCounter -= startIndex;
                         //specialCounter += fishing.customConfig.getConfigurationSection("items_special").getKeys(false).size();
+                    } else if(shopType.equals(XShopType.Foods)) {
+                        specialCounter = XShopDynamicShopCore.foodsShops.size();
+                        itemsIterator = XShopDynamicShopCore.foodsShops;
+                        specialCounter -= startIndex;
                     }
                     //p.sendMessage("SEASON: " + XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName() + " " + " COUNTER " + specialCounter);
                     //p.sendMessage("START INDEX: " + startIndex);
                 }
                 int i = 0;
+
+                //Bukkit.broadcastMessage("SLOT SIZE: " + slot.size());
+                //Bukkit.broadcastMessage("SPECIAL COUNTER: " + specialCounter);
 
                 while (i < slot.size() || specialCounter > 0) {
 
@@ -144,6 +156,7 @@ public class XShop {
                     }
 
                     XShopItems shopItems = itemsIterator.get(startIndex + i);
+                    //Bukkit.broadcastMessage("START INDEX"+(startIndex + i));
                     //Bukkit.broadcastMessage("SHOP: " + shopItems.getPrivateName());
                     String display = "";
                     List<String> list = new ArrayList<>();
@@ -309,7 +322,8 @@ public class XShop {
                     if(!shopItems.getCustomTags().isEmpty()) {
                         String tags = shopItems.getCustomTags();
 
-                        if(tags.split(":")[0].equalsIgnoreCase("XS_SEASON") || tags.split(":")[0].equalsIgnoreCase("XS_FISH")) {
+                        if(tags.split(":")[0].equalsIgnoreCase("XS_SEASON") || tags.split(":")[0].equalsIgnoreCase("XS_FISH")
+                                || tags.split(":")[0].equalsIgnoreCase("XS_FOODS")) {
                             display = display.replace(shopItems.getMat().toString(),tags.split(":")[2].replace("&","§"));
 
                             String Season = tags.split(":")[1];
@@ -319,14 +333,20 @@ public class XShop {
                                 listLore.add(1,messages.customConfig.getString("xsseasons_included").replace("&", "§"));
                                 specialCounter--;
                             } else {
-                                i++;
-                                continue;
+                                if(!tags.split(":")[1].equalsIgnoreCase("All")) { //not equal all season
+                                    i++;
+                                    continue;
+                                } else {
+                                    specialCounter--;
+                                }
                             }
                         }
                     }
 
-                    if(shopItems.getCustomModelData() != -1) {
-                        modelData = shopItems.getCustomModelData();
+                    if(!isUseCustomItemStorage) {
+                        if(shopItems.getCustomModelData() != -1) {
+                            modelData = shopItems.getCustomModelData();
+                        }
                     }
 
                     String trend = "";
@@ -372,12 +392,17 @@ public class XShop {
         for (String items : config.customConfig.getConfigurationSection("gui." + typeItems).getKeys(false)) {
 
             if(items.equalsIgnoreCase("info_season")) {
-                if(shopType.equals(XShopType.Fishing)) {
+                if(shopType.equals(XShopType.Fishing) && shopType.equals(XShopType.Foods)) {
                     continue;
                 }
             }
             if(items.equalsIgnoreCase("info_fishing")) {
-                if(shopType.equals(XShopType.Seasonitems)) {
+                if(shopType.equals(XShopType.Seasonitems) && shopType.equals(XShopType.Foods)) {
+                    continue;
+                }
+            }
+            if(items.equalsIgnoreCase("info_foods")) {
+                if(shopType.equals(XShopType.Seasonitems) && shopType.equals(XShopType.Fishing)) {
                     continue;
                 }
             }
@@ -404,6 +429,11 @@ public class XShop {
                         }
                     } else if(shopType.equals(XShopType.Fishing)) {
                         if(XShopDynamicShopCore.fishShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size()
+                                < (page*config.customConfig.getIntegerList("gui." + typeBarrier +".slot").size())+1 ) {
+                            itemMeta.setCustomModelData(10234);
+                        }
+                    } else if(shopType.equals(XShopType.Foods)) {
+                        if(XShopDynamicShopCore.foodsShops.size()
                                 < (page*config.customConfig.getIntegerList("gui." + typeBarrier +".slot").size())+1 ) {
                             itemMeta.setCustomModelData(10234);
                         }

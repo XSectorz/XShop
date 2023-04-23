@@ -8,6 +8,7 @@ net\xsapi\panat\xshop\xshopdynamicshop\configuration\config.class
 net\xsapi\panat\xshop\xshopdynamicshop\utils\ResetPriceFeatures.class
 net\xsapi\panat\xshop\xshopdynamicshop\listeners\InventoryGUI.class
 net\xsapi\panat\xshop\xshopdynamicshop\core\XShopDynamic.class
+net\xsapi\panat\xshop\xshopdynamicshop\configuration\foods.class
 net\xsapi\panat\xshop\xshopdynamicshop\utils\ItemCreator.class
 net\xsapi\panat\xshop\xshopdynamicshop\core\XShopItems.class
 net\xsapi\panat\xshop\xshopdynamicshop\core\XShopItemsType.class

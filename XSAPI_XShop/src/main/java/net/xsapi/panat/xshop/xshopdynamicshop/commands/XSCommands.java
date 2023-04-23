@@ -119,6 +119,22 @@ public class XSCommands implements CommandExecutor {
                             XShopDynamicShopCore.getPlayerOpenGUI().add(sender);
                         }
                         return true;
+                    } else if(args[0].equalsIgnoreCase("foods")){
+                        if(!sender.hasPermission("xshop.foods")) {
+                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                            return false;
+                        }
+                        XShopDynamicShopCore.isUsingSpecialShop.put(sender.getUniqueId(),true);
+                        XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
+                        XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.Foods);
+                        XShop.openInv(sender, XShopDynamicShopCore.shopType.get(sender.getUniqueId()),
+                                XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(sender
+                                        .getUniqueId()));
+
+                        if(!XShopDynamicShopCore.getPlayerOpenGUI().contains(sender)) {
+                            XShopDynamicShopCore.getPlayerOpenGUI().add(sender);
+                        }
+                        return true;
                     }
                 } else if(args.length == 2) {
                     if((args[0].equalsIgnoreCase("save"))) {

@@ -127,7 +127,8 @@ public class XShopConfirm {
 
         if(!shopItems.getCustomTags().isEmpty()) {
             if(shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_SEASON")
-        || shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_FISH")) {
+        || shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_FISH")
+                    || shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_FOODS")) {
                 displayName = displayName.replace(shopItems.getMat().toString(),shopItems.getCustomTags().split(":")[2].replace("&","§"));
             }
         }

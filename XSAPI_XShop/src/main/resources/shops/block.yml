@@ -369,3 +369,139 @@ items:
     value: 10000.0
     median: 5.0
     stock: 10000
+  Material-44:
+    type: NORMAL
+    material: WHITE_CONCRETE
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-45:
+    type: NORMAL
+    material: ORANGE_CONCRETE
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-46:
+    type: NORMAL
+    material: MAGENTA_CONCRETE
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-47:
+    type: NORMAL
+    material: LIGHT_BLUE_CONCRETE
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-48:
+    type: NORMAL
+    material: YELLOW_CONCRETE
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-49:
+    type: NORMAL
+    material: LIME_CONCRETE
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-50:
+    type: NORMAL
+    material: PINK_CONCRETE
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-51:
+    type: NORMAL
+    material: GRAY_CONCRETE
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-52:
+    type: NORMAL
+    material: LIGHT_GRAY_CONCRETE
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-53:
+    type: NORMAL
+    material: LIGHT_GRAY_CONCRETE
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-54:
+    type: NORMAL
+    material: CYAN_CONCRETE
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-55:
+    type: NORMAL
+    material: PURPLE_CONCRETE
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-56:
+    type: NORMAL
+    material: BLUE_CONCRETE
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-57:
+    type: NORMAL
+    material: BROWN_CONCRETE
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-58:
+    type: NORMAL
+    material: GREEN_CONCRETE
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-59:
+    type: NORMAL
+    material: RED_CONCRETE
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000
+  Material-60:
+    type: NORMAL
+    material: BLACK_CONCRETE
+    priceType: Coins
+    customModelData: -1
+    value: 10000.0
+    median: 5.0
+    stock: 10000

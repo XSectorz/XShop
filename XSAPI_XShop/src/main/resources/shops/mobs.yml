@@ -222,10 +222,10 @@ items:
     material: NETHER_STAR
     priceType: Coins
     customModelData: -1
-    value: 275000.0
+    value: 10000.0
     median: 1.0
     stock: 10.0
-    previousPrice: 27500.0
+    previousPrice: 10000.0
   Material-26:
     type: NORMAL
     material: COD
@@ -262,3 +262,35 @@ items:
     median: 1.0
     stock: 1000.0
     previousPrice: 12.34
+  Material-30:
+    type: NORMAL
+    material: PORKCHOP
+    priceType: Coins
+    customModelData: -1
+    value: 2000.0
+    median: 1.0
+    stock: 1000.0
+  Material-31:
+    type: NORMAL
+    material: CHICKEN
+    priceType: Coins
+    customModelData: -1
+    value: 2000.0
+    median: 1.0
+    stock: 1000.0
+  Material-32:
+    type: NORMAL
+    material: RABBIT
+    priceType: Coins
+    customModelData: -1
+    value: 2000.0
+    median: 1.0
+    stock: 1000.0
+  Material-33:
+    type: NORMAL
+    material: MUTTON
+    priceType: Coins
+    customModelData: -1
+    value: 2000.0
+    median: 1.0
+    stock: 1000.0
