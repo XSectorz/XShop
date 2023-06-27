@@ -100,6 +100,10 @@ public class InventoryGUI implements Listener {
 
                                 if(!shop.getShopItems().isEmpty()) {
                                     if(shop.getShopItems().size() >= page*config.customConfig.getIntegerList("gui." + slotType).size() ) {
+                                        if(e.getInventory().getItem(34) == null) {
+                                            e.setCancelled(true);
+                                            return;
+                                        }
                                         XShopDynamicShopCore.shopPage.put(p.getUniqueId(), XShopDynamicShopCore.shopPage.get(p.getUniqueId()) + 1);
                                         XShop.openInv(p, XShopDynamicShopCore.shopType.get(p.getUniqueId()),
                                                 XShopDynamicShopCore.shopPage.get(p.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(p.getUniqueId()));

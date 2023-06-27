@@ -41,7 +41,6 @@ public final class XShopDynamicShopCore extends JavaPlugin {
     public static HashMap<UUID,String> shopPrivateName = new HashMap<UUID, String>();
     public static HashMap<String,ArrayList<XShopItems>> seasonShops = new HashMap<>();
     public static HashMap<String,ArrayList<XShopItems>> fishShops = new HashMap<>();
-
     public static ArrayList<XShopItems> foodsShops = new ArrayList<>();
     public static HashMap<UUID,ArrayList<Double>> shopConfirmPrice = new HashMap<>();
     public static HashMap<UUID,ArrayList<Double>> shopConfirmPriceSell = new HashMap<>();

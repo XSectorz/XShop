@@ -392,17 +392,17 @@ public class XShop {
         for (String items : config.customConfig.getConfigurationSection("gui." + typeItems).getKeys(false)) {
 
             if(items.equalsIgnoreCase("info_season")) {
-                if(shopType.equals(XShopType.Fishing) && shopType.equals(XShopType.Foods)) {
+                if(shopType.equals(XShopType.Fishing) || shopType.equals(XShopType.Foods)) {
                     continue;
                 }
             }
             if(items.equalsIgnoreCase("info_fishing")) {
-                if(shopType.equals(XShopType.Seasonitems) && shopType.equals(XShopType.Foods)) {
+                if(shopType.equals(XShopType.Seasonitems) || shopType.equals(XShopType.Foods)) {
                     continue;
                 }
             }
             if(items.equalsIgnoreCase("info_foods")) {
-                if(shopType.equals(XShopType.Seasonitems) && shopType.equals(XShopType.Fishing)) {
+                if(shopType.equals(XShopType.Seasonitems) || shopType.equals(XShopType.Fishing)) {
                     continue;
                 }
             }
@@ -442,7 +442,7 @@ public class XShop {
 
             } else if(items.equalsIgnoreCase("previous_page_s")) {
                 if(XShopDynamicShopCore.shopPage.get(p.getUniqueId()) <= 1) {
-                    itemMeta.setCustomModelData(10233);
+                    itemMeta.setCustomModelData(config.customConfig.getInt("gui.items_special.previous_page_s.customModelData"));
                 }
             }
             if(config.customConfig.get("gui." + typeItems +"." + items + ".lore") != null) {
