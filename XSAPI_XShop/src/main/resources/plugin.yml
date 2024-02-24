@@ -1,7 +1,6 @@
 name: XShopDynamicShop
 version: '${project.version}'
 main: net.xsapi.panat.xshop.xshopdynamicshop.core.XShopDynamicShopCore
-depend: [Vault]
 softdepend: [PlayerPoints, XSSeasons]
 api-version: 1.19
 authors: [ PanatXsectorZ ]

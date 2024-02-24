@@ -2,12 +2,9 @@ package net.xsapi.panat.xshop.xshopdynamicshop.gui;
 
 import net.xsapi.panat.xshop.xshopdynamicshop.configuration.*;
 import net.xsapi.panat.xshop.xshopdynamicshop.core.*;
-import net.xsapi.panat.xshop.xshopdynamicshop.task.task_updateUI;
 import net.xsapi.panat.xshop.xshopdynamicshop.utils.ItemCreator;
 import net.xsapi.panat.xshop.xshopdynamicshop.utils.TimeConverter;
 import net.xsapi.panat.xsseasons.api.XSAPISeasons;
-import net.xsapi.panat.xsseasons.core.SeasonsHandler;
-import net.xsapi.panat.xsseasons.core.SeasonsInterface;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -25,6 +22,8 @@ public class XShop {
 
         String title = "";
         int size = 54;
+        String typeItems = "items";
+        String typeBarrier = "blocked_barrier";
 
         if (shopType.equals(XShopType.NoneType)) {
             title = config.customConfig.getString("gui.gui_title").replace("&", "§");
@@ -50,11 +49,15 @@ public class XShop {
             title = foods.customConfig.getString("gui.title").replace("&", "§");
             //p.sendMessage("title2: " + title);
             size = 45;
+        } else if (shopType.equals(XShopType.New_block)) {
+            title = new_block.customConfig.getString("gui.title").replace("&", "§");
+            //p.sendMessage("title2: " + title);
+            size = 45;
+            typeItems = "new_block_items";
+            typeBarrier = "new_block_barrier";
         }
 
         Inventory inv = Bukkit.createInventory(null, size, title);
-        String typeBarrier = "blocked_barrier";
-        String typeItems = "items";
 
         if(isSpecial) {
             typeBarrier = "blocked_barrier_special";
@@ -66,7 +69,7 @@ public class XShop {
                     , new ArrayList<String>(), false));
         }
 
-        if(!isSpecial) {
+        if(!isSpecial && !shopType.equals(XShopType.New_block)) {
             for (String menu : config.customConfig.getConfigurationSection("gui.menu").getKeys(false)) {
                 List<String> list = config.customConfig.getStringList("gui.menu." + menu + ".lore");
                 Collections.replaceAll(list, "&", "§");
@@ -98,6 +101,8 @@ public class XShop {
                 String typeSlot = "slot";
                 if(isSpecial) {
                     typeSlot = "slot_special";
+                } else if(shopType.equals(XShopType.New_block)) {
+                    typeSlot = "slot_newblock";
                 }
                 ArrayList<XShopItems> itemsIterator = new ArrayList<XShopItems>(shop.getShopItems());
                 int startIndex = (XShopDynamicShopCore.shopPage.get(p.getUniqueId()) * config.customConfig.getIntegerList("gui." + typeSlot).size())
@@ -132,12 +137,16 @@ public class XShop {
                     }
                     //p.sendMessage("SEASON: " + XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName() + " " + " COUNTER " + specialCounter);
                     //p.sendMessage("START INDEX: " + startIndex);
+                } else {
+                    if(shopType.equals(XShopType.New_block)) {
+                        itemsIterator = XShopDynamicShopCore.newBlockShops;
+                    }
                 }
                 int i = 0;
 
                 //Bukkit.broadcastMessage("SLOT SIZE: " + slot.size());
+                //Bukkit.broadcastMessage("ITEM SIZE: " + itemsIterator.size());
                 //Bukkit.broadcastMessage("SPECIAL COUNTER: " + specialCounter);
-
                 while (i < slot.size() || specialCounter > 0) {
 
                    /// Bukkit.broadcastMessage("I: " + (i+startIndex) + "/"+ slot.size() + " " + " COUNTER " + specialCounter);
@@ -270,6 +279,7 @@ public class XShop {
                                     }
                                     loreNew.addAll(listLore);
                                 }
+                                listLore = loreNew;
                             }
 
                             if (shopItems.getMat() != null) {
@@ -278,7 +288,6 @@ public class XShop {
 
                             modelData = shopItems.getCustomModelData();
 
-                            listLore = loreNew;
                         } else {
                             it = storages.customConfig.getItemStack(shopItemsCustom.getStorageName());
                             ArrayList<String> loreNew = new ArrayList<>();
@@ -375,14 +384,14 @@ public class XShop {
                     display = display.replace("%valueChange%", trend);
 
                     if(isUseCustomItemStorage) {
-                        inv.setItem(slot.get(indexSlot), ItemCreator.createItem(mat, amount, modelData
+                        inv.setItem(slot.get(indexSlot), ItemCreator.createItem(mat, 1, modelData
                                 , display, listLore, false,enchant));
                         indexSlot++;
                         i++;
                         continue;
                     }
 
-                    inv.setItem(slot.get(indexSlot), ItemCreator.createItem(mat, amount, modelData, display, listLore, false));
+                    inv.setItem(slot.get(indexSlot), ItemCreator.createItem(mat, 1, modelData, display, listLore, false));
                     indexSlot++;
                     i++;
                 }
@@ -437,12 +446,26 @@ public class XShop {
                                 < (page*config.customConfig.getIntegerList("gui." + typeBarrier +".slot").size())+1 ) {
                             itemMeta.setCustomModelData(10234);
                         }
+                    } else if(shopType.equals(XShopType.New_block)) {
+                        //Bukkit.broadcastMessage("SIZE: " + XShopDynamicShopCore.newBlockShops.size());
+                        if(XShopDynamicShopCore.newBlockShops.size()
+                                < (page*config.customConfig.getIntegerList("gui." + typeBarrier +".slot").size())+1 ) {
+                            itemMeta.setCustomModelData(10234);
+                        }
                     }
                 }
 
             } else if(items.equalsIgnoreCase("previous_page_s")) {
                 if(XShopDynamicShopCore.shopPage.get(p.getUniqueId()) <= 1) {
-                    itemMeta.setCustomModelData(config.customConfig.getInt("gui.items_special.previous_page_s.customModelData"));
+                    if(shopType.equals(XShopType.New_block)) {
+                        itemMeta.setCustomModelData(config.customConfig.getInt("gui.new_block_items.previous_page_s.customModelData"));
+                    } else {
+                        itemMeta.setCustomModelData(config.customConfig.getInt("gui.items_special.previous_page_s.customModelData"));
+                    }
+                } else if(XShopDynamicShopCore.shopPage.get(p.getUniqueId()) > 1) {
+                    if(shopType.equals(XShopType.New_block)) {
+                        itemMeta.setCustomModelData(10218);
+                    }
                 }
             }
             if(config.customConfig.get("gui." + typeItems +"." + items + ".lore") != null) {

@@ -5,7 +5,6 @@ import net.xsapi.panat.xshop.xshopdynamicshop.configuration.messages;
 import net.xsapi.panat.xshop.xshopdynamicshop.configuration.storages;
 import net.xsapi.panat.xshop.xshopdynamicshop.core.*;
 import net.xsapi.panat.xshop.xshopdynamicshop.gui.XShop;
-import net.xsapi.panat.xshop.xshopdynamicshop.task.task_updateUI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -127,6 +126,22 @@ public class XSCommands implements CommandExecutor {
                         XShopDynamicShopCore.isUsingSpecialShop.put(sender.getUniqueId(),true);
                         XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
                         XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.Foods);
+                        XShop.openInv(sender, XShopDynamicShopCore.shopType.get(sender.getUniqueId()),
+                                XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(sender
+                                        .getUniqueId()));
+
+                        if(!XShopDynamicShopCore.getPlayerOpenGUI().contains(sender)) {
+                            XShopDynamicShopCore.getPlayerOpenGUI().add(sender);
+                        }
+                        return true;
+                    } else if(args[0].equalsIgnoreCase("blocks")){
+                        if(!sender.hasPermission("xshop.new_blocks")) {
+                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                            return false;
+                        }
+                        XShopDynamicShopCore.isUsingSpecialShop.put(sender.getUniqueId(),false);
+                        XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
+                        XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.New_block);
                         XShop.openInv(sender, XShopDynamicShopCore.shopType.get(sender.getUniqueId()),
                                 XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(sender
                                         .getUniqueId()));

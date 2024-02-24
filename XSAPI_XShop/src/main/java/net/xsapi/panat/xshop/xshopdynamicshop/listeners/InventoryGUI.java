@@ -33,7 +33,8 @@ public class InventoryGUI implements Listener {
         || e.getView().getTitle().equalsIgnoreCase(mobs.customConfig.getString("gui.title").replace("&","§"))
         || e.getView().getTitle().equalsIgnoreCase(seasonitems.customConfig.getString("gui.title").replace("&","§"))
         || e.getView().getTitle().equalsIgnoreCase(fishing.customConfig.getString("gui.title").replace("&","§"))
-        || e.getView().getTitle().equalsIgnoreCase(foods.customConfig.getString("gui.title").replace("&","§"))) {
+        || e.getView().getTitle().equalsIgnoreCase(foods.customConfig.getString("gui.title").replace("&","§"))
+        || e.getView().getTitle().equalsIgnoreCase(new_block.customConfig.getString("gui.title").replace("&","§"))) {
             if(e.getSlot() < 0) {
                 return;
             }
@@ -45,7 +46,7 @@ public class InventoryGUI implements Listener {
             boolean isSpecial = XShopDynamicShopCore.isUsingSpecialShop.get(p.getUniqueId());
             String menuType = "items";
             String slotType = "slot";
-            if(!isSpecial) {
+            if(!isSpecial && !XShopDynamicShopCore.shopType.get(p.getUniqueId()).equals(XShopType.New_block)) {
                 for(String menu : config.customConfig.getConfigurationSection("gui.menu").getKeys(false)) {
                     if(e.getSlot() == config.customConfig.getInt("gui.menu." + menu + ".slot")) {
                         XShopDynamicShopCore.shopType.put(p.getUniqueId(),XShopType.valueOf(menu));
@@ -56,6 +57,9 @@ public class InventoryGUI implements Listener {
                         return;
                     }
                 }
+            } else if(XShopDynamicShopCore.shopType.get(p.getUniqueId()).equals(XShopType.New_block)){
+                menuType = "new_block_items";
+                slotType = "slot_newblock";
             } else {
                 menuType = "items_special";
                 slotType = "slot_special";
@@ -89,10 +93,10 @@ public class InventoryGUI implements Listener {
                     }
 
                     for(String pre_menu : config.customConfig.getConfigurationSection("gui." + menuType).getKeys(false)) {
-
+                        //p.sendMessage(pre_menu + " Slot: " + config.customConfig.getInt("gui." + menuType + "." + pre_menu + ".slot") + "Click Slot: " + e.getSlot());
                         if (e.getSlot() == config.customConfig.getInt("gui." + menuType + "." + pre_menu + ".slot")
                                 && name.equalsIgnoreCase(config.customConfig.getString("gui." + menuType +"." + pre_menu + ".displayName").replace("&", "§"))
-                                && customModelData == config.customConfig.getInt("gui." +menuType+"." + pre_menu + ".customModelData")) {
+                        ) {
 
                             if (pre_menu.equals("close")) {
                                 p.closeInventory();
@@ -131,8 +135,13 @@ public class InventoryGUI implements Listener {
                         }
                         XShopItems itemClicked = null;
                         if(!isSpecial) {
-                            itemClicked = shop.getShopItems().get(indexClickedSlot + ((page * config.customConfig.getIntegerList("gui." + slotType).size())
-                                    - config.customConfig.getIntegerList("gui." + slotType).size()));
+                            if(shopType.equals(XShopType.New_block)) {
+                                itemClicked = XShopDynamicShopCore.newBlockShops.get(indexClickedSlot + ((page * config.customConfig.getIntegerList("gui." + slotType).size())
+                                        - config.customConfig.getIntegerList("gui." + slotType).size()));
+                            } else {
+                                itemClicked = shop.getShopItems().get(indexClickedSlot + ((page * config.customConfig.getIntegerList("gui." + slotType).size())
+                                        - config.customConfig.getIntegerList("gui." + slotType).size()));
+                            }
                         } else {
                             if(XShopDynamicShopCore.shopType.get(p.getUniqueId()).equals(XShopType.Seasonitems)) {
                                 itemClicked = XShopDynamicShopCore.seasonShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName())

@@ -57,6 +57,28 @@ gui:
     - 32
     - 33
     - 34
+  slot_newblock:
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+    - 16
+    - 19
+    - 20
+    - 21
+    - 22
+    - 23
+    - 24
+    - 25
+    - 28
+    - 29
+    - 30
+    - 31
+    - 32
+    - 33
+    - 34
   templates:
     normal:
       displayName: '&f%type% %valueChange%'
@@ -138,6 +160,32 @@ gui:
     customModelData: 10000
     displayName: §r
     slot: []
+  new_block_barrier:
+    material: PAPER
+    customModelData: 10230
+    displayName: §r
+    slot:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 17
+      - 27
+      - 35
+      - 36
+      - 37
+      - 38
+      - 39
+      - 41
+      - 42
+      - 43
+      - 44
   blocked_barrier_special:
     material: PAPER
     customModelData: 10230
@@ -320,6 +368,31 @@ gui:
         - "&r"
         - "&eสามารถคราฟไอเทมได้ที่"
         - "&x&f&f&a&6&4&9▪ NPC พ่อครัว"
+      slot: 41
+      material: PAPER
+      customModelData: 10237
+  new_block_items:
+    close:
+      displayName: '&x&f&f&7&6&7&6ปิดหน้าเมนู'
+      slot: 40
+      material: PAPER
+      customModelData: 10215
+    next_page_s:
+      displayName: '&x&6&4&f&f&a&2หน้าถัดไป >'
+      slot: 26
+      material: PAPER
+      customModelData: 10219
+    previous_page_s:
+      displayName: '&x&6&4&f&f&a&2< ย้อนกลับ'
+      slot: 18
+      material: PAPER
+      customModelData: 10233
+    info_block:
+      displayName: '&f บล็อคใหม่ &f'
+      lore:
+        - "&r"
+        - "&7คุณสามารถนำบล็อคเหล่านี้ไปใช้"
+        - "&7ในการตกแต่งเพื่อเพิ่มความสวยงามได้"
       slot: 41
       material: PAPER
       customModelData: 10237

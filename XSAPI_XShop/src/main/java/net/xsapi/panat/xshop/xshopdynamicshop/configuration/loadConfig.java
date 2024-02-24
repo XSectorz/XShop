@@ -13,5 +13,6 @@ public class loadConfig {
         new seasonitems().loadConfigu();
         new fishing().loadConfigu();
         new foods().loadConfigu();
+        new new_block().loadConfigu();
     }
 }

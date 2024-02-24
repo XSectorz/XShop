@@ -1,0 +1,1309 @@
+gui:
+  title: '&f &f&8&f'
+items:
+  Material-124:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722894
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fBlack Terracotta Bricks'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:black_terracotta_bricks %amount% silent
+  Material-125:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722895
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fBlack Terracotta Shingles'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:black_terracotta_shingles %amount% silent
+  Material-126:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722896
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fBlue Terracotta Bricks'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:blue_terracotta_bricks %amount% silent
+  Material-127:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722897
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fBlue Terracotta Shingles'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:blue_terracotta_shingles %amount% silent
+  Material-128:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722898
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fBrown Terracotta Bricks'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:brown_terracotta_bricks %amount% silent
+  Material-129:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722899
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fBrown Terracotta Shingles'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:brown_terracotta_shingles %amount% silent
+  Material-130:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722900
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fCyan Terracotta Bricks'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:cyan_terracotta_bricks %amount% silent
+  Material-131:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722901
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fCyan Terracotta Shingles'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:cyan_terracotta_shingles %amount% silent
+  Material-132:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722902
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fGray Terracotta Bricks'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:gray_terracotta_bricks %amount% silent
+  Material-133:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722903
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fGray Terracotta Shingles'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:gray_terracotta_shingles %amount% silent
+  Material-134:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722904
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fGreen Terracotta Bricks'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:green_terracotta_bricks %amount% silent
+  Material-135:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722905
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fGreen Terracotta Shingles'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:green_terracotta_shingles %amount% silent
+  Material-136:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722906
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fLight Blue Terracotta Bricks'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:light_blue_terracotta_bricks %amount% silent
+  Material-137:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722907
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fLight Blue Terracotta Shingles'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:light_blue_terracotta_shingles %amount% silent
+  Material-138:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722908
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fLight Gray Terracotta Bricks'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:light_gray_terracotta_bricks %amount% silent
+  Material-139:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722909
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fLight Gray Terracotta Shingles'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:light_gray_terracotta_shingles %amount% silent
+  Material-140:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722910
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fLime Terracotta Bricks'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:lime_terracotta_bricks %amount% silent
+  Material-141:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722911
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fLime Terracotta Shingles'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:lime_terracotta_shingles %amount% silent
+  Material-142:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722912
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fMagenta Terracotta Bricks'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:magenta_terracotta_bricks %amount% silent
+  Material-143:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722913
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fMagenta Terracotta Shingles'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:magenta_terracotta_shingles %amount% silent
+  Material-144:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722914
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fOrange Terracotta Bricks'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:orange_terracotta_bricks %amount% silent
+  Material-145:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722915
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fOrange Terracotta Shingles'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:orange_terracotta_shingles %amount% silent
+  Material-146:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722916
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fPink Terracotta Bricks'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:pink_terracotta_bricks %amount% silent
+  Material-147:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722917
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fPink Terracotta Shingles'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:pink_terracotta_shingles %amount% silent
+  Material-148:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722918
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fPurple Terracotta Bricks'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:purple_terracotta_bricks %amount% silent
+  Material-149:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722919
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fPurple Terracotta Shingles'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:purple_terracotta_shingles %amount% silent
+  Material-150:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722920
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fRed Terracotta Bricks'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:red_terracotta_bricks %amount% silent
+  Material-151:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722921
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fRed Terracotta Shingles'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:red_terracotta_shingles %amount% silent
+  Material-152:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722922
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: 'Terracotta Bricks'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:terracotta_bricks %amount% silent
+  Material-153:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722923
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: 'Terracotta Shingles'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:terracotta_shingles %amount% silent
+  Material-154:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722924
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fWhite Terracotta Bricks'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:white_terracotta_bricks %amount% silent
+  Material-155:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722925
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fWhite Terracotta Shingles'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:white_terracotta_shingles %amount% silent
+  Material-156:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722926
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fYellow Terracotta Bricks'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:yellow_terracotta_bricks %amount% silent
+  Material-157:
+    type: CUSTOM
+    customType: buy
+    material: BONE
+    priceType: Coins
+    customModelData: 722927
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fYellow Terracotta Shingles'
+    commands:
+      - iagive %player% vanilla_expansion_terracotta:yellow_terracotta_shingles %amount% silent
+  Material-158:
+    type: CUSTOM
+    customType: buy
+    material: CHARCOAL
+    priceType: Coins
+    customModelData: 10000
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fBlack Quilt'
+    commands:
+      - iagive %player% vanilla_expansion_wool:black_quilt %amount% silent
+  Material-159:
+    type: CUSTOM
+    customType: buy
+    material: CHARCOAL
+    priceType: Coins
+    customModelData: 10001
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fBlue Quilt'
+    commands:
+      - iagive %player% vanilla_expansion_wool:blue_quilt %amount% silent
+  Material-160:
+    type: CUSTOM
+    customType: buy
+    material: CHARCOAL
+    priceType: Coins
+    customModelData: 10002
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fBrown Quilt'
+    commands:
+      - iagive %player% vanilla_expansion_wool:brown_quilt %amount% silent
+  Material-161:
+    type: CUSTOM
+    customType: buy
+    material: CHARCOAL
+    priceType: Coins
+    customModelData: 10003
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fCyan Quilt'
+    commands:
+      - iagive %player% vanilla_expansion_wool:cyan_quilt %amount% silent
+  Material-162:
+    type: CUSTOM
+    customType: buy
+    material: CHARCOAL
+    priceType: Coins
+    customModelData: 10004
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fGray Quilt'
+    commands:
+      - iagive %player% vanilla_expansion_wool:gray_quilt %amount% silent
+  Material-163:
+    type: CUSTOM
+    customType: buy
+    material: CHARCOAL
+    priceType: Coins
+    customModelData: 10005
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fGreen Quilt'
+    commands:
+      - iagive %player% vanilla_expansion_wool:green_quilt %amount% silent
+  Material-164:
+    type: CUSTOM
+    customType: buy
+    material: CHARCOAL
+    priceType: Coins
+    customModelData: 10006
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fLight Blue Quilt'
+    commands:
+      - iagive %player% vanilla_expansion_wool:light_blue_quilt %amount% silent
+  Material-165:
+    type: CUSTOM
+    customType: buy
+    material: CHARCOAL
+    priceType: Coins
+    customModelData: 10007
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fLight Gray Quilt'
+    commands:
+      - iagive %player% vanilla_expansion_wool:light_gray_quilt %amount% silent
+  Material-166:
+    type: CUSTOM
+    customType: buy
+    material: CHARCOAL
+    priceType: Coins
+    customModelData: 10008
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fLime Quilt'
+    commands:
+      - iagive %player% vanilla_expansion_wool:lime_quilt %amount% silent
+  Material-167:
+    type: CUSTOM
+    customType: buy
+    material: CHARCOAL
+    priceType: Coins
+    customModelData: 10009
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fMagenta Quilt'
+    commands:
+      - iagive %player% vanilla_expansion_wool:magenta_quilt %amount% silent
+  Material-168:
+    type: CUSTOM
+    customType: buy
+    material: CHARCOAL
+    priceType: Coins
+    customModelData: 10010
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fOrange Quilt'
+    commands:
+      - iagive %player% vanilla_expansion_wool:orange_quilt %amount% silent
+  Material-169:
+    type: CUSTOM
+    customType: buy
+    material: CHARCOAL
+    priceType: Coins
+    customModelData: 10011
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fPink Quilt'
+    commands:
+      - iagive %player% vanilla_expansion_wool:pink_quilt %amount% silent
+  Material-170:
+    type: CUSTOM
+    customType: buy
+    material: CHARCOAL
+    priceType: Coins
+    customModelData: 10012
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fPurple Quilt'
+    commands:
+      - iagive %player% vanilla_expansion_wool:purple_quilt %amount% silent
+  Material-171:
+    type: CUSTOM
+    customType: buy
+    material: CHARCOAL
+    priceType: Coins
+    customModelData: 10013
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fRed Quilt'
+    commands:
+      - iagive %player% vanilla_expansion_wool:red_quilt %amount% silent
+  Material-172:
+    type: CUSTOM
+    customType: buy
+    material: CHARCOAL
+    priceType: Coins
+    customModelData: 10014
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fWhite Quilt'
+    commands:
+      - iagive %player% vanilla_expansion_wool:white_quilt %amount% silent
+  Material-173:
+    type: CUSTOM
+    customType: buy
+    material: CHARCOAL
+    priceType: Coins
+    customModelData: 10015
+    value: 100
+    median: 1.0
+    stock: -1
+    displayName: '&fYellow Quilt'
+    commands:
+      - iagive %player% vanilla_expansion_wool:yellow_quilt %amount% silent
+  Material-174:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11409
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fAcacia Lantern'
+    commands:
+      - iagive %player% vanilla_blocks:acacia_lantern %amount% silent
+    previousPrice: 100.0
+  Material-175:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11410
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fAndesite Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:andesite_bricks %amount% silent
+    previousPrice: 100.0
+  Material-176:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11411
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fBamboo Lantern'
+    commands:
+      - iagive %player% vanilla_blocks:bamboo_lantern %amount% silent
+    previousPrice: 100.0
+  Material-177:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11412
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fBirch Lantern'
+    commands:
+      - iagive %player% vanilla_blocks:birch_lantern %amount% silent
+    previousPrice: 100.0
+  Material-178:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11414
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fCarved Cherry Planks'
+    commands:
+      - iagive %player% vanilla_blocks:carved_cherry_planks %amount% silent
+    previousPrice: 100.0
+  Material-179:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11415
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fCarved Crimson Planks'
+    commands:
+      - iagive %player% vanilla_blocks:carved_crimson_planks %amount% silent
+    previousPrice: 100.0
+  Material-180:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11416
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fCarved Dark Oak Planks'
+    commands:
+      - iagive %player% vanilla_blocks:carved_dark_oak_planks %amount% silent
+    previousPrice: 100.0
+  Material-181:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11417
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fCarved Jungle Planks'
+    commands:
+      - iagive %player% vanilla_blocks:carved_jungle_planks %amount% silent
+    previousPrice: 100.0
+  Material-182:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11418
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fCarved Mangrove Planks'
+    commands:
+      - iagive %player% vanilla_blocks:carved_mangrove_planks %amount% silent
+    previousPrice: 100.0
+  Material-183:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11419
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fCarved Oak Planks'
+    commands:
+      - iagive %player% vanilla_blocks:carved_oak_planks %amount% silent
+    previousPrice: 100.0
+  Material-184:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11420
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fCarved Warped Planks'
+    commands:
+      - iagive %player% vanilla_blocks:carved_warped_planks %amount% silent
+  Material-185:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11421
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fCherry Lantern'
+    commands:
+      - iagive %player% vanilla_blocks:cherry_lantern %amount% silent
+  Material-186:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11422
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fChiseled Andesite'
+    commands:
+      - iagive %player% vanilla_blocks:chiseled_andesite %amount% silent
+  Material-187:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11423
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fChiseled Diamond'
+    commands:
+      - iagive %player% vanilla_blocks:chiseled_diamond %amount% silent
+  Material-188:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11424
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fChiseled Diorite'
+    commands:
+      - iagive %player% vanilla_blocks:chiseled_diorite %amount% silent
+  Material-189:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11425
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fChiseled Emerald'
+    commands:
+      - iagive %player% vanilla_blocks:chiseled_emerald %amount% silent
+  Material-190:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11426
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fChiseled Gold'
+    commands:
+      - iagive %player% vanilla_blocks:chiseled_gold %amount% silent
+  Material-191:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11427
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fChiseled Granite'
+    commands:
+      - iagive %player% vanilla_blocks:chiseled_granite %amount% silent
+  Material-192:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11428
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fChiseled Iron'
+    commands:
+      - iagive %player% vanilla_blocks:chiseled_iron %amount% silent
+  Material-193:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11429
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fChiseled Lapis'
+    commands:
+      - iagive %player% vanilla_blocks:chiseled_lapis %amount% silent
+  Material-194:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11430
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fChiseled Mud'
+    commands:
+      - iagive %player% vanilla_blocks:chiseled_mud %amount% silent
+  Material-195:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11431
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fChiseled Netherite'
+    commands:
+      - iagive %player% vanilla_blocks:chiseled_netherite %amount% silent
+  Material-196:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11432
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fChiseled Packed Ice Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:chiseled_packed_ice_bricks %amount% silent
+  Material-197:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11433
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fChiseled Red Nether Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:chiseled_red_nether_bricks %amount% silent
+  Material-198:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11434
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fChiseled Redstone'
+    commands:
+      - iagive %player% vanilla_blocks:chiseled_redstone %amount% silent
+  Material-199:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11435
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fChiseled Soul Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:chiseled_soul_bricks %amount% silent
+  Material-200:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11436
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fChiseled Stone'
+    commands:
+      - iagive %player% vanilla_blocks:chiseled_stone %amount% silent
+  Material-201:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11437
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fCopper Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:copper_bricks %amount% silent
+  Material-202:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11438
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fCrimson Lantern'
+    commands:
+      - iagive %player% vanilla_blocks:crimson_lantern %amount% silent
+  Material-203:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11439
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fDark Oak Lantern'
+    commands:
+      - iagive %player% vanilla_blocks:dark_oak_lantern %amount% silent
+  Material-204:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11440
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fDiamond Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:diamond_bricks %amount% silent
+  Material-205:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11441
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fDiorite Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:diorite_bricks %amount% silent
+  Material-206:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11442
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fEmerald Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:emerald_bricks %amount% silent
+  Material-207:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11443
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fExposed Copper Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:exposed_copper_bricks %amount% silent
+  Material-208:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11444
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fGold Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:gold_bricks %amount% silent
+  Material-209:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11445
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fGranite Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:granite_bricks %amount% silent
+  Material-210:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11446
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fIron Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:iron_bricks %amount% silent
+  Material-211:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11447
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fJungle Lantern'
+    commands:
+      - iagive %player% vanilla_blocks:jungle_lantern %amount% silent
+  Material-212:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11448
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fLapis Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:lapis_bricks %amount% silent
+  Material-213:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11449
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fMangrove Lantern'
+    commands:
+      - iagive %player% vanilla_blocks:mangrove_lantern %amount% silent
+  Material-214:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11450
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fMolten Scoria'
+    commands:
+      - iagive %player% vanilla_blocks:molten_scoria %amount% silent
+  Material-215:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11451
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fMolten Scoria Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:molten_scoria_bricks %amount% silent
+  Material-216:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11452
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fNetherite Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:netherite_bricks %amount% silent
+  Material-217:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11453
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fOak Lantern'
+    commands:
+      - iagive %player% vanilla_blocks:oak_lantern %amount% silent
+  Material-218:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11454
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fOxidized Copper Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:oxidized_copper_bricks %amount% silent
+  Material-219:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11455
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fPacked Dirt'
+    commands:
+      - iagive %player% vanilla_blocks:packed_dirt %amount% silent
+  Material-220:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11456
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fPacked Ice Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:packed_ice_bricks %amount% silent
+  Material-221:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11457
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fPolished Mud'
+    commands:
+      - iagive %player% vanilla_blocks:polished_mud %amount% silent
+  Material-222:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11458
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fPolished Packed Ice'
+    commands:
+      - iagive %player% vanilla_blocks:polished_packed_ice %amount% silent
+  Material-223:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11459
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fRedstone Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:redstone_bricks %amount% silent
+  Material-224:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11460
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fScoria'
+    commands:
+      - iagive %player% vanilla_blocks:scoria %amount% silent
+  Material-225:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11461
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fScoria Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:scoria_bricks %amount% silent
+  Material-226:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11462
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fSoul Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:soul_bricks %amount% silent
+  Material-227:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11463
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fSpruce Lantern'
+    commands:
+      - iagive %player% vanilla_blocks:spruce_lantern %amount% silent
+  Material-228:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11464
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fSpruce Planks Carved'
+    commands:
+      - iagive %player% vanilla_blocks:spruce_planks_carved %amount% silent
+  Material-229:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11465
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fThatch'
+    commands:
+      - iagive %player% vanilla_blocks:thatch %amount% silent
+  Material-230:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11466
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fWarped Lantern'
+    commands:
+      - iagive %player% vanilla_blocks:warped_lantern %amount% silent
+  Material-231:
+    type: CUSTOM
+    customType: buy
+    material: PAPER
+    priceType: Coins
+    customModelData: 11467
+    value: 100.0
+    median: 1.0
+    stock: -1.0
+    displayName: '&fWeathered Copper Bricks'
+    commands:
+      - iagive %player% vanilla_blocks:weathered_copper_bricks %amount% silent
