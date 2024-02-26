@@ -92,9 +92,9 @@ public class XShopConfirm {
                         }
                         loreNew.addAll(lore);
                     }
+                    lore = loreNew;
                 }
                 modelData = shopItemsCustom.getCustomModelData();
-                lore = loreNew;
             } else {
                 it = storages.customConfig.getItemStack(shopItemsCustom.getStorageName());
                 ArrayList<String> loreNew = new ArrayList<>();
