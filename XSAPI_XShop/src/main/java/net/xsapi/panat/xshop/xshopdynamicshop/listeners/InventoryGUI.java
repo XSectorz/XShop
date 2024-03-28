@@ -17,6 +17,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.text.DecimalFormat;
+import java.util.HashMap;
 
 public class InventoryGUI implements Listener {
 
@@ -246,6 +247,11 @@ public class InventoryGUI implements Listener {
                             DecimalFormat df = new DecimalFormat("#.00");
                             if(XShopDynamicShopCore.shopConfirmType.get(p.getUniqueId()).equals(XShopConfirmType.BUY)) {
 
+                                if(System.currentTimeMillis() - XShopDynamicShopCore.getBuyTempDisable().get(p) <= 0L) {
+                                    p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("cant_buy_temp_dsabled")).replace("&","§"));
+                                    return;
+                                }
+
                                 double price = 0;
                                 Material mat = null;
 
@@ -351,8 +357,40 @@ public class InventoryGUI implements Listener {
                                 XShopConfirm.openGUI(p,mat,XShopDynamicShopCore.shopPrivateName.get(p.getUniqueId()),true);
                                 p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("buy_complete")).replace("%price%",df.format(price))
                                         .replace("%price_type%",messages.customConfig.getString("price_" + shopItems.getPriceType().toString().toLowerCase())).replace("&","§"));
-                                return;
+
+                                String title = e.getCurrentItem().getItemMeta().getDisplayName();
+                                title = title.replace("x1","")
+                                        .replace("x2","")
+                                        .replace("x4","")
+                                        .replace("x8","")
+                                        .replace("x16","")
+                                        .replace("x32","")
+                                        .replace("x64","");
+                                int clickAmount = (int) Math.pow(2,e.getSlot()-10);
+                                if(XShopDynamicShopCore.getBuyAmountCooldown().get(p).containsKey(title)) {
+
+                                    int current =  XShopDynamicShopCore.getBuyAmountCooldown().get(p).get(title);
+                                    XShopDynamicShopCore.getBuyAmountCooldown().get(p).put(title,clickAmount+current);
+                                   // p.sendMessage("Contain current is " +XShopDynamicShopCore.getBuyAmountCooldown().get(p).get(title));
+                                   // p.sendMessage("Click is " + clickAmount);
+                                } else {
+                                    XShopDynamicShopCore.getBuyAmountCooldown().get(p).put(title,clickAmount);
+                                   // p.sendMessage("Not have added " + title + " " + clickAmount);
+                                }
+
+                                if(XShopDynamicShopCore.getBuyAmountCooldown().get(p).get(title) >= 64) {
+                                   // p.sendMessage("COOLDOWN 2 secs");
+                                    XShopDynamicShopCore.getBuyTempDisable().put(p,System.currentTimeMillis()+2000L);
+                                    XShopDynamicShopCore.getBuyAmountCooldown().get(p).put(title,0);
+                                }
+
                             } else if(XShopDynamicShopCore.shopConfirmType.get(p.getUniqueId()).equals(XShopConfirmType.SELL)){
+
+                                if(System.currentTimeMillis() - XShopDynamicShopCore.getSellTempDisable().get(p) <= 0L) {
+                                    p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("cant_sell_temp_dsabled")).replace("&","§"));
+                                    return;
+                                }
+
                                 double price = 0;
                                 ItemStack itmstack = null;
                                 boolean isNormalItemSell = true;
@@ -563,7 +601,32 @@ public class InventoryGUI implements Listener {
                                     }
                                 }
 
-                                return;
+                                String title = e.getCurrentItem().getItemMeta().getDisplayName();
+                                title = title.replace("x1","")
+                                        .replace("x2","")
+                                        .replace("x4","")
+                                        .replace("x8","")
+                                        .replace("x16","")
+                                        .replace("x32","")
+                                        .replace("x64","");
+                                int clickAmount = (int) Math.pow(2,e.getSlot()-10);
+                                if(XShopDynamicShopCore.getSellAmountCooldown().get(p).containsKey(title)) {
+
+                                    int current =  XShopDynamicShopCore.getSellAmountCooldown().get(p).get(title);
+                                    XShopDynamicShopCore.getSellAmountCooldown().get(p).put(title,clickAmount+current);
+                                    // p.sendMessage("Contain current is " +XShopDynamicShopCore.getBuyAmountCooldown().get(p).get(title));
+                                    // p.sendMessage("Click is " + clickAmount);
+                                } else {
+                                    XShopDynamicShopCore.getSellAmountCooldown().get(p).put(title,clickAmount);
+                                    // p.sendMessage("Not have added " + title + " " + clickAmount);
+                                }
+
+                                if(XShopDynamicShopCore.getSellAmountCooldown().get(p).get(title) >= 64) {
+                                    // p.sendMessage("COOLDOWN 2 secs");
+                                    XShopDynamicShopCore.getSellTempDisable().put(p,System.currentTimeMillis()+2000L);
+                                    XShopDynamicShopCore.getSellAmountCooldown().get(p).put(title,0);
+                                }
+
                             }
                         }
 

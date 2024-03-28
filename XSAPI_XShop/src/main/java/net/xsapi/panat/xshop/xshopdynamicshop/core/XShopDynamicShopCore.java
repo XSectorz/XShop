@@ -35,6 +35,11 @@ public final class XShopDynamicShopCore extends JavaPlugin {
     public static XSAPISeasons seasonsAPI = new XSAPISeasons();
     private static LinkedList<Player> playerOpenGUI = new LinkedList<Player>();
 
+    private static HashMap<Player,HashMap<String,Integer>> buyAmountCooldown = new HashMap<>();
+    private static HashMap<Player,Long> buyTempDisable = new HashMap<>();
+    private static HashMap<Player,Long> SellTempDisable = new HashMap<>();
+    private static HashMap<Player,HashMap<String,Integer>> sellAmountCooldown = new HashMap<>();
+
     public static ArrayList<XShopDynamic> shopList = new ArrayList<XShopDynamic>();
     public static HashMap<UUID,XShopType> shopType = new HashMap<UUID, XShopType>();
     public static HashMap<UUID,Integer> shopPage = new HashMap<UUID, Integer>();
@@ -60,12 +65,28 @@ public final class XShopDynamicShopCore extends JavaPlugin {
 
     static XShopDynamicShopCore plugin;
 
+    public static HashMap<Player, Long> getBuyTempDisable() {
+        return buyTempDisable;
+    }
+
+    public static HashMap<Player, Long> getSellTempDisable() {
+        return SellTempDisable;
+    }
+
     public static XShopDynamicShopCore getPlugin() {
         return plugin;
     }
 
     public static LinkedList<Player> getPlayerOpenGUI() {
         return XShopDynamicShopCore.playerOpenGUI;
+    }
+
+    public static HashMap<Player, HashMap<String, Integer>> getBuyAmountCooldown() {
+        return buyAmountCooldown;
+    }
+
+    public static HashMap<Player, HashMap<String, Integer>> getSellAmountCooldown() {
+        return sellAmountCooldown;
     }
 
     private boolean setupPermissions() {

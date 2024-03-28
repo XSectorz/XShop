@@ -25,6 +25,21 @@ public class XShop {
         String typeItems = "items";
         String typeBarrier = "blocked_barrier";
 
+        if(!XShopDynamicShopCore.getBuyAmountCooldown().containsKey(p)) {
+            XShopDynamicShopCore.getBuyAmountCooldown().put(p,new HashMap<>());
+        }
+        if(!XShopDynamicShopCore.getSellAmountCooldown().containsKey(p)) {
+            XShopDynamicShopCore.getSellAmountCooldown().put(p,new HashMap<>());
+        }
+
+        if(!XShopDynamicShopCore.getBuyTempDisable().containsKey(p)) {
+            XShopDynamicShopCore.getBuyTempDisable().put(p,0L);
+        }
+
+        if(!XShopDynamicShopCore.getSellTempDisable().containsKey(p)) {
+            XShopDynamicShopCore.getSellTempDisable().put(p,0L);
+        }
+
         if (shopType.equals(XShopType.NoneType)) {
             title = config.customConfig.getString("gui.gui_title").replace("&", "§");
         } else if (shopType.equals(XShopType.Block)) {
