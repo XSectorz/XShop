@@ -36,7 +36,7 @@ public class ItemCreator {
             itmmeta.setLore(lore_temp);
         }
         if (isGlow) {
-            itmmeta.addEnchant(org.bukkit.enchantments.Enchantment.DURABILITY, 1, true);
+            itmmeta.addEnchant(Enchantment.INFINITY, 1, true);
             itmmeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         }
         itmmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
@@ -66,7 +66,7 @@ public class ItemCreator {
             itmmeta.setLore(lore_temp);
         }
         if (isGlow) {
-            itmmeta.addEnchant(org.bukkit.enchantments.Enchantment.DURABILITY, 1, true);
+            itmmeta.addEnchant(Enchantment.INFINITY, 1, true);
             itmmeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         }
 

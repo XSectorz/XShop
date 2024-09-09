@@ -25,19 +25,19 @@ public class XShop {
         String typeItems = "items";
         String typeBarrier = "blocked_barrier";
 
-        if(!XShopDynamicShopCore.getBuyAmountCooldown().containsKey(p)) {
-            XShopDynamicShopCore.getBuyAmountCooldown().put(p,new HashMap<>());
+        if(!core.getBuyAmountCooldown().containsKey(p)) {
+            core.getBuyAmountCooldown().put(p,new HashMap<>());
         }
-        if(!XShopDynamicShopCore.getSellAmountCooldown().containsKey(p)) {
-            XShopDynamicShopCore.getSellAmountCooldown().put(p,new HashMap<>());
-        }
-
-        if(!XShopDynamicShopCore.getBuyTempDisable().containsKey(p)) {
-            XShopDynamicShopCore.getBuyTempDisable().put(p,0L);
+        if(!core.getSellAmountCooldown().containsKey(p)) {
+            core.getSellAmountCooldown().put(p,new HashMap<>());
         }
 
-        if(!XShopDynamicShopCore.getSellTempDisable().containsKey(p)) {
-            XShopDynamicShopCore.getSellTempDisable().put(p,0L);
+        if(!core.getBuyTempDisable().containsKey(p)) {
+            core.getBuyTempDisable().put(p,0L);
+        }
+
+        if(!core.getSellTempDisable().containsKey(p)) {
+            core.getSellTempDisable().put(p,0L);
         }
 
         if (shopType.equals(XShopType.NoneType)) {
@@ -104,7 +104,7 @@ public class XShop {
         XShopDynamic shop = null;
         if (!shopType.equals(XShopType.NoneType)) {
 
-            for (XShopDynamic shopList : XShopDynamicShopCore.shopList) {
+            for (XShopDynamic shopList : core.shopList) {
                 if (shopList.getShopType().equals(shopType)) {
                     shop = shopList;
                 }
@@ -120,7 +120,7 @@ public class XShop {
                     typeSlot = "slot_newblock";
                 }
                 ArrayList<XShopItems> itemsIterator = new ArrayList<XShopItems>(shop.getShopItems());
-                int startIndex = (XShopDynamicShopCore.shopPage.get(p.getUniqueId()) * config.customConfig.getIntegerList("gui." + typeSlot).size())
+                int startIndex = (core.shopPage.get(p.getUniqueId()) * config.customConfig.getIntegerList("gui." + typeSlot).size())
                         - config.customConfig.getIntegerList("gui." + typeSlot).size();
 
                 List<Integer> slot = config.customConfig.getIntegerList("gui." + typeSlot);
@@ -136,25 +136,25 @@ public class XShop {
 
                 if(isSpecial) {
                     if(shopType.equals(XShopType.Seasonitems)) {
-                        specialCounter = XShopDynamicShopCore.seasonShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size();
-                        itemsIterator = XShopDynamicShopCore.seasonShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName());
+                        specialCounter = core.seasonShops.get(core.seasonsAPI.getSeason().getSeasonRealName()).size();
+                        itemsIterator = core.seasonShops.get(core.seasonsAPI.getSeason().getSeasonRealName());
                         specialCounter -= startIndex;
                         //specialCounter += seasonitems.customConfig.getConfigurationSection("items_special").getKeys(false).size();
                     } else if(shopType.equals(XShopType.Fishing)) {
-                        specialCounter = XShopDynamicShopCore.fishShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size();
-                        itemsIterator = XShopDynamicShopCore.fishShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName());
+                        specialCounter = core.fishShops.get(core.seasonsAPI.getSeason().getSeasonRealName()).size();
+                        itemsIterator = core.fishShops.get(core.seasonsAPI.getSeason().getSeasonRealName());
                         specialCounter -= startIndex;
                         //specialCounter += fishing.customConfig.getConfigurationSection("items_special").getKeys(false).size();
                     } else if(shopType.equals(XShopType.Foods)) {
-                        specialCounter = XShopDynamicShopCore.foodsShops.size();
-                        itemsIterator = XShopDynamicShopCore.foodsShops;
+                        specialCounter = core.foodsShops.size();
+                        itemsIterator = core.foodsShops;
                         specialCounter -= startIndex;
                     }
                     //p.sendMessage("SEASON: " + XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName() + " " + " COUNTER " + specialCounter);
                     //p.sendMessage("START INDEX: " + startIndex);
                 } else {
                     if(shopType.equals(XShopType.New_block)) {
-                        itemsIterator = XShopDynamicShopCore.newBlockShops;
+                        itemsIterator = core.newBlockShops;
                     }
                 }
                 int i = 0;
@@ -165,7 +165,7 @@ public class XShop {
                 while (i < slot.size() || specialCounter > 0) {
 
                    /// Bukkit.broadcastMessage("I: " + (i+startIndex) + "/"+ slot.size() + " " + " COUNTER " + specialCounter);
-                    if (startIndex + indexSlot >= XShopDynamicShopCore.shopPage.get(p.getUniqueId()) * config.customConfig.getIntegerList("gui."+typeSlot).size()) {
+                    if (startIndex + indexSlot >= core.shopPage.get(p.getUniqueId()) * config.customConfig.getIntegerList("gui."+typeSlot).size()) {
                         break;
                     }
 
@@ -173,7 +173,7 @@ public class XShop {
                         break;
                     }
 
-                    if(XShopDynamicShopCore.isUsingSpecialShop.get(p.getUniqueId())) {
+                    if(core.isUsingSpecialShop.get(p.getUniqueId())) {
                         if(specialCounter <= 0) {
                             break;
                         }
@@ -333,6 +333,7 @@ public class XShop {
                         }
 
                     } else {
+
                         display = display.replace("%type%", shopItems.getMat().toString());
                         if (shopItems.getMat() != null) {
                             mat = shopItems.getMat();
@@ -447,23 +448,23 @@ public class XShop {
             } else if(items.equalsIgnoreCase("next_page_s")) {
                 if(!shop.getShopItems().isEmpty()) {
                     if(shopType.equals(XShopType.Seasonitems)) {
-                        if(XShopDynamicShopCore.seasonShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size()
+                        if(core.seasonShops.get(core.seasonsAPI.getSeason().getSeasonRealName()).size()
                                 < (page*config.customConfig.getIntegerList("gui." + typeBarrier +".slot").size())+1 ) {
                             itemMeta.setCustomModelData(10234);
                         }
                     } else if(shopType.equals(XShopType.Fishing)) {
-                        if(XShopDynamicShopCore.fishShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName()).size()
+                        if(core.fishShops.get(core.seasonsAPI.getSeason().getSeasonRealName()).size()
                                 < (page*config.customConfig.getIntegerList("gui." + typeBarrier +".slot").size())+1 ) {
                             itemMeta.setCustomModelData(10234);
                         }
                     } else if(shopType.equals(XShopType.Foods)) {
-                        if(XShopDynamicShopCore.foodsShops.size()
+                        if(core.foodsShops.size()
                                 < (page*config.customConfig.getIntegerList("gui." + typeBarrier +".slot").size())+1 ) {
                             itemMeta.setCustomModelData(10234);
                         }
                     } else if(shopType.equals(XShopType.New_block)) {
                         //Bukkit.broadcastMessage("SIZE: " + XShopDynamicShopCore.newBlockShops.size());
-                        if(XShopDynamicShopCore.newBlockShops.size()
+                        if(core.newBlockShops.size()
                                 < (page*config.customConfig.getIntegerList("gui." + typeBarrier +".slot").size())+1 ) {
                             itemMeta.setCustomModelData(10234);
                         }
@@ -471,13 +472,13 @@ public class XShop {
                 }
 
             } else if(items.equalsIgnoreCase("previous_page_s")) {
-                if(XShopDynamicShopCore.shopPage.get(p.getUniqueId()) <= 1) {
+                if(core.shopPage.get(p.getUniqueId()) <= 1) {
                     if(shopType.equals(XShopType.New_block)) {
                         itemMeta.setCustomModelData(config.customConfig.getInt("gui.new_block_items.previous_page_s.customModelData"));
                     } else {
                         itemMeta.setCustomModelData(config.customConfig.getInt("gui.items_special.previous_page_s.customModelData"));
                     }
-                } else if(XShopDynamicShopCore.shopPage.get(p.getUniqueId()) > 1) {
+                } else if(core.shopPage.get(p.getUniqueId()) > 1) {
                     if(shopType.equals(XShopType.New_block)) {
                         itemMeta.setCustomModelData(10218);
                     }
@@ -498,8 +499,8 @@ public class XShop {
         }
 
         if(isUpdate) {
-            if (!XShopDynamicShopCore.getPlayerOpenGUI().contains(p)) {
-                XShopDynamicShopCore.getPlayerOpenGUI().add(p);
+            if (!core.getPlayerOpenGUI().contains(p)) {
+                core.getPlayerOpenGUI().add(p);
             }
         }
 

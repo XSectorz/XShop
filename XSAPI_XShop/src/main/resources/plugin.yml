@@ -1,8 +1,8 @@
 name: XShopDynamicShop
 version: '${project.version}'
-main: net.xsapi.panat.xshop.xshopdynamicshop.core.XShopDynamicShopCore
+main: net.xsapi.panat.xshop.xshopdynamicshop.core.core
 softdepend: [PlayerPoints, XSSeasons]
-api-version: 1.19
+api-version: '1.20'
 authors: [ PanatXsectorZ ]
 description: Intelligence Shop For Minecraft Server
 aliases: shop

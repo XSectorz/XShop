@@ -1,6 +1,6 @@
 package net.xsapi.panat.xshop.xshopdynamicshop.configuration;
 
-import net.xsapi.panat.xshop.xshopdynamicshop.core.XShopDynamicShopCore;
+import net.xsapi.panat.xshop.xshopdynamicshop.core.core;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -18,10 +18,10 @@ public class seasonitems {
     }
 
     public void loadConfigu() {
-        customConfigFile = new File(XShopDynamicShopCore.getPlugin().getDataFolder() + "/shops", "seasonitems.yml");
+        customConfigFile = new File(core.getPlugin().getDataFolder() + "/shops", "seasonitems.yml");
         if (!customConfigFile.exists()) {
             customConfigFile.getParentFile().mkdirs();
-            XShopDynamicShopCore.getPlugin().saveResource("shops/seasonitems.yml", false);
+            core.getPlugin().saveResource("shops/seasonitems.yml", false);
         }
         customConfig = (FileConfiguration) new YamlConfiguration();
         try {
@@ -32,7 +32,7 @@ public class seasonitems {
     }
 
     public void save() {
-        customConfigFile = new File(XShopDynamicShopCore.getPlugin().getDataFolder() + "/shops", "seasonitems.yml");
+        customConfigFile = new File(core.getPlugin().getDataFolder() + "/shops", "seasonitems.yml");
         try {
             customConfig.options().copyDefaults(true);
             customConfig.save(customConfigFile);
@@ -42,15 +42,15 @@ public class seasonitems {
     }
 
     public static void reload() {
-        config.customConfigFile = new File(XShopDynamicShopCore.getPlugin().getDataFolder() + "/shops", "seasonitems.yml");
+        config.customConfigFile = new File(core.getPlugin().getDataFolder() + "/shops", "seasonitems.yml");
         if (!config.customConfigFile.exists()) {
             config.customConfigFile.getParentFile().mkdirs();
-            XShopDynamicShopCore.getPlugin().saveResource("shops/seasonitems.yml", false);
+            core.getPlugin().saveResource("shops/seasonitems.yml", false);
         } else {
             config.customConfig = (FileConfiguration) YamlConfiguration.loadConfiguration(config.customConfigFile);
             try {
                 config.customConfig.save(config.customConfigFile);
-                XShopDynamicShopCore.getPlugin().reloadConfig();
+                core.getPlugin().reloadConfig();
             } catch (IOException e) {
                 e.printStackTrace();
             }

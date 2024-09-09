@@ -1,6 +1,6 @@
 package net.xsapi.panat.xshop.xshopdynamicshop.configuration;
 
-import net.xsapi.panat.xshop.xshopdynamicshop.core.XShopDynamicShopCore;
+import net.xsapi.panat.xshop.xshopdynamicshop.core.core;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -17,10 +17,10 @@ public class new_block {
     }
 
     public void loadConfigu() {
-        customConfigFile = new File(XShopDynamicShopCore.getPlugin().getDataFolder() + "/shops", "new_block.yml");
+        customConfigFile = new File(core.getPlugin().getDataFolder() + "/shops", "new_block.yml");
         if (!customConfigFile.exists()) {
             customConfigFile.getParentFile().mkdirs();
-            XShopDynamicShopCore.getPlugin().saveResource("shops/new_block.yml", false);
+            core.getPlugin().saveResource("shops/new_block.yml", false);
         }
         customConfig = (FileConfiguration) new YamlConfiguration();
         try {
@@ -31,7 +31,7 @@ public class new_block {
     }
 
     public void save() {
-        customConfigFile = new File(XShopDynamicShopCore.getPlugin().getDataFolder() + "/shops", "new_block.yml");
+        customConfigFile = new File(core.getPlugin().getDataFolder() + "/shops", "new_block.yml");
         try {
             customConfig.options().copyDefaults(true);
             customConfig.save(customConfigFile);

@@ -13,7 +13,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,26 +21,28 @@ import java.util.Map;
 
 public class XShopConfirm {
 
-    static ArrayList<Integer> slot = new ArrayList<>(Arrays.asList(10,11,12,13,14,15,16));
+    private static ArrayList<ArrayList<Integer>> slot = new ArrayList<>();
 
-    public static void openGUI(Player p, Material material,String privateName,boolean isBuy) {
+    static {
+        slot.add(new ArrayList<>(Arrays.asList(11,12,13,14,15,16,17)));
+        slot.add(new ArrayList<>(Arrays.asList(29,30,31,32,33,34,35)));
+    }
+
+    public static void openGUI(Player p, Material material,String privateName,XShopConfirmType shopType) {
+
 
         String title = "";
-        if(isBuy) {
-            title = config.customConfig.getString("gui_confirm.title_buy").replace("&", "§");
-        } else {
-            title = config.customConfig.getString("gui_confirm.title_sell").replace("&", "§");
-        }
 
-        Inventory inv = Bukkit.createInventory(null, 36, title);
+        title = config.customConfig.getString("gui_confirm.title").replace("&", "§");
 
-        XShopDynamicShopCore.shopPrivateName.put(p.getUniqueId(),privateName);
+        Inventory inv = Bukkit.createInventory(null, 54, title);
 
-        XShopItems shopItems = XShopDynamicShopCore.getItemsByPrivateNameAndShop(XShopDynamicShopCore.shopType.get(p.getUniqueId()),
+        core.shopConfirmType.put(p.getUniqueId(),shopType);
+        core.shopPrivateName.put(p.getUniqueId(),privateName);
+
+        XShopItems shopItems = core.getItemsByPrivateNameAndShop(core.shopType.get(p.getUniqueId()),
                 privateName);
 
-        String displayName = "";
-        ArrayList<String> lore = new ArrayList<>();
         ItemStack it = null;
         Map<Enchantment,Integer> enchant = new HashMap<>();
         boolean isUseCustomItemStorage = false;
@@ -61,77 +62,12 @@ public class XShopConfirm {
         }
 
         DecimalFormat df = new DecimalFormat("0.00");
-
-        if(isBuy) {
-            displayName = config.customConfig.getString("gui_confirm.templates.buy.displayName").replace("&", "§");
-            lore  = new ArrayList<>(config.customConfig.getStringList("gui_confirm.templates.buy.lore"));
+/*
+        if(false) {
             XShopDynamicShopCore.shopConfirmType.put(p.getUniqueId(), XShopConfirmType.BUY);
         } else {
-            displayName = config.customConfig.getString("gui_confirm.templates.sell.displayName").replace("&", "§");
-            lore = new ArrayList<>(config.customConfig.getStringList("gui_confirm.templates.sell.lore"));
             XShopDynamicShopCore.shopConfirmType.put(p.getUniqueId(), XShopConfirmType.SELL);
-        }
-
-
-        if(shopItems.getItemsType().equals(XShopItemsType.CUSTOM)) {
-            XShopItemsCustom shopItemsCustom = (XShopItemsCustom) shopItems;
-
-            if(!shopItemsCustom.getCustomStorage()) { //not use custom storage item to display
-                if(!shopItemsCustom.getName().isEmpty()) {
-                    displayName = displayName.replace("%type%",shopItemsCustom.getName().replace("&", "§"));
-                }
-
-                ArrayList<String> loreNew = new ArrayList<>();
-
-                if(!shopItemsCustom.getLore().isEmpty()) {
-
-                    if(!shopItemsCustom.getLore().isEmpty()) {
-                        for(String loreList : shopItemsCustom.getLore()) {
-                            loreList = loreList.replace("&", "§");
-                            loreNew.add(loreList);
-                        }
-                        loreNew.addAll(lore);
-                    }
-                    lore = loreNew;
-                }
-                modelData = shopItemsCustom.getCustomModelData();
-            } else {
-                it = storages.customConfig.getItemStack(shopItemsCustom.getStorageName());
-                ArrayList<String> loreNew = new ArrayList<>();
-
-                if(it.hasItemMeta()) {
-                    if(it.getItemMeta().hasDisplayName()) {
-                        displayName = displayName.replace("%type%",it.getItemMeta().getDisplayName().replace("&", "§"));
-                    }
-                    if(it.getItemMeta().hasLore()) {
-                        loreNew = (ArrayList<String>) it.getItemMeta().getLore();
-                    }
-                    if(it.getItemMeta().hasCustomModelData()) {
-                        modelData = it.getItemMeta().getCustomModelData();
-                    }
-                    if(it.getItemMeta().hasEnchants()) {
-                        enchant = it.getEnchantments();
-                    }
-                } else {
-                    displayName = displayName.replace("%type%",it.getType().toString().replace("&", "§"));
-                }
-                isUseCustomItemStorage = true;
-                loreNew.addAll(lore);
-                lore = loreNew;
-            }
-
-        } else {
-            displayName = displayName.replace("%type%",shopItems.getMat().toString());
-            modelData = shopItems.getCustomModelData();
-        }
-
-        if(!shopItems.getCustomTags().isEmpty()) {
-            if(shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_SEASON")
-        || shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_FISH")
-                    || shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_FOODS")) {
-                displayName = displayName.replace(shopItems.getMat().toString(),shopItems.getCustomTags().split(":")[2].replace("&","§"));
-            }
-        }
+        }*/
 
         DecimalFormat df2 = new DecimalFormat("#");
         df2.setGroupingUsed(true);
@@ -182,119 +118,210 @@ public class XShopConfirm {
             }
         }
 
-        XShopDynamicShopCore.shopConfirmPrice.put(p.getUniqueId(),listPriceBuy);
-        XShopDynamicShopCore.shopConfirmPriceSell.put(p.getUniqueId(),listPriceSell);
+        core.shopConfirmPrice.put(p.getUniqueId(),listPriceBuy);
+        core.shopConfirmPriceSell.put(p.getUniqueId(),listPriceSell);
 
-        for(int i = 0 ; i < 7 ; i++) {
+        for(int indexSlot = 0 ; indexSlot < 2 ; indexSlot++) {
 
-            if(i == 0) {
-                tempData = df2.format(Math.pow(2,i))+"";
-                displayName = displayName.replace("%multiple%",tempData);
+            ArrayList<Integer> slotList = slot.get(indexSlot);
+            boolean isBuySection = (indexSlot == 0);
+
+            ArrayList<String> tempLore = new ArrayList<>();
+            String displayName;
+            if(isBuySection) {
+                tempLore.addAll(new ArrayList<>(config.customConfig.getStringList("gui_confirm.templates.buy.lore")));
+                displayName = config.customConfig.getString("gui_confirm.templates.buy.displayName").replace("&", "§");
             } else {
-                displayName = displayName.replace(tempData,df2.format(Math.pow(2,i))+"");
-                tempData = df2.format(Math.pow(2,i))+"";
+                tempLore.addAll(new ArrayList<>(config.customConfig.getStringList("gui_confirm.templates.sell.lore")));
+                displayName = config.customConfig.getString("gui_confirm.templates.sell.displayName").replace("&", "§");
             }
 
-            ArrayList<String> loreItem = new ArrayList<>();
+            if(shopItems.getItemsType().equals(XShopItemsType.CUSTOM)) {
+                XShopItemsCustom shopItemsCustom = (XShopItemsCustom) shopItems;
 
-            String priceType = messages.customConfig.getString("price_" + shopItems.getPriceType().toString().toLowerCase());
+                if(!shopItemsCustom.getCustomStorage()) { //not use custom storage item to display
+                    if(!shopItemsCustom.getName().isEmpty()) {
+                        displayName = displayName.replace("%type%",shopItemsCustom.getName().replace("&", "§"));
+                    }
 
-            boolean isSeason = false;
+                    ArrayList<String> loreNew = new ArrayList<>();
+
+                    if(!shopItemsCustom.getLore().isEmpty()) {
+
+                        if(!shopItemsCustom.getLore().isEmpty()) {
+                            for(String loreList : shopItemsCustom.getLore()) {
+                                loreList = loreList.replace("&", "§");
+                                loreNew.add(loreList);
+                            }
+                            loreNew.addAll(tempLore);
+                        }
+                        tempLore = loreNew;
+                    }
+                    modelData = shopItemsCustom.getCustomModelData();
+                } else {
+                    it = storages.customConfig.getItemStack(shopItemsCustom.getStorageName());
+                    ArrayList<String> loreNew = new ArrayList<>();
+
+                    if(it.hasItemMeta()) {
+                        if(it.getItemMeta().hasDisplayName()) {
+                            displayName = displayName.replace("%type%",it.getItemMeta().getDisplayName().replace("&", "§"));
+                        }
+                        if(it.getItemMeta().hasLore()) {
+                            loreNew = (ArrayList<String>) it.getItemMeta().getLore();
+                        }
+                        if(it.getItemMeta().hasCustomModelData()) {
+                            modelData = it.getItemMeta().getCustomModelData();
+                        }
+                        if(it.getItemMeta().hasEnchants()) {
+                            enchant = it.getEnchantments();
+                        }
+                    } else {
+                        displayName = displayName.replace("%type%",it.getType().toString().replace("&", "§"));
+                    }
+                    isUseCustomItemStorage = true;
+                    loreNew.addAll(tempLore);
+                    tempLore = loreNew;
+                }
+
+            } else {
+                displayName = displayName.replace("%type%",shopItems.getMat().toString());
+                modelData = shopItems.getCustomModelData();
+            }
 
             if(!shopItems.getCustomTags().isEmpty()) {
-                String season = shopItems.getCustomTags().split(":")[1];
-                XSAPISeasons seasonsAPI = new XSAPISeasons();
-
-                if(seasonsAPI.getSeason().getSeasonRealName().equalsIgnoreCase(season)) {
-                    isSeason = true;
+                if(shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_SEASON")
+                        || shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_FISH")
+                        || shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_FOODS")) {
+                    displayName = displayName.replace(shopItems.getMat().toString(),shopItems.getCustomTags().split(":")[2].replace("&","§"));
                 }
             }
 
-            if(realStock == -1) {
-                price =  (shopItems.getMedian()*shopItems.getValue())/1;
-                //Bukkit.broadcastMessage("PRICE: " + price);
-            }
+            for(int i = 0 ; i < 7 ; i++) {
+
+                if(i == 0) {
+                    tempData = df2.format(Math.pow(2,i))+"";
+                    displayName = displayName.replace("%multiple%",tempData);
+                } else {
+                    displayName = displayName.replace("x"+tempData,"x"+df2.format(Math.pow(2,i))+"");
+                    tempData = df2.format(Math.pow(2,i))+"";
+                }
+
+                //Bukkit.broadcastMessage("TEMP DATA: " + tempData);
+                //Bukkit.broadcastMessage("DISPLAY AFTER REPLACE 2: " + displayName);
 
 
-            for(String lores : lore) {
+                if(isBuySection && shopType.equals(XShopConfirmType.SELL_ONLY)) {
+                    inv.setItem(slotList.get(i),ItemCreator.createItem(Material.valueOf(config.customConfig.getString("gui.none_buy.material")),
+                            1,config.customConfig.getInt("gui.none_buy.customModelData"),config.customConfig.getString("gui.none_buy.displayName").replace("&", "§")
+                            ,new ArrayList<String>(),false));
+                    continue;
+                } else if(!isBuySection && shopType.equals(XShopConfirmType.BUY_ONLY)) {
+                    inv.setItem(slotList.get(i),ItemCreator.createItem(Material.valueOf(config.customConfig.getString("gui.none_sell.material")),
+                            1,config.customConfig.getInt("gui.none_sell.customModelData"),config.customConfig.getString("gui.none_sell.displayName").replace("&", "§")
+                            ,new ArrayList<String>(),false));
+                    continue;
+                }
 
-                if(isBuy) {
-                    double value = 0;
-                    if(realStock == -1) {
-                        value = price * Math.pow(2, i);
-                    } else {
-                        value = listPriceBuy.get(i);
+                ArrayList<String> loreItem = new ArrayList<>();
+
+                String priceType = messages.customConfig.getString("price_" + shopItems.getPriceType().toString().toLowerCase());
+
+                boolean isSeason = false;
+
+                if(!shopItems.getCustomTags().isEmpty()) {
+                    String season = shopItems.getCustomTags().split(":")[1];
+                    XSAPISeasons seasonsAPI = new XSAPISeasons();
+
+                    if(seasonsAPI.getSeason().getSeasonRealName().equalsIgnoreCase(season)) {
+                        isSeason = true;
                     }
+                }
 
-                    String v = df.format(value);
-                    if(value <= 0) {
-                        v = "&cไม่สามาถซื้อได้";
-                    }
+                if(realStock == -1) {
+                    price =  (shopItems.getMedian()*shopItems.getValue())/1;
+                    //Bukkit.broadcastMessage("PRICE: " + price);
+                }
 
-                    if(isSeason) {
 
-                        v = df.format(value);
-                        value = (value*125/100);
+                for(String lores : tempLore) {
 
+                    if(isBuySection) {
+                        double value = 0;
+                        if(realStock == -1) {
+                            value = price * Math.pow(2, i);
+                        } else {
+                            value = listPriceBuy.get(i);
+                        }
+
+                        String v = df.format(value);
                         if(value <= 0) {
                             v = "&cไม่สามาถซื้อได้";
-                            lores = lores.replace("%price%","&8&m"+v + "&f &x&f&f&d&e&3&1");
+                        }
+
+                        if(isSeason) {
+
+                            v = df.format(value);
+                            value = (value*125/100);
+
+                            if(value <= 0) {
+                                v = "&cไม่สามาถซื้อได้";
+                                lores = lores.replace("%price%","&8&m"+v + "&f &x&f&f&d&e&3&1");
+                            } else {
+                                lores = lores.replace("%price%","&8&m"+v + "&f &x&f&f&d&e&3&1" + df.format(value) + " " + priceType);
+                            }
+
                         } else {
-                            lores = lores.replace("%price%","&8&m"+v + "&f &x&f&f&d&e&3&1" + df.format(value) + " " + priceType);
+                            lores = lores.replace("%price%",""+ v + " " + priceType);
                         }
 
                     } else {
-                        lores = lores.replace("%price%",""+ v + " " + priceType);
-                    }
+                        // double v = (price * 75) / 100 * Math.pow(2, i);
+                        double value = 0;
+                        if(realStock == -1) {
+                            value = (price * 75) / 100  * Math.pow(2, i);
+                        } else {
+                            value = listPriceSell.get(i);
+                        }
 
-                } else {
-                   // double v = (price * 75) / 100 * Math.pow(2, i);
-                    double value = 0;
-                    if(realStock == -1) {
-                        value = (price * 75) / 100  * Math.pow(2, i);
-                    } else {
-                        value = listPriceSell.get(i);
-                    }
-
-                    String v = df.format(value);
-                    if(value <= 0) {
-                        v = "&cไม่สามารถขายได้";
-                    }
-
-                    if(isSeason) {
-                        value = value*125/100;
+                        String v = df.format(value);
                         if(value <= 0) {
-                            v = "&cไม่สามาถขายได้";
-                            lores = lores.replace("%price%","&8&m"+v);
-                        } else {
-                            lores = lores.replace("%price%","&8&m"+v + "&f &x&f&f&d&e&3&1" + df.format(value) + " " + priceType);
+                            v = "&cไม่สามารถขายได้";
                         }
 
-                    } else {
-                        lores = lores.replace("%price%",""+v + " " + priceType);
+                        if(isSeason) {
+                            value = value*125/100;
+                            if(value <= 0) {
+                                v = "&cไม่สามาถขายได้";
+                                lores = lores.replace("%price%","&8&m"+v);
+                            } else {
+                                lores = lores.replace("%price%","&8&m"+v + "&f &x&f&f&d&e&3&1" + df.format(value) + " " + priceType);
+                            }
+
+                        } else {
+                            lores = lores.replace("%price%",""+v + " " + priceType);
+                        }
+
                     }
 
+                    if(shopItems.getStock() != -1) {
+                        lores = lores.replace("%stock%",df2.format(shopItems.getStock())+"");
+                    } else {
+                        lores = lores.replace("%stock%","∞");
+                    }
+
+                    loreItem.add(lores);
                 }
-
-                if(shopItems.getStock() != -1) {
-                    lores = lores.replace("%stock%",df2.format(shopItems.getStock())+"");
-                } else {
-                    lores = lores.replace("%stock%","∞");
+                if(isUseCustomItemStorage) {
+                    inv.setItem(slotList.get(i), ItemCreator.createItem(material,
+                            (int) Math.pow(2,i),modelData,displayName,loreItem,false,enchant));
+                    continue;
                 }
-
-                loreItem.add(lores);
+                inv.setItem(slotList.get(i), ItemCreator.createItem(material,
+                        (int) Math.pow(2,i),modelData,displayName,loreItem,false));
             }
-            if(isUseCustomItemStorage) {
-                inv.setItem(slot.get(i), ItemCreator.createItem(material,
-                        (int) Math.pow(2,i),modelData,displayName,loreItem,false,enchant));
-                continue;
-            }
-            inv.setItem(slot.get(i), ItemCreator.createItem(material,
-                    (int) Math.pow(2,i),modelData,displayName,loreItem,false));
-
         }
 
-        inv.setItem(30,ItemCreator.createItem(Material.valueOf(config.customConfig.getString("gui_confirm.back_button.material")),
+        inv.setItem(48,ItemCreator.createItem(Material.valueOf(config.customConfig.getString("gui_confirm.back_button.material")),
                 1,config.customConfig.getInt("gui_confirm.back_button.customModelData"),config.customConfig.getString("gui_confirm.back_button.displayName").replace("&", "§")
                 ,new ArrayList<String>(),false));
 
@@ -302,13 +329,13 @@ public class XShopConfirm {
 
         for(String lores : config.customConfig.getStringList("gui_confirm.info_button.lore")) {
             lores = lores.replace("&", "§");
-            lores = lores.replace("%balance%",df.format(XShopDynamicShopCore.getEconomy().getBalance(p.getName())));
-            lores = lores.replace("%points%",df.format(XShopDynamicShopCore.getPlayerPoint().look(p.getUniqueId())));
+            lores = lores.replace("%balance%",df.format(core.getEconomy().getBalance(p.getName())));
+            lores = lores.replace("%points%",df.format(core.getPlayerPoint().look(p.getUniqueId())));
             loreInfo.add(lores);
         }
 
 
-        inv.setItem(31,ItemCreator.createItem(Material.valueOf(config.customConfig.getString("gui_confirm.info_button.material")),
+        inv.setItem(49,ItemCreator.createItem(Material.valueOf(config.customConfig.getString("gui_confirm.info_button.material")),
                 1,config.customConfig.getInt("gui_confirm.info_button.customModelData"),config.customConfig.getString("gui_confirm.info_button.displayName").replace("&", "§")
                 ,loreInfo,false));
 

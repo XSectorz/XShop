@@ -93,8 +93,7 @@ gui:
         - '&fยอดการซื้อ: &x&c&3&f&f&a&7%vol_buy% &fชิ้น &x&4&d&e&a&4&9(%vol_percent_buy%)'
         - '&fยอดการขาย: &x&c&3&f&f&a&7%vol_sell% &fชิ้น &x&f&f&5&0&6&5(%vol_percent_sell%)'
         - '&r'
-        - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการซื้อไอเทม'
-        - '&f &x&8&4&f&f&7&9คลิก-ขวา เพื่อทำการขายไอเทม'
+        - '&f &x&8&4&f&f&7&9คลิก-ซ้าย เพื่อทำการซื้อขายไอเทม'
     sell_only:
       displayName: '&f%type% %valueChange%'
       lore:
@@ -159,6 +158,16 @@ gui:
     material: BRICK
     customModelData: 10000
     displayName: §r
+    slot: []
+  none_buy:
+    material: PAPER
+    customModelData: 10074
+    displayName: '§x§E§0§0§0§0§0ไม่สามารถซื้อได้'
+    slot: []
+  none_sell:
+    material: PAPER
+    customModelData: 10074
+    displayName: '§x§E§0§0§0§0§0ไม่สามารถขายได้'
     slot: []
   new_block_barrier:
     material: PAPER
@@ -397,8 +406,7 @@ gui:
       material: PAPER
       customModelData: 10237
 gui_confirm:
-  title_buy: '&f &f'
-  title_sell: '&f'
+  title: '&f &f'
   back_button:
     displayName: '&x&6&4&f&f&a&2< ย้อนกลับ'
     material: BRICK

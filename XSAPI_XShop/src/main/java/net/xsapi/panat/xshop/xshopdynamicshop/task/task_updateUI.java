@@ -1,7 +1,7 @@
 package net.xsapi.panat.xshop.xshopdynamicshop.task;
 
 import net.xsapi.panat.xshop.xshopdynamicshop.configuration.*;
-import net.xsapi.panat.xshop.xshopdynamicshop.core.XShopDynamicShopCore;
+import net.xsapi.panat.xshop.xshopdynamicshop.core.core;
 import net.xsapi.panat.xshop.xshopdynamicshop.gui.XShop;
 import net.xsapi.panat.xshop.xshopdynamicshop.utils.ResetPriceFeatures;
 import org.bukkit.Bukkit;
@@ -20,20 +20,20 @@ public class task_updateUI extends BukkitRunnable {
         if(config.customConfig.getBoolean("reset_price.enable")) {
             if(System.currentTimeMillis()-config.customConfig.getLong("reset_price.time_stamp") >= 0L) {
                 new ResetPriceFeatures().resetPrice();
-                XShopDynamicShopCore.loadData();
+                core.loadData();
                 Bukkit.getLogger().info("§x§f§f§a§c§2§f[XShop] reset price tasks successfully!");
             }
         }
 
-        final List<Player> user_list = new ArrayList<Player>(XShopDynamicShopCore.getPlayerOpenGUI());
+        final List<Player> user_list = new ArrayList<Player>(core.getPlayerOpenGUI());
 
         if(!user_list.isEmpty()) {
             for (final Player user : user_list) {
                 if (Bukkit.getPlayer(user.getName()) == null) {
                     continue;
                 }
-                XShop.openInv(user,XShopDynamicShopCore.shopType.get(user.getUniqueId()),XShopDynamicShopCore.shopPage.get(user.getUniqueId()),true,
-                        XShopDynamicShopCore.isUsingSpecialShop.get(user.getUniqueId()));
+                XShop.openInv(user, core.shopType.get(user.getUniqueId()), core.shopPage.get(user.getUniqueId()),true,
+                        core.isUsingSpecialShop.get(user.getUniqueId()));
             }
         }
 

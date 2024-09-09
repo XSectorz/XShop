@@ -17,7 +17,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.text.DecimalFormat;
-import java.util.HashMap;
 
 public class InventoryGUI implements Listener {
 
@@ -44,21 +43,21 @@ public class InventoryGUI implements Listener {
                 return;
             }
             e.setCancelled(true);
-            boolean isSpecial = XShopDynamicShopCore.isUsingSpecialShop.get(p.getUniqueId());
+            boolean isSpecial = core.isUsingSpecialShop.get(p.getUniqueId());
             String menuType = "items";
             String slotType = "slot";
-            if(!isSpecial && !XShopDynamicShopCore.shopType.get(p.getUniqueId()).equals(XShopType.New_block)) {
+            if(!isSpecial && !core.shopType.get(p.getUniqueId()).equals(XShopType.New_block)) {
                 for(String menu : config.customConfig.getConfigurationSection("gui.menu").getKeys(false)) {
                     if(e.getSlot() == config.customConfig.getInt("gui.menu." + menu + ".slot")) {
-                        XShopDynamicShopCore.shopType.put(p.getUniqueId(),XShopType.valueOf(menu));
-                        XShopDynamicShopCore.shopPage.put(p.getUniqueId(),1);
-                        XShop.openInv(p, XShopDynamicShopCore.shopType.get(p.getUniqueId()),
-                                XShopDynamicShopCore.shopPage.get(p.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(p.getUniqueId()));
+                        core.shopType.put(p.getUniqueId(),XShopType.valueOf(menu));
+                        core.shopPage.put(p.getUniqueId(),1);
+                        XShop.openInv(p, core.shopType.get(p.getUniqueId()),
+                                core.shopPage.get(p.getUniqueId()),true, core.isUsingSpecialShop.get(p.getUniqueId()));
 
                         return;
                     }
                 }
-            } else if(XShopDynamicShopCore.shopType.get(p.getUniqueId()).equals(XShopType.New_block)){
+            } else if(core.shopType.get(p.getUniqueId()).equals(XShopType.New_block)){
                 menuType = "new_block_items";
                 slotType = "slot_newblock";
             } else {
@@ -66,7 +65,7 @@ public class InventoryGUI implements Listener {
                 slotType = "slot_special";
             }
 
-            if(XShopDynamicShopCore.shopType.get(p.getUniqueId()).equals(XShopType.NoneType)) {
+            if(core.shopType.get(p.getUniqueId()).equals(XShopType.NoneType)) {
                 return;
             }
 
@@ -82,12 +81,12 @@ public class InventoryGUI implements Listener {
                         customModelData = it.getItemMeta().getCustomModelData();
                     }
 
-                    XShopType shopType = XShopDynamicShopCore.shopType.get(p.getUniqueId());
-                    int page = XShopDynamicShopCore.shopPage.get(p.getUniqueId());
+                    XShopType shopType = core.shopType.get(p.getUniqueId());
+                    int page = core.shopPage.get(p.getUniqueId());
 
                     XShopDynamic shop = null;
 
-                    for (XShopDynamic shopList : XShopDynamicShopCore.shopList) {
+                    for (XShopDynamic shopList : core.shopList) {
                         if (shopList.getShopType().equals(shopType)) {
                             shop = shopList;
                         }
@@ -109,17 +108,17 @@ public class InventoryGUI implements Listener {
                                             e.setCancelled(true);
                                             return;
                                         }
-                                        XShopDynamicShopCore.shopPage.put(p.getUniqueId(), XShopDynamicShopCore.shopPage.get(p.getUniqueId()) + 1);
-                                        XShop.openInv(p, XShopDynamicShopCore.shopType.get(p.getUniqueId()),
-                                                XShopDynamicShopCore.shopPage.get(p.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(p.getUniqueId()));
+                                        core.shopPage.put(p.getUniqueId(), core.shopPage.get(p.getUniqueId()) + 1);
+                                        XShop.openInv(p, core.shopType.get(p.getUniqueId()),
+                                                core.shopPage.get(p.getUniqueId()),true, core.isUsingSpecialShop.get(p.getUniqueId()));
                                     }
                                 }
 
                             } else if (pre_menu.equals("previous_page") || pre_menu.equals("previous_page_s") ) {
-                                if (XShopDynamicShopCore.shopPage.get(p.getUniqueId()) > 1) {
-                                    XShopDynamicShopCore.shopPage.put(p.getUniqueId(), XShopDynamicShopCore.shopPage.get(p.getUniqueId()) - 1);
-                                    XShop.openInv(p, XShopDynamicShopCore.shopType.get(p.getUniqueId()),
-                                            XShopDynamicShopCore.shopPage.get(p.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(p.getUniqueId()));
+                                if (core.shopPage.get(p.getUniqueId()) > 1) {
+                                    core.shopPage.put(p.getUniqueId(), core.shopPage.get(p.getUniqueId()) - 1);
+                                    XShop.openInv(p, core.shopType.get(p.getUniqueId()),
+                                            core.shopPage.get(p.getUniqueId()),true, core.isUsingSpecialShop.get(p.getUniqueId()));
                                 }
                             }
                             return;
@@ -137,23 +136,23 @@ public class InventoryGUI implements Listener {
                         XShopItems itemClicked = null;
                         if(!isSpecial) {
                             if(shopType.equals(XShopType.New_block)) {
-                                itemClicked = XShopDynamicShopCore.newBlockShops.get(indexClickedSlot + ((page * config.customConfig.getIntegerList("gui." + slotType).size())
+                                itemClicked = core.newBlockShops.get(indexClickedSlot + ((page * config.customConfig.getIntegerList("gui." + slotType).size())
                                         - config.customConfig.getIntegerList("gui." + slotType).size()));
                             } else {
                                 itemClicked = shop.getShopItems().get(indexClickedSlot + ((page * config.customConfig.getIntegerList("gui." + slotType).size())
                                         - config.customConfig.getIntegerList("gui." + slotType).size()));
                             }
                         } else {
-                            if(XShopDynamicShopCore.shopType.get(p.getUniqueId()).equals(XShopType.Seasonitems)) {
-                                itemClicked = XShopDynamicShopCore.seasonShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName())
+                            if(core.shopType.get(p.getUniqueId()).equals(XShopType.Seasonitems)) {
+                                itemClicked = core.seasonShops.get(core.seasonsAPI.getSeason().getSeasonRealName())
                                         .get(indexClickedSlot + ((page * config.customConfig.getIntegerList("gui." + slotType).size())
                                                 - config.customConfig.getIntegerList("gui." + slotType).size()));
-                            } else if(XShopDynamicShopCore.shopType.get(p.getUniqueId()).equals(XShopType.Fishing)) {
-                                itemClicked = XShopDynamicShopCore.fishShops.get(XShopDynamicShopCore.seasonsAPI.getSeason().getSeasonRealName())
+                            } else if(core.shopType.get(p.getUniqueId()).equals(XShopType.Fishing)) {
+                                itemClicked = core.fishShops.get(core.seasonsAPI.getSeason().getSeasonRealName())
                                         .get(indexClickedSlot + ((page * config.customConfig.getIntegerList("gui." + slotType).size())
                                                 - config.customConfig.getIntegerList("gui." + slotType).size()));
-                            } else if(XShopDynamicShopCore.shopType.get(p.getUniqueId()).equals(XShopType.Foods)) {
-                                itemClicked = XShopDynamicShopCore.foodsShops.get(indexClickedSlot + ((page * config.customConfig.getIntegerList("gui." + slotType).size())
+                            } else if(core.shopType.get(p.getUniqueId()).equals(XShopType.Foods)) {
+                                itemClicked = core.foodsShops.get(indexClickedSlot + ((page * config.customConfig.getIntegerList("gui." + slotType).size())
                                                 - config.customConfig.getIntegerList("gui." + slotType).size()));
                             }
                             //p.sendMessage(itemClicked.getPrivateName());
@@ -179,32 +178,11 @@ public class InventoryGUI implements Listener {
 
                         if(e.getClick().equals(ClickType.LEFT)) {
                             if(itemClicked.getItemsType().equals(XShopItemsType.SELL_ONLY)) {
-                                XShopConfirm.openGUI(p,mat,itemClicked.getPrivateName(),false);
+                                XShopConfirm.openGUI(p,mat,itemClicked.getPrivateName(),XShopConfirmType.SELL_ONLY);
+                            } else if(itemClicked.getItemsType().equals(XShopItemsType.BUY_ONLY)) {
+                                XShopConfirm.openGUI(p,mat,itemClicked.getPrivateName(),XShopConfirmType.BUY_ONLY);
                             } else {
-                                if(itemClicked.getItemsType().equals(XShopItemsType.CUSTOM)) {
-                                    XShopItemsCustom itemClickedCustom = (XShopItemsCustom) itemClicked;
-
-                                    if(itemClickedCustom.getCustomType().equalsIgnoreCase("normal")
-                                    || itemClickedCustom.getCustomType().equalsIgnoreCase("buy")) {
-                                        XShopConfirm.openGUI(p,mat,itemClicked.getPrivateName(),true);
-                                    } else {
-
-                                        XShopConfirm.openGUI(p,mat,itemClicked.getPrivateName(),false);
-                                    }
-                                    return;
-                                }
-                                XShopConfirm.openGUI(p,mat,itemClicked.getPrivateName(),true);
-                            }
-                        } else if(e.getClick().equals(ClickType.RIGHT)) {
-                            if(!itemClicked.getItemsType().equals(XShopItemsType.SELL_ONLY)
-                            && !itemClicked.getItemsType().equals(XShopItemsType.BUY_ONLY)) {
-                                if(itemClicked.getItemsType().equals(XShopItemsType.CUSTOM)) {
-                                    XShopItemsCustom itemClickedCustom = (XShopItemsCustom) itemClicked;
-                                    if(!itemClickedCustom.getCustomType().equalsIgnoreCase("normal")) {
-                                        return;
-                                    }
-                                }
-                                XShopConfirm.openGUI(p,mat,itemClicked.getPrivateName(),false);
+                                XShopConfirm.openGUI(p,mat,itemClicked.getPrivateName(),XShopConfirmType.NORMAL);
                             }
                         }
 
@@ -223,410 +201,408 @@ public class InventoryGUI implements Listener {
 
         Player p = (Player) e.getWhoClicked();
 
-        if(e.getView().getTitle().equalsIgnoreCase(config.customConfig.getString("gui_confirm.title_buy").replace("&","§")
-        ) || e.getView().getTitle().equalsIgnoreCase(config.customConfig.getString("gui_confirm.title_sell").replace("&","§"))) {
+        if(e.getView().getTitle().equalsIgnoreCase(config.customConfig.getString("gui_confirm.title").replace("&","§"))) {
+            e.setCancelled(true);
             if(e.getSlot() < 0) {
                 return;
             }
             if(e.getClickedInventory().equals(e.getView().getBottomInventory())){
-                e.setCancelled(true);
                 return;
             }
             ItemStack it = e.getCurrentItem();
-            e.setCancelled(true);
 
             if(it != null) {
                 if(it.hasItemMeta()) {
-                    if(e.getSlot() == 30) {
-                        XShop.openInv(p, XShopDynamicShopCore.shopType.get(p.getUniqueId()),
-                                XShopDynamicShopCore.shopPage.get(p.getUniqueId()),false,XShopDynamicShopCore.isUsingSpecialShop.get(p.getUniqueId()));
+                    if(e.getSlot() == 48) {
+                        XShop.openInv(p, core.shopType.get(p.getUniqueId()),
+                                core.shopPage.get(p.getUniqueId()),false, core.isUsingSpecialShop.get(p.getUniqueId()));
                     } else {
-                        if(e.getSlot() >= 10 && e.getSlot() <= 16 && e.getClick().equals(ClickType.LEFT)) {
-                            XShopItems shopItems = XShopDynamicShopCore.getItemsByPrivateNameAndShop(XShopDynamicShopCore.shopType.get(p.getUniqueId()),
-                                    XShopDynamicShopCore.shopPrivateName.get(p.getUniqueId()));
-                            DecimalFormat df = new DecimalFormat("#.00");
-                            if(XShopDynamicShopCore.shopConfirmType.get(p.getUniqueId()).equals(XShopConfirmType.BUY)) {
 
-                                if(System.currentTimeMillis() - XShopDynamicShopCore.getBuyTempDisable().get(p) <= 0L) {
-                                    p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("cant_buy_temp_dsabled")).replace("&","§"));
+                        if(it.getItemMeta().getDisplayName().equalsIgnoreCase(config.customConfig.getString("gui.none_sell.displayName").replace("&","§"))
+                        || it.getItemMeta().getDisplayName().equalsIgnoreCase(config.customConfig.getString("gui.none_buy.displayName").replace("&","§"))) {
+                            return;
+                        }
+
+                        XShopItems shopItems = core.getItemsByPrivateNameAndShop(core.shopType.get(p.getUniqueId()),
+                                core.shopPrivateName.get(p.getUniqueId()));
+                        DecimalFormat df = new DecimalFormat("#.00");
+                        if(e.getSlot() >= 11 && e.getSlot() <= 17 && e.getClick().equals(ClickType.LEFT)) {
+                            if(System.currentTimeMillis() - core.getBuyTempDisable().get(p) <= 0L) {
+                                p.sendMessage((core.prefix + messages.customConfig.getString("cant_buy_temp_dsabled")).replace("&","§"));
+                                return;
+                            }
+
+                            double price = 0;
+                            Material mat = null;
+
+                            if(p.getInventory().firstEmpty() == -1) { //full
+                                p.sendMessage((core.prefix + messages.customConfig.getString("inventory_full")).replace("&","§"));
+                                return;
+                            }
+
+                            if(shopItems.getStock() == -1) {
+                                price = shopItems.getValue()*shopItems.getMedian()*Math.pow(2,e.getSlot()-11);
+                            } else {
+                                if(shopItems.getStock()-Math.pow(2,e.getSlot()-11) >= 1) {
+                                    price = core.shopConfirmPrice.get(p.getUniqueId()).get((e.getSlot()-11));
+                                    //Bukkit.broadcastMessage("PRICE: " + price);
+                                } else {
+                                    p.sendMessage((core.prefix + messages.customConfig.getString("out_of_stock")).replace("&","§"));
                                     return;
                                 }
+                            }
 
-                                double price = 0;
-                                Material mat = null;
+                            if(price <= 0) {
+                                return;
+                            }
 
-                                if(p.getInventory().firstEmpty() == -1) { //full
-                                    p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("inventory_full")).replace("&","§"));
+                            boolean isSeason = false;
+
+                            if(!shopItems.getCustomTags().isEmpty()) {
+                                String season = shopItems.getCustomTags().split(":")[1];
+                                XSAPISeasons seasonsAPI = new XSAPISeasons();
+
+                                if(seasonsAPI.getSeason().getSeasonRealName().equalsIgnoreCase(season)) {
+                                    isSeason = true;
+                                }
+                            }
+                            if(isSeason) {
+                                price = price * 125 /100;
+                            }
+
+                            if(shopItems.getPriceType().equals(XShopPriceType.Points)) {
+                                if((core.getPlayerPoint().look(p.getUniqueId()))-price < 0) {
+                                    p.sendMessage((core.prefix + messages.customConfig.getString("point_not_enough")).replace("&","§"));
                                     return;
                                 }
-
-                                if(shopItems.getStock() == -1) {
-                                    price = shopItems.getValue()*shopItems.getMedian()*Math.pow(2,e.getSlot()-10);
-                                } else {
-                                    if(shopItems.getStock()-Math.pow(2,e.getSlot()-10) >= 1) {
-                                        price = XShopDynamicShopCore.shopConfirmPrice.get(p.getUniqueId()).get((e.getSlot()-10));
-                                        //Bukkit.broadcastMessage("PRICE: " + price);
-                                    } else {
-                                        p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("out_of_stock")).replace("&","§"));
-                                        return;
-                                    }
-                                }
-
-                                if(price <= 0) {
+                            } else {
+                                if(core.getEconomy().getBalance(p.getName())-price < 0) {
+                                    p.sendMessage((core.prefix + messages.customConfig.getString("money_not_enough")).replace("&","§"));
                                     return;
                                 }
+                            }
 
-                                boolean isSeason = false;
 
-                                if(!shopItems.getCustomTags().isEmpty()) {
-                                    String season = shopItems.getCustomTags().split(":")[1];
-                                    XSAPISeasons seasonsAPI = new XSAPISeasons();
+                            if(shopItems.getStock() != -1) {
+                                shopItems.setStock(shopItems.getStock()-Math.pow(2,e.getSlot()-11));
+                            }
 
-                                    if(seasonsAPI.getSeason().getSeasonRealName().equalsIgnoreCase(season)) {
-                                        isSeason = true;
-                                    }
+                            shopItems.setVolumeBuy(shopItems.getVolumeBuy()+(int) Math.pow(2,e.getSlot()-11));
+
+                            if(shopItems.getPriceType().equals(XShopPriceType.Points)) {
+                                core.getPlayerPoint().take(p.getUniqueId(),(int) price);
+                            } else {
+                                core.getEconomy().withdrawPlayer(p.getName(),price);
+                            }
+
+                            if(shopItems.getItemsType().equals(XShopItemsType.CUSTOM)) {
+
+                                XShopItemsCustom xsitemcustom = (XShopItemsCustom) shopItems;
+                                for(String cmd : xsitemcustom.getCmd()) {
+                                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(),cmd.replace("%amount%",""+(int) Math.pow(2,e.getSlot()-11)).replace("%player%",p.getName()));
                                 }
-                                if(isSeason) {
-                                    price = price * 125 /100;
-                                }
-
-                                if(shopItems.getPriceType().equals(XShopPriceType.Points)) {
-                                    if((XShopDynamicShopCore.getPlayerPoint().look(p.getUniqueId()))-price < 0) {
-                                        p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("point_not_enough")).replace("&","§"));
-                                        return;
-                                    }
+                                if(xsitemcustom.getCustomStorage()) {
+                                    ItemStack itMS = storages.customConfig.getItemStack(xsitemcustom.getStorageName());
+                                    mat = itMS.getType();
+                                    itMS.setAmount((int) Math.pow(2,e.getSlot()-11));
+                                    p.getInventory().addItem(itMS);
                                 } else {
-                                    if(XShopDynamicShopCore.getEconomy().getBalance(p.getName())-price < 0) {
-                                        p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("money_not_enough")).replace("&","§"));
-                                        return;
-                                    }
-                                }
 
-
-                                if(shopItems.getStock() != -1) {
-                                    shopItems.setStock(shopItems.getStock()-Math.pow(2,e.getSlot()-10));
-                                }
-
-                                shopItems.setVolumeBuy(shopItems.getVolumeBuy()+(int) Math.pow(2,e.getSlot()-10));
-
-                                if(shopItems.getPriceType().equals(XShopPriceType.Points)) {
-                                    XShopDynamicShopCore.getPlayerPoint().take(p.getUniqueId(),(int) price);
-                                } else {
-                                    XShopDynamicShopCore.getEconomy().withdrawPlayer(p.getName(),price);
-                                }
-
-                                if(shopItems.getItemsType().equals(XShopItemsType.CUSTOM)) {
-
-                                    XShopItemsCustom xsitemcustom = (XShopItemsCustom) shopItems;
-                                    for(String cmd : xsitemcustom.getCmd()) {
-                                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),cmd.replace("%amount%",""+(int) Math.pow(2,e.getSlot()-10)).replace("%player%",p.getName()));
-                                    }
-                                    if(xsitemcustom.getCustomStorage()) {
-                                        ItemStack itMS = storages.customConfig.getItemStack(xsitemcustom.getStorageName());
-                                        mat = itMS.getType();
-                                        itMS.setAmount((int) Math.pow(2,e.getSlot()-10));
-                                        p.getInventory().addItem(itMS);
-                                    } else {
-
-                                        mat = shopItems.getMat();
-                                    }
-                                } else {
                                     mat = shopItems.getMat();
-                                    ItemStack itmstack = new ItemStack(mat,(int) Math.pow(2,e.getSlot()-10));
-
-                                    if(shopItems.getCustomModelData() != -1) {
-                                        ItemMeta itmstackMeta = itmstack.getItemMeta();
-                                        itmstackMeta.setCustomModelData(shopItems.getCustomModelData());
-                                        itmstack.setItemMeta(itmstackMeta);
-                                    }
-
-                                    if(!shopItems.getCustomTags().isEmpty()) {
-
-                                        if(shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_SEASON")) {
-                                            String name = ChatColor.stripColor(shopItems.getCustomTags().split(":")[2].replace("&","§"));
-                                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"iagive " + p.getName() + " customcrops:" + name.toLowerCase() + " " + itmstack.getAmount() + " silent");
-                                        }
-                                        if(shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_FISH")) {
-                                            String name = ChatColor.stripColor(shopItems.getCustomTags().split(":")[2].replace("&","§"));
-                                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"iagive " + p.getName() + " customfishing:" + name.toLowerCase().replace(" ","_") + " " + itmstack.getAmount() + " silent");
-                                        }
-                                    } else {
-                                        p.getInventory().addItem(itmstack);
-                                    }
                                 }
-                                XShopConfirm.openGUI(p,mat,XShopDynamicShopCore.shopPrivateName.get(p.getUniqueId()),true);
-                                p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("buy_complete")).replace("%price%",df.format(price))
-                                        .replace("%price_type%",messages.customConfig.getString("price_" + shopItems.getPriceType().toString().toLowerCase())).replace("&","§"));
+                            } else {
+                                mat = shopItems.getMat();
+                                ItemStack itmstack = new ItemStack(mat,(int) Math.pow(2,e.getSlot()-11));
 
-                                String title = e.getCurrentItem().getItemMeta().getDisplayName();
-                                title = title.replace("x1","")
-                                        .replace("x2","")
-                                        .replace("x4","")
-                                        .replace("x8","")
-                                        .replace("x16","")
-                                        .replace("x32","")
-                                        .replace("x64","");
-                                int clickAmount = (int) Math.pow(2,e.getSlot()-10);
-                                if(XShopDynamicShopCore.getBuyAmountCooldown().get(p).containsKey(title)) {
+                                if(shopItems.getCustomModelData() != -1) {
+                                    ItemMeta itmstackMeta = itmstack.getItemMeta();
+                                    itmstackMeta.setCustomModelData(shopItems.getCustomModelData());
+                                    itmstack.setItemMeta(itmstackMeta);
+                                }
 
-                                    int current =  XShopDynamicShopCore.getBuyAmountCooldown().get(p).get(title);
-                                    XShopDynamicShopCore.getBuyAmountCooldown().get(p).put(title,clickAmount+current);
-                                   // p.sendMessage("Contain current is " +XShopDynamicShopCore.getBuyAmountCooldown().get(p).get(title));
-                                   // p.sendMessage("Click is " + clickAmount);
+                                if(!shopItems.getCustomTags().isEmpty()) {
+
+                                    if(shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_SEASON")) {
+                                        String name = ChatColor.stripColor(shopItems.getCustomTags().split(":")[2].replace("&","§"));
+                                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"iagive " + p.getName() + " customcrops:" + name.toLowerCase() + " " + itmstack.getAmount() + " silent");
+                                    }
+                                    if(shopItems.getCustomTags().split(":")[0].equalsIgnoreCase("XS_FISH")) {
+                                        String name = ChatColor.stripColor(shopItems.getCustomTags().split(":")[2].replace("&","§"));
+                                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"iagive " + p.getName() + " customfishing:" + name.toLowerCase().replace(" ","_") + " " + itmstack.getAmount() + " silent");
+                                    }
                                 } else {
-                                    XShopDynamicShopCore.getBuyAmountCooldown().get(p).put(title,clickAmount);
-                                   // p.sendMessage("Not have added " + title + " " + clickAmount);
+                                    p.getInventory().addItem(itmstack);
                                 }
+                            }
+                            XShopConfirm.openGUI(p,mat, core.shopPrivateName.get(p.getUniqueId()),core.shopConfirmType.get(p.getUniqueId()));
+                            p.sendMessage((core.prefix + messages.customConfig.getString("buy_complete")).replace("%price%",df.format(price))
+                                    .replace("%price_type%",messages.customConfig.getString("price_" + shopItems.getPriceType().toString().toLowerCase())).replace("&","§"));
 
-                                if(XShopDynamicShopCore.getBuyAmountCooldown().get(p).get(title) >= 64) {
-                                   // p.sendMessage("COOLDOWN 2 secs");
-                                    XShopDynamicShopCore.getBuyTempDisable().put(p,System.currentTimeMillis()+2000L);
-                                    XShopDynamicShopCore.getBuyAmountCooldown().get(p).put(title,0);
-                                }
+                            String title = e.getCurrentItem().getItemMeta().getDisplayName();
+                            title = title.replace("x1","")
+                                    .replace("x2","")
+                                    .replace("x4","")
+                                    .replace("x8","")
+                                    .replace("x16","")
+                                    .replace("x32","")
+                                    .replace("x64","");
+                            int clickAmount = (int) Math.pow(2,e.getSlot()-11);
+                            if(core.getBuyAmountCooldown().get(p).containsKey(title)) {
 
-                            } else if(XShopDynamicShopCore.shopConfirmType.get(p.getUniqueId()).equals(XShopConfirmType.SELL)){
+                                int current =  core.getBuyAmountCooldown().get(p).get(title);
+                                core.getBuyAmountCooldown().get(p).put(title,clickAmount+current);
+                                // p.sendMessage("Contain current is " +XShopDynamicShopCore.getBuyAmountCooldown().get(p).get(title));
+                                // p.sendMessage("Click is " + clickAmount);
+                            } else {
+                                core.getBuyAmountCooldown().get(p).put(title,clickAmount);
+                                // p.sendMessage("Not have added " + title + " " + clickAmount);
+                            }
 
-                                if(System.currentTimeMillis() - XShopDynamicShopCore.getSellTempDisable().get(p) <= 0L) {
-                                    p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("cant_sell_temp_dsabled")).replace("&","§"));
+                            if(core.getBuyAmountCooldown().get(p).get(title) >= 64) {
+                                // p.sendMessage("COOLDOWN 2 secs");
+                                core.getBuyTempDisable().put(p,System.currentTimeMillis()+2000L);
+                                core.getBuyAmountCooldown().get(p).put(title,0);
+                            }
+
+                        } else if(e.getSlot() >= 29 && e.getSlot() <= 35 && e.getClick().equals(ClickType.LEFT)) {
+                            if(System.currentTimeMillis() - core.getSellTempDisable().get(p) <= 0L) {
+                                p.sendMessage((core.prefix + messages.customConfig.getString("cant_sell_temp_dsabled")).replace("&","§"));
+                                return;
+                            }
+
+                            double price = 0;
+                            ItemStack itmstack = null;
+                            boolean isNormalItemSell = true;
+
+                            if(shopItems.getItemsType().equals(XShopItemsType.CUSTOM)) {
+                                XShopItemsCustom shopItemsCustom = (XShopItemsCustom) shopItems;
+
+                                if(shopItemsCustom.getIsCustomItemStorageSell()) {
+                                    itmstack = shopItemsCustom.getItemStack();
+                                    isNormalItemSell = false;
+
+                                } else {
+                                    p.sendMessage("§cItem cannot sell!");
                                     return;
                                 }
 
-                                double price = 0;
-                                ItemStack itmstack = null;
-                                boolean isNormalItemSell = true;
+                            } else {
+                                itmstack = new ItemStack(shopItems.getMat());
 
-                                if(shopItems.getItemsType().equals(XShopItemsType.CUSTOM)) {
-                                    XShopItemsCustom shopItemsCustom = (XShopItemsCustom) shopItems;
-
-                                    if(shopItemsCustom.getIsCustomItemStorageSell()) {
-                                        itmstack = shopItemsCustom.getItemStack();
-                                        isNormalItemSell = false;
-
-                                    } else {
-                                        p.sendMessage("§cItem cannot sell!");
-                                        return;
-                                    }
-
-                                } else {
-                                    itmstack = new ItemStack(shopItems.getMat());
-
-                                    if(shopItems.getCustomModelData() != -1) {
-                                        ItemMeta itmstackMeta = itmstack.getItemMeta();
-                                        itmstackMeta.setCustomModelData(shopItems.getCustomModelData());
-                                        itmstack.setItemMeta(itmstackMeta);
-                                    }
-
+                                if(shopItems.getCustomModelData() != -1) {
+                                    ItemMeta itmstackMeta = itmstack.getItemMeta();
+                                    itmstackMeta.setCustomModelData(shopItems.getCustomModelData());
+                                    itmstack.setItemMeta(itmstackMeta);
                                 }
-                                int itemsToRemove = (int) Math.pow(2,e.getSlot()-10);
 
-                                if(shopItems.getCustomTags().isEmpty()) {
-                                    if(!p.getInventory().containsAtLeast(itmstack,(int) Math.pow(2,e.getSlot()-10))) {
-                                        p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("not_enough_item")).replace("%price%",df.format(price))
-                                                .replace("&","§"));
-                                        return;
-                                    }
-                                } else {
-                                    int have = 0;
-                                    for(ItemStack invItem : p.getInventory().getContents()) {
-                                        if (invItem != null) {
-                                            if (invItem.getType().equals(itmstack.getType())) {
-                                                if (shopItems.getCustomModelData() != -1) {
-                                                    if (!invItem.hasItemMeta()) {
+                            }
+                            int itemsToRemove = (int) Math.pow(2,e.getSlot()-29);
+
+                            if(shopItems.getCustomTags().isEmpty()) {
+                                if(!p.getInventory().containsAtLeast(itmstack,(int) Math.pow(2,e.getSlot()-29))) {
+                                    p.sendMessage((core.prefix + messages.customConfig.getString("not_enough_item")).replace("%price%",df.format(price))
+                                            .replace("&","§"));
+                                    return;
+                                }
+                            } else {
+                                int have = 0;
+                                for(ItemStack invItem : p.getInventory().getContents()) {
+                                    if (invItem != null) {
+                                        if (invItem.getType().equals(itmstack.getType())) {
+                                            if (shopItems.getCustomModelData() != -1) {
+                                                if (!invItem.hasItemMeta()) {
+                                                    continue;
+                                                }
+                                                if(invItem.getItemMeta().hasCustomModelData()) {
+                                                    if (invItem.getItemMeta().getCustomModelData() != shopItems.getCustomModelData()) {
                                                         continue;
                                                     }
-                                                    if(invItem.getItemMeta().hasCustomModelData()) {
-                                                        if (invItem.getItemMeta().getCustomModelData() != shopItems.getCustomModelData()) {
-                                                            continue;
-                                                        }
 
-                                                        have += invItem.getAmount();
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    if(have < itemsToRemove) {
-                                        p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("not_enough_item")).replace("%price%",df.format(price))
-                                                .replace("&","§"));
-                                        return;
-                                    }
-                                }
-
-
-
-                                if((shopItems.getStock() == -1)) {
-                                    price = (shopItems.getValue()*shopItems.getMedian()*75/100)*Math.pow(2,e.getSlot()-10);
-                                } else {
-                                    //price = Math.pow(2,e.getSlot()-10)*(((shopItems.getValue()*shopItems.getMedian())/shopItems.getStock()*75/100));
-                                    price = XShopDynamicShopCore.shopConfirmPriceSell.get(p.getUniqueId()).get(e.getSlot()-10);
-                                    shopItems.setStock(shopItems.getStock()+Math.pow(2,e.getSlot()-10));
-                                }
-
-                                boolean isSeason = false;
-
-                                if(!shopItems.getCustomTags().isEmpty()) {
-                                    String season = shopItems.getCustomTags().split(":")[1];
-                                    XSAPISeasons seasonsAPI = new XSAPISeasons();
-
-                                    if(seasonsAPI.getSeason().getSeasonRealName().equalsIgnoreCase(season)) {
-                                        isSeason = true;
-                                    }
-                                }
-                                if(isSeason) {
-                                    price = price * 125 /100;
-                                }
-
-                                shopItems.setVolumeSell(shopItems.getVolumeSell()+itemsToRemove);
-
-                                if(isNormalItemSell) {
-                                    for(ItemStack invItem : p.getInventory().getContents()) {
-                                        if(invItem != null) {
-                                            if(invItem.getType().equals(itmstack.getType())) {
-                                                if(shopItems.getCustomModelData() != -1) {
-                                                    if(!invItem.hasItemMeta()) {
-                                                        continue;
-                                                    }
-                                                    if(invItem.getItemMeta().hasCustomModelData()) {
-                                                        if(invItem.getItemMeta().getCustomModelData() != shopItems.getCustomModelData()) {
-                                                            continue;
-                                                        }
-                                                    }
-                                                }
-
-                                                if(shopItems.getCustomTags().isEmpty()) {
-                                                    if(invItem.hasItemMeta()) {
-                                                        if(!itmstack.hasItemMeta()) {
-                                                            continue;
-                                                        }
-                                                        if(invItem.getItemMeta().hasDisplayName()) {
-                                                            continue;
-                                                        }
-                                                        if(invItem.getItemMeta().hasEnchants()) {
-                                                            continue;
-                                                        }
-                                                        if(invItem.getItemMeta().hasLore()) {
-                                                            continue;
-                                                        }
-                                                        if(invItem.getItemMeta().hasAttributeModifiers()) {
-                                                            continue;
-                                                        }
-                                                    }
-                                                }
-
-                                                int preAmount = invItem.getAmount();
-                                                int newAmount = Math.max(0, preAmount - itemsToRemove);
-                                                itemsToRemove = Math.max(0, itemsToRemove - preAmount);
-                                                invItem.setAmount(newAmount);
-                                                if(itemsToRemove == 0) {
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                    }
-                                } else {
-                                    for(ItemStack invItem : p.getInventory().getContents()) {
-                                        if (invItem != null) {
-                                            if(invItem.getType().equals(itmstack.getType())) {
-                                                if(itmstack.hasItemMeta()) {
-                                                    if(!invItem.hasItemMeta()) {
-                                                        continue;
-                                                    }
-                                                    if(itmstack.getItemMeta().hasDisplayName() || invItem.getItemMeta().hasDisplayName()) {
-                                                        if(!invItem.getItemMeta().hasDisplayName() || !itmstack.getItemMeta().hasDisplayName()) {
-                                                            continue;
-                                                        }
-                                                        if(!itmstack.getItemMeta().getDisplayName().equalsIgnoreCase(invItem.getItemMeta().getDisplayName())) {
-                                                            continue;
-                                                        }
-                                                    }
-                                                    if(itmstack.getItemMeta().hasLore() || invItem.getItemMeta().hasLore()) {
-                                                        if(!invItem.getItemMeta().hasLore() || !itmstack.getItemMeta().hasLore()) {
-                                                            continue;
-                                                        }
-                                                        if(!itmstack.getItemMeta().getLore().equals(invItem.getItemMeta().getLore())) {
-                                                            continue;
-                                                        }
-                                                    }
-                                                    if(itmstack.getItemMeta().hasEnchants() || invItem.getItemMeta().hasEnchants()) {
-                                                        if(!invItem.getItemMeta().hasEnchants() || !itmstack.getItemMeta().hasEnchants()) {
-                                                            continue;
-                                                        }
-                                                        if(!itmstack.getEnchantments().equals(invItem.getEnchantments())) {
-                                                            continue;
-                                                        }
-                                                    }
-                                                    if(itmstack.getItemMeta().hasCustomModelData() || invItem.getItemMeta().hasCustomModelData()) {
-                                                        if(!invItem.getItemMeta().hasCustomModelData() || !itmstack.getItemMeta().hasCustomModelData()) {
-                                                            continue;
-                                                        }
-                                                        if(itmstack.getItemMeta().getCustomModelData() != invItem.getItemMeta().getCustomModelData()) {
-                                                            continue;
-                                                        }
-                                                    }
-                                                } else {
-                                                    if(invItem.hasItemMeta()) {
-                                                        continue;
-                                                    }
-                                                }
-                                                int preAmount = invItem.getAmount();
-                                                int newAmount = Math.max(0, preAmount - itemsToRemove);
-                                                itemsToRemove = Math.max(0, itemsToRemove - preAmount);
-                                                invItem.setAmount(newAmount);
-                                                if(itemsToRemove == 0) {
-                                                    break;
+                                                    have += invItem.getAmount();
                                                 }
                                             }
                                         }
                                     }
                                 }
 
-                                if(shopItems.getPriceType().equals(XShopPriceType.Points)) {
-                                    XShopDynamicShopCore.getPlayerPoint().give(p.getUniqueId(),(int) price);
-                                } else {
-                                    XShopDynamicShopCore.getEconomy().depositPlayer(p.getName(),price);
+                                if(have < itemsToRemove) {
+                                    p.sendMessage((core.prefix + messages.customConfig.getString("not_enough_item")).replace("%price%",df.format(price))
+                                            .replace("&","§"));
+                                    return;
                                 }
+                            }
 
-                                p.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("sell_complete")).replace("%price%",df.format(price))
-                                        .replace("%price_type%",messages.customConfig.getString("price_" + shopItems.getPriceType().toString().toLowerCase())).replace("&","§"));
 
-                                if(isNormalItemSell) {
-                                    XShopConfirm.openGUI(p,itmstack.getType(),XShopDynamicShopCore.shopPrivateName.get(p.getUniqueId()),false);
-                                } else {
-                                    if(((XShopItemsCustom) shopItems).getCustomStorage()) { //use customItemStorage
-                                        XShopConfirm.openGUI(p,itmstack.getType(),XShopDynamicShopCore.shopPrivateName.get(p.getUniqueId()),false);
-                                    } else {
-                                        XShopConfirm.openGUI(p,shopItems.getMat(),XShopDynamicShopCore.shopPrivateName.get(p.getUniqueId()),false);
 
+                            if((shopItems.getStock() == -1)) {
+                                price = (shopItems.getValue()*shopItems.getMedian()*75/100)*Math.pow(2,e.getSlot()-29);
+                            } else {
+                                //price = Math.pow(2,e.getSlot()-10)*(((shopItems.getValue()*shopItems.getMedian())/shopItems.getStock()*75/100));
+                                price = core.shopConfirmPriceSell.get(p.getUniqueId()).get(e.getSlot()-29);
+                                shopItems.setStock(shopItems.getStock()+Math.pow(2,e.getSlot()-29));
+                            }
+
+                            boolean isSeason = false;
+
+                            if(!shopItems.getCustomTags().isEmpty()) {
+                                String season = shopItems.getCustomTags().split(":")[1];
+                                XSAPISeasons seasonsAPI = new XSAPISeasons();
+
+                                if(seasonsAPI.getSeason().getSeasonRealName().equalsIgnoreCase(season)) {
+                                    isSeason = true;
+                                }
+                            }
+                            if(isSeason) {
+                                price = price * 125 /100;
+                            }
+
+                            shopItems.setVolumeSell(shopItems.getVolumeSell()+itemsToRemove);
+
+                            if(isNormalItemSell) {
+                                for(ItemStack invItem : p.getInventory().getContents()) {
+                                    if(invItem != null) {
+                                        if(invItem.getType().equals(itmstack.getType())) {
+                                            if(shopItems.getCustomModelData() != -1) {
+                                                if(!invItem.hasItemMeta()) {
+                                                    continue;
+                                                }
+                                                if(invItem.getItemMeta().hasCustomModelData()) {
+                                                    if(invItem.getItemMeta().getCustomModelData() != shopItems.getCustomModelData()) {
+                                                        continue;
+                                                    }
+                                                }
+                                            }
+
+                                            if(shopItems.getCustomTags().isEmpty()) {
+                                                if(invItem.hasItemMeta()) {
+                                                    if(!itmstack.hasItemMeta()) {
+                                                        continue;
+                                                    }
+                                                    if(invItem.getItemMeta().hasDisplayName()) {
+                                                        continue;
+                                                    }
+                                                    if(invItem.getItemMeta().hasEnchants()) {
+                                                        continue;
+                                                    }
+                                                    if(invItem.getItemMeta().hasLore()) {
+                                                        continue;
+                                                    }
+                                                    if(invItem.getItemMeta().hasAttributeModifiers()) {
+                                                        continue;
+                                                    }
+                                                }
+                                            }
+
+                                            int preAmount = invItem.getAmount();
+                                            int newAmount = Math.max(0, preAmount - itemsToRemove);
+                                            itemsToRemove = Math.max(0, itemsToRemove - preAmount);
+                                            invItem.setAmount(newAmount);
+                                            if(itemsToRemove == 0) {
+                                                break;
+                                            }
+                                        }
                                     }
                                 }
+                            } else {
+                                for(ItemStack invItem : p.getInventory().getContents()) {
+                                    if (invItem != null) {
+                                        if(invItem.getType().equals(itmstack.getType())) {
+                                            if(itmstack.hasItemMeta()) {
+                                                if(!invItem.hasItemMeta()) {
+                                                    continue;
+                                                }
+                                                if(itmstack.getItemMeta().hasDisplayName() || invItem.getItemMeta().hasDisplayName()) {
+                                                    if(!invItem.getItemMeta().hasDisplayName() || !itmstack.getItemMeta().hasDisplayName()) {
+                                                        continue;
+                                                    }
+                                                    if(!itmstack.getItemMeta().getDisplayName().equalsIgnoreCase(invItem.getItemMeta().getDisplayName())) {
+                                                        continue;
+                                                    }
+                                                }
+                                                if(itmstack.getItemMeta().hasLore() || invItem.getItemMeta().hasLore()) {
+                                                    if(!invItem.getItemMeta().hasLore() || !itmstack.getItemMeta().hasLore()) {
+                                                        continue;
+                                                    }
+                                                    if(!itmstack.getItemMeta().getLore().equals(invItem.getItemMeta().getLore())) {
+                                                        continue;
+                                                    }
+                                                }
+                                                if(itmstack.getItemMeta().hasEnchants() || invItem.getItemMeta().hasEnchants()) {
+                                                    if(!invItem.getItemMeta().hasEnchants() || !itmstack.getItemMeta().hasEnchants()) {
+                                                        continue;
+                                                    }
+                                                    if(!itmstack.getEnchantments().equals(invItem.getEnchantments())) {
+                                                        continue;
+                                                    }
+                                                }
+                                                if(itmstack.getItemMeta().hasCustomModelData() || invItem.getItemMeta().hasCustomModelData()) {
+                                                    if(!invItem.getItemMeta().hasCustomModelData() || !itmstack.getItemMeta().hasCustomModelData()) {
+                                                        continue;
+                                                    }
+                                                    if(itmstack.getItemMeta().getCustomModelData() != invItem.getItemMeta().getCustomModelData()) {
+                                                        continue;
+                                                    }
+                                                }
+                                            } else {
+                                                if(invItem.hasItemMeta()) {
+                                                    continue;
+                                                }
+                                            }
+                                            int preAmount = invItem.getAmount();
+                                            int newAmount = Math.max(0, preAmount - itemsToRemove);
+                                            itemsToRemove = Math.max(0, itemsToRemove - preAmount);
+                                            invItem.setAmount(newAmount);
+                                            if(itemsToRemove == 0) {
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
 
-                                String title = e.getCurrentItem().getItemMeta().getDisplayName();
-                                title = title.replace("x1","")
-                                        .replace("x2","")
-                                        .replace("x4","")
-                                        .replace("x8","")
-                                        .replace("x16","")
-                                        .replace("x32","")
-                                        .replace("x64","");
-                                int clickAmount = (int) Math.pow(2,e.getSlot()-10);
-                                if(XShopDynamicShopCore.getSellAmountCooldown().get(p).containsKey(title)) {
+                            if(shopItems.getPriceType().equals(XShopPriceType.Points)) {
+                                core.getPlayerPoint().give(p.getUniqueId(),(int) price);
+                            } else {
+                                core.getEconomy().depositPlayer(p.getName(),price);
+                            }
 
-                                    int current =  XShopDynamicShopCore.getSellAmountCooldown().get(p).get(title);
-                                    XShopDynamicShopCore.getSellAmountCooldown().get(p).put(title,clickAmount+current);
-                                    // p.sendMessage("Contain current is " +XShopDynamicShopCore.getBuyAmountCooldown().get(p).get(title));
-                                    // p.sendMessage("Click is " + clickAmount);
+                            p.sendMessage((core.prefix + messages.customConfig.getString("sell_complete")).replace("%price%",df.format(price))
+                                    .replace("%price_type%",messages.customConfig.getString("price_" + shopItems.getPriceType().toString().toLowerCase())).replace("&","§"));
+
+                            if(isNormalItemSell) {
+                                XShopConfirm.openGUI(p,itmstack.getType(), core.shopPrivateName.get(p.getUniqueId()),core.shopConfirmType.get(p.getUniqueId()));
+                            } else {
+                                if(((XShopItemsCustom) shopItems).getCustomStorage()) { //use customItemStorage
+                                    XShopConfirm.openGUI(p,itmstack.getType(), core.shopPrivateName.get(p.getUniqueId()),core.shopConfirmType.get(p.getUniqueId()));
                                 } else {
-                                    XShopDynamicShopCore.getSellAmountCooldown().get(p).put(title,clickAmount);
-                                    // p.sendMessage("Not have added " + title + " " + clickAmount);
+                                    XShopConfirm.openGUI(p,shopItems.getMat(), core.shopPrivateName.get(p.getUniqueId()),core.shopConfirmType.get(p.getUniqueId()));
                                 }
+                            }
 
-                                if(XShopDynamicShopCore.getSellAmountCooldown().get(p).get(title) >= 64) {
-                                    // p.sendMessage("COOLDOWN 2 secs");
-                                    XShopDynamicShopCore.getSellTempDisable().put(p,System.currentTimeMillis()+2000L);
-                                    XShopDynamicShopCore.getSellAmountCooldown().get(p).put(title,0);
-                                }
+                            String title = e.getCurrentItem().getItemMeta().getDisplayName();
+                            title = title.replace("x1","")
+                                    .replace("x2","")
+                                    .replace("x4","")
+                                    .replace("x8","")
+                                    .replace("x16","")
+                                    .replace("x32","")
+                                    .replace("x64","");
+                            int clickAmount = (int) Math.pow(2,e.getSlot()-29);
+                            if(core.getSellAmountCooldown().get(p).containsKey(title)) {
 
+                                int current =  core.getSellAmountCooldown().get(p).get(title);
+                                core.getSellAmountCooldown().get(p).put(title,clickAmount+current);
+                                // p.sendMessage("Contain current is " +XShopDynamicShopCore.getBuyAmountCooldown().get(p).get(title));
+                                // p.sendMessage("Click is " + clickAmount);
+                            } else {
+                                core.getSellAmountCooldown().get(p).put(title,clickAmount);
+                                // p.sendMessage("Not have added " + title + " " + clickAmount);
+                            }
+
+                            if(core.getSellAmountCooldown().get(p).get(title) >= 64) {
+                                // p.sendMessage("COOLDOWN 2 secs");
+                                core.getSellTempDisable().put(p,System.currentTimeMillis()+2000L);
+                                core.getSellAmountCooldown().get(p).put(title,0);
                             }
                         }
 

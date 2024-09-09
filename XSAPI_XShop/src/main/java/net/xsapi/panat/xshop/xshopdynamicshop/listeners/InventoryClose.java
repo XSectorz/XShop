@@ -1,9 +1,8 @@
 package net.xsapi.panat.xshop.xshopdynamicshop.listeners;
 
 import net.xsapi.panat.xshop.xshopdynamicshop.configuration.*;
-import net.xsapi.panat.xshop.xshopdynamicshop.core.XShopDynamicShopCore;
+import net.xsapi.panat.xshop.xshopdynamicshop.core.core;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,8 +16,8 @@ public class InventoryClose implements Listener {
     public void onClose(InventoryCloseEvent e) {
         Player p = (Player) e.getPlayer();
 
-        if(XShopDynamicShopCore.getPlayerOpenGUI().contains(p)) {
-            Bukkit.getScheduler().scheduleSyncDelayedTask(XShopDynamicShopCore.getPlugin(), new Runnable() {
+        if(core.getPlayerOpenGUI().contains(p)) {
+            Bukkit.getScheduler().scheduleSyncDelayedTask(core.getPlugin(), new Runnable() {
                 @Override
                 public void run() {
                     String title = p.getOpenInventory().getTitle().replace("&", "§");
@@ -34,7 +33,7 @@ public class InventoryClose implements Listener {
                     }
 
                     if(isClose) {
-                        final Iterator<Player> pls = XShopDynamicShopCore.getPlayerOpenGUI().iterator();
+                        final Iterator<Player> pls = core.getPlayerOpenGUI().iterator();
                         while (pls.hasNext()) {
                             final Player pd = pls.next();
 

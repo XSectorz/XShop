@@ -26,23 +26,23 @@ public class XSCommands implements CommandExecutor {
                     if(sender.hasPermission("xshop.use")) {
                         if(config.customConfig.getBoolean("whitelist-worlds.enabled")) {
                             if(!config.customConfig.getStringList("whitelist-worlds.worlds").contains(sender.getWorld().getName())) {
-                                sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("blocked_worlds")).replace("&","§"));
+                                sender.sendMessage((core.prefix + messages.customConfig.getString("blocked_worlds")).replace("&","§"));
                                 return false;
                             }
                         }
-                        XShopDynamicShopCore.isUsingSpecialShop.put(sender.getUniqueId(),false);
-                        XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
-                        XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.NoneType);
-                        XShop.openInv(sender, XShopDynamicShopCore.shopType.get(sender.getUniqueId()),
-                                XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(sender.getUniqueId()));
+                        core.isUsingSpecialShop.put(sender.getUniqueId(),false);
+                        core.shopPage.put(sender.getUniqueId(),1);
+                        core.shopType.put(sender.getUniqueId(),XShopType.NoneType);
+                        XShop.openInv(sender, core.shopType.get(sender.getUniqueId()),
+                                core.shopPage.get(sender.getUniqueId()),true, core.isUsingSpecialShop.get(sender.getUniqueId()));
 
-                        if(!XShopDynamicShopCore.getPlayerOpenGUI().contains(sender)) {
-                            XShopDynamicShopCore.getPlayerOpenGUI().add(sender);
+                        if(!core.getPlayerOpenGUI().contains(sender)) {
+                            core.getPlayerOpenGUI().add(sender);
                         }
 
                         return true;
                     } else {
-                        sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                        sender.sendMessage((core.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
                         return false;
                     }
                 } else if(args.length == 1) {
@@ -76,135 +76,135 @@ public class XSCommands implements CommandExecutor {
                         return true;
                     } else if(args[0].equalsIgnoreCase("reload")){
                         if(!sender.hasPermission("xshop.reload")) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
                             return false;
                         }
-                        XShopDynamicShopCore.saveData();
-                        XShopDynamicShopCore.loadData();
+                        core.saveData();
+                        core.loadData();
                         messages.reload();
                         config.reload();
-                        XShopDynamicShopCore.closeInventory();
-                        sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("reload_complete")).replace("&","§"));
+                        core.closeInventory();
+                        sender.sendMessage((core.prefix + messages.customConfig.getString("reload_complete")).replace("&","§"));
                         return true;
                     } else if(args[0].equalsIgnoreCase("farming")){
                         if(!sender.hasPermission("xshop.farming")) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
                             return false;
                         }
-                        XShopDynamicShopCore.isUsingSpecialShop.put(sender.getUniqueId(),true);
-                        XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
-                        XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.Seasonitems);
-                        XShop.openInv(sender, XShopDynamicShopCore.shopType.get(sender.getUniqueId()),
-                                XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(sender
+                        core.isUsingSpecialShop.put(sender.getUniqueId(),true);
+                        core.shopPage.put(sender.getUniqueId(),1);
+                        core.shopType.put(sender.getUniqueId(),XShopType.Seasonitems);
+                        XShop.openInv(sender, core.shopType.get(sender.getUniqueId()),
+                                core.shopPage.get(sender.getUniqueId()),true, core.isUsingSpecialShop.get(sender
                                         .getUniqueId()));
 
-                        if(!XShopDynamicShopCore.getPlayerOpenGUI().contains(sender)) {
-                            XShopDynamicShopCore.getPlayerOpenGUI().add(sender);
+                        if(!core.getPlayerOpenGUI().contains(sender)) {
+                            core.getPlayerOpenGUI().add(sender);
                         }
                         return true;
                     } else if(args[0].equalsIgnoreCase("fishing")){
                         if(!sender.hasPermission("xshop.fishing")) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
                             return false;
                         }
-                        XShopDynamicShopCore.isUsingSpecialShop.put(sender.getUniqueId(),true);
-                        XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
-                        XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.Fishing);
-                        XShop.openInv(sender, XShopDynamicShopCore.shopType.get(sender.getUniqueId()),
-                                XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(sender
+                        core.isUsingSpecialShop.put(sender.getUniqueId(),true);
+                        core.shopPage.put(sender.getUniqueId(),1);
+                        core.shopType.put(sender.getUniqueId(),XShopType.Fishing);
+                        XShop.openInv(sender, core.shopType.get(sender.getUniqueId()),
+                                core.shopPage.get(sender.getUniqueId()),true, core.isUsingSpecialShop.get(sender
                                         .getUniqueId()));
 
-                        if(!XShopDynamicShopCore.getPlayerOpenGUI().contains(sender)) {
-                            XShopDynamicShopCore.getPlayerOpenGUI().add(sender);
+                        if(!core.getPlayerOpenGUI().contains(sender)) {
+                            core.getPlayerOpenGUI().add(sender);
                         }
                         return true;
                     } else if(args[0].equalsIgnoreCase("foods")){
                         if(!sender.hasPermission("xshop.foods")) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
                             return false;
                         }
-                        XShopDynamicShopCore.isUsingSpecialShop.put(sender.getUniqueId(),true);
-                        XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
-                        XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.Foods);
-                        XShop.openInv(sender, XShopDynamicShopCore.shopType.get(sender.getUniqueId()),
-                                XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(sender
+                        core.isUsingSpecialShop.put(sender.getUniqueId(),true);
+                        core.shopPage.put(sender.getUniqueId(),1);
+                        core.shopType.put(sender.getUniqueId(),XShopType.Foods);
+                        XShop.openInv(sender, core.shopType.get(sender.getUniqueId()),
+                                core.shopPage.get(sender.getUniqueId()),true, core.isUsingSpecialShop.get(sender
                                         .getUniqueId()));
 
-                        if(!XShopDynamicShopCore.getPlayerOpenGUI().contains(sender)) {
-                            XShopDynamicShopCore.getPlayerOpenGUI().add(sender);
+                        if(!core.getPlayerOpenGUI().contains(sender)) {
+                            core.getPlayerOpenGUI().add(sender);
                         }
                         return true;
                     } else if(args[0].equalsIgnoreCase("blocks")){
                         if(!sender.hasPermission("xshop.new_blocks")) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
                             return false;
                         }
-                        XShopDynamicShopCore.isUsingSpecialShop.put(sender.getUniqueId(),false);
-                        XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
-                        XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.New_block);
-                        XShop.openInv(sender, XShopDynamicShopCore.shopType.get(sender.getUniqueId()),
-                                XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(sender
+                        core.isUsingSpecialShop.put(sender.getUniqueId(),false);
+                        core.shopPage.put(sender.getUniqueId(),1);
+                        core.shopType.put(sender.getUniqueId(),XShopType.New_block);
+                        XShop.openInv(sender, core.shopType.get(sender.getUniqueId()),
+                                core.shopPage.get(sender.getUniqueId()),true, core.isUsingSpecialShop.get(sender
                                         .getUniqueId()));
 
-                        if(!XShopDynamicShopCore.getPlayerOpenGUI().contains(sender)) {
-                            XShopDynamicShopCore.getPlayerOpenGUI().add(sender);
+                        if(!core.getPlayerOpenGUI().contains(sender)) {
+                            core.getPlayerOpenGUI().add(sender);
                         }
                         return true;
                     }
                 } else if(args.length == 2) {
                     if((args[0].equalsIgnoreCase("save"))) {
                         if(!sender.hasPermission("xshop.storages.save")) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
                             return false;
                         }
                         String name = args[1].toString();
 
                         if(sender.getInventory().getItemInMainHand().getType() == Material.AIR) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("storages_empty_hand")).replace("&","§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("storages_empty_hand")).replace("&","§"));
                             return false;
                         }
 
                         if(storages.customConfig.get(name) != null) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("storages_already_have")).replace("&","§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("storages_already_have")).replace("&","§"));
                             return false;
                         }
 
                         storages.customConfig.set(name,sender.getInventory().getItemInMainHand());
                         storages.save();
                         storages.reload();
-                        sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("storages_saved"))
+                        sender.sendMessage((core.prefix + messages.customConfig.getString("storages_saved"))
                                 .replace("%item%",name).replace("&","§"));
                         return true;
                     }
                     else if(args[0].equalsIgnoreCase("load")) {
                         if(!sender.hasPermission("xshop.storages.load")) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
                             return false;
                         }
 
                         String name = args[1].toString();
                         if(storages.customConfig.get(name) == null) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("storages_load_null")).replace("&","§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("storages_load_null")).replace("&","§"));
                             return false;
                         }
                         if(sender.getInventory().firstEmpty() == -1) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("inventory_full")).replace("&","§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("inventory_full")).replace("&","§"));
                             return false;
                         }
 
                         ItemStack it = storages.customConfig.getItemStack(name);
                         sender.getInventory().addItem(it);
-                        sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("storages_load_complete")).replace("&","§"));
+                        sender.sendMessage((core.prefix + messages.customConfig.getString("storages_load_complete")).replace("&","§"));
                         return true;
                     } else if(args[0].equalsIgnoreCase("remove")) {
                         if(!sender.hasPermission("xshop.storages.remove")) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
                             return false;
                         }
 
                         String name = args[1].toString();
                         if(storages.customConfig.get(name) == null) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("storages_remove_null")).replace("&","§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("storages_remove_null")).replace("&","§"));
                             return false;
                         }
 
@@ -212,45 +212,45 @@ public class XSCommands implements CommandExecutor {
                         storages.save();
                         storages.reload();
 
-                        sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("storages_remove_complete"))
+                        sender.sendMessage((core.prefix + messages.customConfig.getString("storages_remove_complete"))
                                 .replace("%item%",name).replace("&","§"));
                         return true;
                     }
                 } else if(args.length == 3) {
                     if(args[0].equalsIgnoreCase("give")) {
                         if(!sender.hasPermission("xshop.storages.give")) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
                             return false;
                         }
                         String name = args[1].toString();
 
                         if(storages.customConfig.get(name) == null) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("storages_give_null")).replace("&","§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("storages_give_null")).replace("&","§"));
                             return false;
                         }
 
                         String playerName = args[2].toString();
                         if(Bukkit.getPlayer(playerName) == null) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("storages_give_player_null")).replace("&", "§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("storages_give_player_null")).replace("&", "§"));
                             return false;
                         }
 
                         Player target = Bukkit.getPlayer(playerName);
                         if(target.getInventory().firstEmpty() == -1) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("inventory_full")).replace("&","§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("inventory_full")).replace("&","§"));
                             return false;
                         }
 
                         ItemStack it = storages.customConfig.getItemStack(name);
                         target.getInventory().addItem(it);
-                        sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("storages_give_complete"))
+                        sender.sendMessage((core.prefix + messages.customConfig.getString("storages_give_complete"))
                                 .replace("%item%",name).replace("%name%",playerName).replace("&", "§"));
                         return true;
                     }
                 } else if(args.length == 4) {
                      if(args[0].equalsIgnoreCase("setstock")) {
                         if(!sender.hasPermission("xshop.setstock")) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
                             return false;
                         }
                         String type = args[1].toString();
@@ -260,13 +260,13 @@ public class XSCommands implements CommandExecutor {
                         try {
                             amount = Integer.parseInt(args[3].toString());
                         } catch (NumberFormatException nfe) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("not_a_number")).replace("&", "§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("not_a_number")).replace("&", "§"));
                             return false;
                         }
 
                         if(amount <= 0) {
                             if(amount != -1) {
-                                sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("stock_only_positive")).replace("&", "§"));
+                                sender.sendMessage((core.prefix + messages.customConfig.getString("stock_only_positive")).replace("&", "§"));
                                 return false;
                             }
                         }
@@ -277,14 +277,14 @@ public class XSCommands implements CommandExecutor {
                             type = type.substring(0, 1).toUpperCase() + type.substring(1);
                             typeShop = XShopType.valueOf(type);
                         } catch (IllegalArgumentException e) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("type_of_shop_null")).replace("&", "§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("type_of_shop_null")).replace("&", "§"));
                             return false;
                         }
 
-                        XShopItems shopItems = XShopDynamicShopCore.getItemsByPrivateNameAndShop(typeShop,name);
+                        XShopItems shopItems = core.getItemsByPrivateNameAndShop(typeShop,name);
 
                         if(shopItems == null) {
-                            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("item_of_shop_null")).replace("&", "§"));
+                            sender.sendMessage((core.prefix + messages.customConfig.getString("item_of_shop_null")).replace("&", "§"));
                             return false;
                         }
 
@@ -296,12 +296,12 @@ public class XSCommands implements CommandExecutor {
 
                         shopItems.setPreviousPrice(shopItems.getValue()*shopItems.getMedian()/amount);
 
-                        sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("setstock_complete")).replace("&", "§"));
-                        XShopDynamicShopCore.saveData();
+                        sender.sendMessage((core.prefix + messages.customConfig.getString("setstock_complete")).replace("&", "§"));
+                        core.saveData();
                         return true;
                     } else if(args[0].equalsIgnoreCase("setprice")) {
                          if(!sender.hasPermission("xshop.setprice")) {
-                             sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                             sender.sendMessage((core.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
                              return false;
                          }
 
@@ -312,12 +312,12 @@ public class XSCommands implements CommandExecutor {
                          try {
                              amount = Double.parseDouble(args[3].toString());
                          } catch (NumberFormatException nfe) {
-                             sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("not_a_number")).replace("&", "§"));
+                             sender.sendMessage((core.prefix + messages.customConfig.getString("not_a_number")).replace("&", "§"));
                              return false;
                          }
 
                          if(amount <= 0) {
-                             sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("price_only_positive")).replace("&", "§"));
+                             sender.sendMessage((core.prefix + messages.customConfig.getString("price_only_positive")).replace("&", "§"));
                              return false;
                          }
 
@@ -327,14 +327,14 @@ public class XSCommands implements CommandExecutor {
                              type = type.substring(0, 1).toUpperCase() + type.substring(1);
                              typeShop = XShopType.valueOf(type);
                          } catch (IllegalArgumentException e) {
-                             sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("type_of_shop_null")).replace("&", "§"));
+                             sender.sendMessage((core.prefix + messages.customConfig.getString("type_of_shop_null")).replace("&", "§"));
                              return false;
                          }
 
-                         XShopItems shopItems = XShopDynamicShopCore.getItemsByPrivateNameAndShop(typeShop,name);
+                         XShopItems shopItems = core.getItemsByPrivateNameAndShop(typeShop,name);
 
                          if(shopItems == null) {
-                             sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("item_of_shop_null")).replace("&", "§"));
+                             sender.sendMessage((core.prefix + messages.customConfig.getString("item_of_shop_null")).replace("&", "§"));
                              return false;
                          }
 
@@ -359,13 +359,13 @@ public class XSCommands implements CommandExecutor {
                          shopItems.setMedian(1);
                          shopItems.setValue(val);
                          shopItems.setPreviousPrice(shopItems.getValue()*shopItems.getMedian()/stock);
-                         sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("setprice_complete")).replace("&", "§"));
-                         XShopDynamicShopCore.saveData();
+                         sender.sendMessage((core.prefix + messages.customConfig.getString("setprice_complete")).replace("&", "§"));
+                         core.saveData();
                          return true;
                      }
                 }
             }
-            sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("cmd_not_found"))
+            sender.sendMessage((core.prefix + messages.customConfig.getString("cmd_not_found"))
                     .replace("&","§"));
             return false;
         } else { //Console
@@ -373,8 +373,8 @@ public class XSCommands implements CommandExecutor {
             if(command.getName().equalsIgnoreCase("xshop")) {
                 if(args.length == 1) {
                     if(args[0].equalsIgnoreCase("reload")) {
-                        XShopDynamicShopCore.saveData();
-                        XShopDynamicShopCore.loadData();
+                        core.saveData();
+                        core.loadData();
 
                         messages.reload();
                         config.reload();
@@ -415,49 +415,49 @@ public class XSCommands implements CommandExecutor {
 
                         if(args[1].equalsIgnoreCase("fishing")) {
                             if(!sender.hasPermission("xshop.fishing")) {
-                                sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                                sender.sendMessage((core.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
                                 return false;
                             }
-                            XShopDynamicShopCore.isUsingSpecialShop.put(sender.getUniqueId(),true);
-                            XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
-                            XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.Fishing);
-                            XShop.openInv(sender, XShopDynamicShopCore.shopType.get(sender.getUniqueId()),
-                                    XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(sender
+                            core.isUsingSpecialShop.put(sender.getUniqueId(),true);
+                            core.shopPage.put(sender.getUniqueId(),1);
+                            core.shopType.put(sender.getUniqueId(),XShopType.Fishing);
+                            XShop.openInv(sender, core.shopType.get(sender.getUniqueId()),
+                                    core.shopPage.get(sender.getUniqueId()),true, core.isUsingSpecialShop.get(sender
                                             .getUniqueId()));
 
-                            if(!XShopDynamicShopCore.getPlayerOpenGUI().contains(sender)) {
-                                XShopDynamicShopCore.getPlayerOpenGUI().add(sender);
+                            if(!core.getPlayerOpenGUI().contains(sender)) {
+                                core.getPlayerOpenGUI().add(sender);
                             }
                             return true;
                         } else if(args[1].equalsIgnoreCase("farming")) {
                             if(!sender.hasPermission("xshop.farming")) {
-                                sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                                sender.sendMessage((core.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
                                 return false;
                             }
-                            XShopDynamicShopCore.isUsingSpecialShop.put(sender.getUniqueId(),true);
-                            XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
-                            XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.Seasonitems);
-                            XShop.openInv(sender, XShopDynamicShopCore.shopType.get(sender.getUniqueId()),
-                                    XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(sender
+                            core.isUsingSpecialShop.put(sender.getUniqueId(),true);
+                            core.shopPage.put(sender.getUniqueId(),1);
+                            core.shopType.put(sender.getUniqueId(),XShopType.Seasonitems);
+                            XShop.openInv(sender, core.shopType.get(sender.getUniqueId()),
+                                    core.shopPage.get(sender.getUniqueId()),true, core.isUsingSpecialShop.get(sender
                                             .getUniqueId()));
 
-                            if(!XShopDynamicShopCore.getPlayerOpenGUI().contains(sender)) {
-                                XShopDynamicShopCore.getPlayerOpenGUI().add(sender);
+                            if(!core.getPlayerOpenGUI().contains(sender)) {
+                                core.getPlayerOpenGUI().add(sender);
                             }
                             return true;
                         } else if(args[1].equalsIgnoreCase("normal")) {
                             if(!sender.hasPermission("xshop.use")) {
-                                sender.sendMessage((XShopDynamicShopCore.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
+                                sender.sendMessage((core.prefix + messages.customConfig.getString("no_perms")).replace("&","§"));
                                 return false;
                             }
-                            XShopDynamicShopCore.isUsingSpecialShop.put(sender.getUniqueId(),false);
-                            XShopDynamicShopCore.shopPage.put(sender.getUniqueId(),1);
-                            XShopDynamicShopCore.shopType.put(sender.getUniqueId(),XShopType.NoneType);
-                            XShop.openInv(sender, XShopDynamicShopCore.shopType.get(sender.getUniqueId()),
-                                    XShopDynamicShopCore.shopPage.get(sender.getUniqueId()),true,XShopDynamicShopCore.isUsingSpecialShop.get(sender.getUniqueId()));
+                            core.isUsingSpecialShop.put(sender.getUniqueId(),false);
+                            core.shopPage.put(sender.getUniqueId(),1);
+                            core.shopType.put(sender.getUniqueId(),XShopType.NoneType);
+                            XShop.openInv(sender, core.shopType.get(sender.getUniqueId()),
+                                    core.shopPage.get(sender.getUniqueId()),true, core.isUsingSpecialShop.get(sender.getUniqueId()));
 
-                            if(!XShopDynamicShopCore.getPlayerOpenGUI().contains(sender)) {
-                                XShopDynamicShopCore.getPlayerOpenGUI().add(sender);
+                            if(!core.getPlayerOpenGUI().contains(sender)) {
+                                core.getPlayerOpenGUI().add(sender);
                             }
                             return true;
                         }

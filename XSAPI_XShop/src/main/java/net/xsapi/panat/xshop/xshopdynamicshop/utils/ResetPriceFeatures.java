@@ -2,8 +2,7 @@ package net.xsapi.panat.xshop.xshopdynamicshop.utils;
 
 import com.google.common.io.Files;
 import net.xsapi.panat.xshop.xshopdynamicshop.configuration.config;
-import net.xsapi.panat.xshop.xshopdynamicshop.core.XShopDynamicShopCore;
-import net.xsapi.panat.xshop.xshopdynamicshop.gui.XShop;
+import net.xsapi.panat.xshop.xshopdynamicshop.core.core;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -17,14 +16,14 @@ import java.util.List;
 public class ResetPriceFeatures {
 
     public void resetPrice() {
-        File dir = new File(XShopDynamicShopCore.getPlugin().getDataFolder()+"/temp");
+        File dir = new File(core.getPlugin().getDataFolder()+"/temp");
         File[] directoryListing = dir.listFiles();
 
         if (directoryListing != null) {
             for (File child : directoryListing) {
                 if (child.getName().endsWith(".yml")) {
 
-                    File dest = new File(XShopDynamicShopCore.getPlugin().getDataFolder() + "/shops/" + child.getName());
+                    File dest = new File(core.getPlugin().getDataFolder() + "/shops/" + child.getName());
 
                     if(!dest.exists()) {
                         dest.getParentFile().mkdirs();
@@ -55,7 +54,7 @@ public class ResetPriceFeatures {
             }
         }
 
-        final List<Player> user_list = new ArrayList<Player>(XShopDynamicShopCore.getPlayerOpenGUI());
+        final List<Player> user_list = new ArrayList<Player>(core.getPlayerOpenGUI());
 
         if(!user_list.isEmpty()) {
             for (final Player user : user_list) {

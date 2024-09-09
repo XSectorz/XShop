@@ -1,6 +1,6 @@
 package net.xsapi.panat.xshop.xshopdynamicshop.task;
 
-import net.xsapi.panat.xshop.xshopdynamicshop.core.XShopDynamicShopCore;
+import net.xsapi.panat.xshop.xshopdynamicshop.core.core;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -10,8 +10,8 @@ public class task_update extends BukkitRunnable {
     public void run() {
         Bukkit.getConsoleSender().sendMessage("&c[XSHOP] &aAuto save is running...".replace("&", "\u00A7"));
 
-        XShopDynamicShopCore.saveData();
-        XShopDynamicShopCore.loadData();
+        core.saveData();
+        core.loadData();
 
         Bukkit.getConsoleSender().sendMessage("&c[XSHOP] &aSave complete!".replace("&", "\u00A7"));
 
