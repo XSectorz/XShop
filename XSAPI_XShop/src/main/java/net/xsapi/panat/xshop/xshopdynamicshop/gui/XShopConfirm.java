@@ -209,7 +209,6 @@ public class XShopConfirm {
                 //Bukkit.broadcastMessage("TEMP DATA: " + tempData);
                 //Bukkit.broadcastMessage("DISPLAY AFTER REPLACE 2: " + displayName);
 
-
                 if(isBuySection && shopType.equals(XShopConfirmType.SELL_ONLY)) {
                     inv.setItem(slotList.get(i),ItemCreator.createItem(Material.valueOf(config.customConfig.getString("gui.none_buy.material")),
                             1,config.customConfig.getInt("gui.none_buy.customModelData"),config.customConfig.getString("gui.none_buy.displayName").replace("&", "§")

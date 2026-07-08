@@ -35,6 +35,7 @@ public class InventoryGUI implements Listener {
         || e.getView().getTitle().equalsIgnoreCase(fishing.customConfig.getString("gui.title").replace("&","§"))
         || e.getView().getTitle().equalsIgnoreCase(foods.customConfig.getString("gui.title").replace("&","§"))
         || e.getView().getTitle().equalsIgnoreCase(new_block.customConfig.getString("gui.title").replace("&","§"))) {
+
             if(e.getSlot() < 0) {
                 return;
             }
@@ -42,6 +43,7 @@ public class InventoryGUI implements Listener {
                 e.setCancelled(true);
                 return;
             }
+            Bukkit.getLogger().info("Come here");
             e.setCancelled(true);
             boolean isSpecial = core.isUsingSpecialShop.get(p.getUniqueId());
             String menuType = "items";
@@ -181,6 +183,15 @@ public class InventoryGUI implements Listener {
                                 XShopConfirm.openGUI(p,mat,itemClicked.getPrivateName(),XShopConfirmType.SELL_ONLY);
                             } else if(itemClicked.getItemsType().equals(XShopItemsType.BUY_ONLY)) {
                                 XShopConfirm.openGUI(p,mat,itemClicked.getPrivateName(),XShopConfirmType.BUY_ONLY);
+                            } else if(itemClicked.getItemsType().equals(XShopItemsType.CUSTOM)) {
+                                XShopItemsCustom xsitemcustom = (XShopItemsCustom) itemClicked;
+                                if(xsitemcustom.getCustomType().equalsIgnoreCase("buy")) {
+                                    XShopConfirm.openGUI(p,mat,itemClicked.getPrivateName(),XShopConfirmType.BUY_ONLY);
+                                } else if(xsitemcustom.getCustomType().equalsIgnoreCase("sell")) {
+                                    XShopConfirm.openGUI(p,mat,itemClicked.getPrivateName(),XShopConfirmType.SELL_ONLY);
+                                } else {
+                                    XShopConfirm.openGUI(p,mat,itemClicked.getPrivateName(),XShopConfirmType.NORMAL);
+                                }
                             } else {
                                 XShopConfirm.openGUI(p,mat,itemClicked.getPrivateName(),XShopConfirmType.NORMAL);
                             }
@@ -360,7 +371,7 @@ public class InventoryGUI implements Listener {
 
                             if(core.getBuyAmountCooldown().get(p).get(title) >= 64) {
                                 // p.sendMessage("COOLDOWN 2 secs");
-                                core.getBuyTempDisable().put(p,System.currentTimeMillis()+2000L);
+                                core.getBuyTempDisable().put(p,System.currentTimeMillis()+500L);
                                 core.getBuyAmountCooldown().get(p).put(title,0);
                             }
 
@@ -601,7 +612,7 @@ public class InventoryGUI implements Listener {
 
                             if(core.getSellAmountCooldown().get(p).get(title) >= 64) {
                                 // p.sendMessage("COOLDOWN 2 secs");
-                                core.getSellTempDisable().put(p,System.currentTimeMillis()+2000L);
+                                core.getSellTempDisable().put(p,System.currentTimeMillis()+1000L);
                                 core.getSellAmountCooldown().get(p).put(title,0);
                             }
                         }

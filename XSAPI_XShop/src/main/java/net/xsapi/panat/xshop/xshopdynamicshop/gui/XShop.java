@@ -330,10 +330,11 @@ public class XShop {
                             listLore = loreNew;
                             mat = it.getType();
                             amount = it.getAmount();
+
                         }
 
                     } else {
-
+//                        Bukkit.getLogger().info("Debug: " + shopItems.getMat().toString() );
                         display = display.replace("%type%", shopItems.getMat().toString());
                         if (shopItems.getMat() != null) {
                             mat = shopItems.getMat();
